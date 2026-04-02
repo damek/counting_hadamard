@@ -25,7 +25,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y python3-venv
+          sudo apt-get install -y python3-venv graphviz libgraphviz-dev pkg-config
 
       - name: Install Lean toolchain
         run: |
