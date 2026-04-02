@@ -70,6 +70,7 @@ def main() -> int:
     shutil.copy2(ROOT / "RequestProject.lean", source_root / "RequestProject.lean")
     copytree(SOURCE_DIR, source_root / "RequestProject")
 
+    print(f"[assemble_pages_site] wrote {SITE_DIR}")
     return 0
 
 

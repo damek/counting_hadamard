@@ -1,343 +1,127 @@
-% BP_RECORD_BEGIN
-% {
-%   "id": "residual",
-%   "title": "Residual Estimate",
-%   "order": 4,
-%   "summary": "Quantitative off-core estimate and the shell-transport support cluster.",
-%   "reader_notes": "This chapter isolates the quantitative residual route that is easy to lose track of in source form: thresholds, shell transport, local-to-core transfer, and the final exponentially small estimate.",
-%   "record_type": "chapter",
-%   "chapter_file": "blueprint/src/chapters/residual.tex"
-% }
-% BP_RECORD_END
-\section{Residual Estimate}
-\label{chap:residual}
+\chapter{Far shell and residual}\label{chap:residual}
 
-This chapter tracks the off-core route used to close the main theorem: threshold
-parameters, shell transport, local-to-core packaging, and the final quantitative
-residual estimate.
+This chapter bounds the contributions from outside the core region
+$\corereg$. The far shell $\Bbox_{\pi/4}\setminus\Dd_r$ is split into
+three sub-regions by the comparison error $J(\lambda)$ and the maximal
+row influence $I_{\max}(\lambda)$.
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "paper-prop-residual-estimate",
-%   "label": "prop:residual-estimate",
-%   "title": "Residual estimate",
-%   "kind": "proposition",
-%   "tex_path": "documents/short.tex",
-%   "statement_lines": {
-%     "start": 1666,
-%     "end": 1675
-%   },
-%   "proof_lines": {
-%     "start": 1677,
-%     "end": 1760
-%   },
-%   "lean_primary": "lean-residual-estimate",
-%   "lean_support": [
-%     "lean-residual-thresholds",
-%     "lean-residual-transport",
-%     "lean-residual-annulus",
-%     "lean-residual-far-shell",
-%     "lean-residual-local-core",
-%     "lean-psi-vs-gaussian"
-%   ],
-%   "module_owner": "module-local-gap-residual",
-%   "summary": "The residual proposition packages the local annulus, odd residual, translated shells, and quantitative strengthening into one off-core theorem.",
-%   "proof_steps": [
-%     {
-%       "id": "step-residual-annulus",
-%       "title": "Outside-core local annulus",
-%       "tex_lines": {
-%         "start": 1683,
-%         "end": 1700
-%       },
-%       "lean_refs": [
-%         "lean-residual-annulus",
-%         "lean-residual-local-core"
-%       ],
-%       "summary": "Control the local annulus outside the core using small-ball decay and Gaussian core mass."
-%     },
-%     {
-%       "id": "step-residual-odd",
-%       "title": "Odd residual",
-%       "tex_lines": {
-%         "start": 1702,
-%         "end": 1708
-%       },
-%       "lean_refs": [
-%         "lean-residual-estimate"
-%       ],
-%       "summary": "Use the odd-cell bound to control the odd component of the residual region."
-%     },
-%     {
-%       "id": "step-residual-near",
-%       "title": "Translated near shell",
-%       "tex_lines": {
-%         "start": 1710,
-%         "end": 1726
-%       },
-%       "lean_refs": [
-%         "lean-residual-transport"
-%       ],
-%       "summary": "Translate the near-shell region by the lattice and reuse the local small-ball decay."
-%     },
-%     {
-%       "id": "step-residual-far",
-%       "title": "Translated far shell",
-%       "tex_lines": {
-%         "start": 1727,
-%         "end": 1728
-%       },
-%       "lean_refs": [
-%         "lean-residual-far-shell",
-%         "lean-psi-vs-gaussian"
-%       ],
-%       "summary": "Invoke the far-shell estimate, which depends on the weak Gaussian comparison."
-%     },
-%     {
-%       "id": "step-residual-quantitative",
-%       "title": "Quantitative cubic-threshold strengthening",
-%       "tex_lines": {
-%         "start": 1730,
-%         "end": 1760
-%       },
-%       "lean_refs": [
-%         "lean-residual-thresholds",
-%         "lean-residual-estimate"
-%       ],
-%       "summary": "Upgrade the asymptotic residual bounds to explicit exponential decay at the cubic threshold."
-%     }
-%   ],
-%   "record_type": "paper_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{proposition}[Residual estimate]
-\label{prop:residual-estimate}
-\lean{residual_estimate_quantitative}
-\leanok
-\uses{lean-residual-thresholds,lean-residual-transport,lean-residual-annulus,lean-residual-far-shell,lean-residual-local-core,lean-psi-vs-gaussian}
-The residual proposition packages the local annulus, odd residual, translated shells, and quantitative strengthening into one off-core theorem.
+\section{Far-shell contraction}
+
+\begin{proposition}[Far-shell contraction]\label{prop:far-shell}
+\lean{edgeEvenFarShell_contribution_bound_Jsplit}\leanok
+\uses{cor:weak-comparison,fact:psi-sq,lem:gaussian-quadratic}
+Set $\eta_r:=\frac{1}{3}[1-(1+2r^2)^{-1/4}]$ and
+$I_{\max}(\lambda):=\max_k I_k(\lambda)$.
+There exist $q_{\mathrm{sm}},q_{\mathrm{big}}\in(0,1)$ and $a_r>0$
+such that for all $n\ge 2$ and $t\ge 1$ the far shell decomposes as
+\[
+  \begin{aligned}
+  \mathcal F_{\mathrm{sm}}
+    &:=\{\lambda\in\Bbox_{\pi/4}\setminus\Dd_r:J(\lambda)\le \eta_r\},\\
+  \mathcal F_{\mathrm{big}}
+    &:=\{\lambda\in\Bbox_{\pi/4}\setminus\Dd_r:J(\lambda)>\eta_r,\;I_{\max}\ge 1\},\\
+  \mathcal F_{\mathrm{mid}}
+    &:=\{\lambda\in\Bbox_{\pi/4}\setminus\Dd_r:J(\lambda)>\eta_r,\;I_{\max}<1\},
+  \end{aligned}
+\]
+and
+\[
+  |\psi(\lambda)|^{4t}\le
+  \begin{cases}
+    q_{\mathrm{sm}}^{4t} & \lambda\in\mathcal F_{\mathrm{sm}},\\
+    q_{\mathrm{big}}^{4t} & \lambda\in\mathcal F_{\mathrm{big}},\\
+    \exp(-a_r t n^{-2/3}) & \lambda\in\mathcal F_{\mathrm{mid}}.
+  \end{cases}
+\]
 \end{proposition}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-primary-core",
-%   "symbol": "primaryCoreContribution",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 26,
-%   "module": "module-local-gap-residual",
-%   "kind": "definition",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box",
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [],
-%   "summary": "Primary core contribution appearing in the paper\u2019s primary estimate.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{definition}[primaryCoreContribution]
-\label{lean-primary-core}
-\lean{primaryCoreContribution}
-\moduleowner{module-local-gap-residual}
-Primary core contribution appearing in the paper’s primary estimate.
-\end{definition}
-\leanitemdetails{lean-primary-core}
+\begin{proof}\leanok
+\uses{cor:weak-comparison,fact:psi-sq,lem:gaussian-quadratic}
+\emph{Small-$J$:}
+Lemma~\ref{lem:gaussian-quadratic} gives
+$|\psi_G(\lambda)|\le(1+2s(\lambda))^{-1/4}\le q_G$.
+Corollary~\ref{cor:weak-comparison} gives
+$|\psi-\psi_G|\le\frac32 J\le\frac32\eta_r=(1-q_G)/2$,
+so $|\psi|\le q_{\mathrm{sm}}=(1+q_G)/2<1$.
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-cubic-tail",
-%   "symbol": "cubicT_sq_core_gaussian_correction_tail_le",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 506,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "Packages the exponential tail control for the cubic correction term.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[cubicT_sq_core_gaussian_correction_tail_le]
-\label{lean-cubic-tail}
-\lean{cubicT_sq_core_gaussian_correction_tail_le}
-\moduleowner{module-local-gap-residual}
-Packages the exponential tail control for the cubic correction term.
-\end{lemma}
-\leanitemdetails{lean-cubic-tail}
+\emph{Large-$I_{\max}$:}
+Lemma~\ref{fact:psi-sq} gives
+$|\psi|^2\le\frac12+\frac12 e^{-8I_{\max}/\pi^2}\le q_{\mathrm{big}}^2$.
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-thresholds",
-%   "symbol": "residual_threshold_parameters",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 30,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [],
-%   "summary": "Threshold bookkeeping used to convert asymptotic shell bounds into explicit cubic-threshold estimates.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[residual_threshold_parameters]
-\label{lean-residual-thresholds}
-\lean{residual_threshold_parameters}
-\moduleowner{module-local-gap-residual}
-Threshold bookkeeping used to convert asymptotic shell bounds into explicit cubic-threshold estimates.
-\end{lemma}
-\leanitemdetails{lean-residual-thresholds}
+\emph{Middle:}
+The same cosine-product bound gives
+$|\psi|^2\le e^{-2I_{\max}/\pi^2}$, and
+$J>  \eta_r$ with $J\le nI_{\max}^{3/2}$ implies
+$I_{\max}\ge(\eta_r/n)^{2/3}$, so
+$|\psi|^{4t}\le\exp(-a_r tn^{-2/3})$.
+\end{proof}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-transport",
-%   "symbol": "residual_transport_scaled",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 85,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [],
-%   "summary": "Transport lemma for the translated near-shell contribution.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[residual_transport_scaled]
-\label{lean-residual-transport}
-\lean{residual_transport_scaled}
-\moduleowner{module-local-gap-residual}
-Transport lemma for the translated near-shell contribution.
-\end{lemma}
-\leanitemdetails{lean-residual-transport}
+\section{Far-shell integrals}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-annulus",
-%   "symbol": "residual_annulus_scaled",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 111,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [],
-%   "summary": "Local-annulus estimate outside the primary core.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[residual_annulus_scaled]
-\label{lean-residual-annulus}
-\lean{residual_annulus_scaled}
-\moduleowner{module-local-gap-residual}
-Local-annulus estimate outside the primary core.
-\end{lemma}
-\leanitemdetails{lean-residual-annulus}
+\begin{corollary}[Far-shell integrals]\label{cor:far-negligible}
+\lean{residual_estimate_quantitative}\leanok
+\uses{prop:far-shell,fact:lambda-facts}
+Let $E_r(n,t):=q_{\mathrm{sm}}^{4t}+q_{\mathrm{big}}^{4t}+e^{-a_r t n^{-2/3}}$.
+Then for every $\delta\in(0,\pi/4)$,
+\[
+  \begin{aligned}
+  K_n\int_{\Bbox_\delta\setminus\Dd_r}|\psi(\lambda)|^{4t}\,d\lambda
+    &\le 2^{-n+1}E_r(n,t),\\
+  (2\pi)^{-d}\sum_{\lambda\in\Lambda}
+    \int_{\lambda+(\Bbox_{\pi/4}\setminus\Dd_r)}|\psi(\gamma)|^{4t}\,d\gamma
+    &\le 2^{-n+1}E_r(n,t).
+  \end{aligned}
+\]
+Both are $o(\Ahat)$ as $n\to\infty$ with $t/(n^{8/3}\log t)\to\infty$.
+\end{corollary}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-far-shell",
-%   "symbol": "residual_far_shell_scaled",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 162,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [
-%     "lean-psi-vs-gaussian"
-%   ],
-%   "summary": "Far-shell estimate depending on the weak Gaussian comparison.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[residual_far_shell_scaled]
-\label{lean-residual-far-shell}
-\lean{residual_far_shell_scaled}
-\uses{lean-psi-vs-gaussian}
-\moduleowner{module-local-gap-residual}
-Far-shell estimate depending on the weak Gaussian comparison.
-\end{lemma}
-\leanitemdetails{lean-residual-far-shell}
+\begin{proof}\leanok
+\uses{prop:far-shell,fact:lambda-facts}
+Integrate the pointwise bounds from Proposition~\ref{prop:far-shell}
+over $\Bbox_{\pi/4}\setminus\Dd_r$ (volume $\le(\pi/2)^d$).
+For the translated shell, the multiplicativity
+$\psi(\lambda+\mu)=\psi(\lambda)\psi(\mu)$ and $|\psi(\lambda)|=1$ for
+$\lambda\in\Lambda$ reduce to the same integral.
+The ratio $2^{-n+1}E_r/\Ahat\to 0$ since
+$t/(n^{8/3}\log t)\to\infty$ ensures
+$tn^{-2/3}\gg d\log t$.
+\end{proof}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-local-core",
-%   "symbol": "residual_local_to_core_scaled",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 253,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [
-%     "lean-primary-core"
-%   ],
-%   "summary": "Converts the local annulus estimate into the paper\u2019s Gaussian-scale normalization.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{lemma}[residual_local_to_core_scaled]
-\label{lean-residual-local-core}
-\lean{residual_local_to_core_scaled}
-\uses{lean-primary-core}
-\moduleowner{module-local-gap-residual}
-Converts the local annulus estimate into the paper’s Gaussian-scale normalization.
-\end{lemma}
-\leanitemdetails{lean-residual-local-core}
+\section{Residual estimate}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-residual-estimate",
-%   "symbol": "residual_estimate_quantitative",
-%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
-%   "line": 378,
-%   "module": "module-local-gap-residual",
-%   "kind": "paper_endpoint",
-%   "paper_item": "paper-prop-residual-estimate",
-%   "used_by": [
-%     "lean-thm-main-intro"
-%   ],
-%   "depends_on": [
-%     "lean-residual-thresholds",
-%     "lean-residual-transport",
-%     "lean-residual-annulus",
-%     "lean-residual-far-shell",
-%     "lean-residual-local-core",
-%     "lean-psi-vs-gaussian"
-%   ],
-%   "summary": "Paper-facing residual theorem with explicit exponential decay at the cubic threshold.",
-%   "record_type": "lean_item",
-%   "chapter": "residual"
-% }
-% BP_RECORD_END
-\begin{proposition}[residual_estimate_quantitative]
-\label{lean-residual-estimate}
-\lean{residual_estimate_quantitative}
-\uses{lean-residual-thresholds,lean-residual-transport,lean-residual-annulus,lean-residual-far-shell,lean-residual-local-core,lean-psi-vs-gaussian}
-\moduleowner{module-local-gap-residual}
-Paper-facing residual theorem with explicit exponential decay at the cubic threshold.
+\begin{proposition}[Residual estimate]\label{prop:residual-estimate}
+\lean{residual_estimate_quantitative}\leanok
+\uses{lem:small-ball,cor:far-negligible,lem:odd-bound,lem:inner-core}
+Set $\delta^2=2d/t$ and $K_n:=2^{2d-n+1}(2\pi)^{-d}$. Then
+\[
+  \begin{aligned}
+    K_n\int_{\Bbox_\delta\setminus\corereg}|\psi(\lambda)|^{4t}\,d\lambda
+    &= o(\Ahat),\\
+    (2\pi)^{-d}\left|\int_{R_\delta}\psi(\gamma)^{4t}\,d\gamma\right|
+    &= o(\Ahat),
+  \end{aligned}
+\]
+as $n\to\infty$ with $t/(n^{8/3}\log t)\to\infty$.
+For $t\ge C_0 n^3$ and all sufficiently large $n$, both bounds
+are at most $Ce^{-cn^2}\Ahat$.
 \end{proposition}
-\leanitemdetails{lean-residual-estimate}
+
+\begin{proof}\leanok
+\uses{lem:small-ball,cor:far-negligible,lem:odd-bound}
+\emph{Outside the core:}
+If $\lambda\in(\Bbox_\delta\cap\Dd_r)\setminus\corereg$, then
+$\|\lambda\|^2>d/t$, so Lemma~\ref{lem:small-ball} gives
+$|\psi|^{4t}\le e^{-d/2}e^{-t\|\lambda\|^2}$, and the integral is
+$O(e^{-cd})\core(d,t)$.
+
+\emph{Far shell:}
+Corollary~\ref{cor:far-negligible} bounds the contribution of
+$\Bbox_\delta\setminus\Dd_r$.
+
+\emph{Residual $R_\delta$:}
+Decompose into even cells (handled by small-ball decay + far-shell
+bounds) and odd cells (Lemma~\ref{lem:odd-bound} gives
+$|\psi|^{4t}\le 2^{-2t}$).
+
+At the cubic threshold $t\ge C_0 n^3$, all bounds are $O(e^{-cn^2})\Ahat$.
+\end{proof}

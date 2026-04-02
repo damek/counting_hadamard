@@ -1,340 +1,260 @@
-% BP_RECORD_BEGIN
-% {
-%   "id": "primary_box",
-%   "title": "Primary Box",
-%   "order": 3,
-%   "summary": "Primary-box asymptotic and the bridge cluster that transports the exact core integral to the Gaussian main term.",
-%   "reader_notes": "The paper-facing proposition is short, but the Lean route runs through a bridge cluster. This chapter keeps those bridge theorems explicit so the dependency graph is readable.",
-%   "record_type": "chapter",
-%   "chapter_file": "blueprint/src/chapters/primary_box.tex"
-% }
-% BP_RECORD_END
-\section{Primary Box}
-\label{chap:primary-box}
+\chapter{Core analysis}\label{chap:core}
 
-This chapter isolates the bridge cluster behind \texttt{prop\_primary\_box}. The
-paper-facing proposition is compact, but the formal route passes through several
-Gaussian-scale bridge theorems that are worth seeing explicitly.
+This chapter establishes the primary estimate
+(Proposition~\ref{prop:primary-box}) by expanding $\log\psi$ to fifth
+order, bounding each cumulant correction, and integrating over $\corereg$.
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "paper-prop-primary-box",
-%   "label": "prop:primary-box",
-%   "title": "Primary-box estimate",
-%   "kind": "proposition",
-%   "tex_path": "documents/short.tex",
-%   "statement_lines": {
-%     "start": 1296,
-%     "end": 1304
-%   },
-%   "proof_lines": {
-%     "start": 1306,
-%     "end": 1424
-%   },
-%   "lean_primary": "lean-prop-primary-box",
-%   "lean_support": [
-%     "lean-bridge-exact-corrected",
-%     "lean-bridge-corrected-quartic",
-%     "lean-bridge-quartic-cubic",
-%     "lean-cubic-second-order-gap",
-%     "lean-cubic-tail",
-%     "lean-core-mass-gap"
-%   ],
-%   "module_owner": "module-short-main",
-%   "summary": "The primary-box theorem is formalized as a short endpoint over bridge estimates, cubic correction, and Gaussian-mass transport.",
-%   "proof_steps": [
-%     {
-%       "id": "step-primary-exact-corrected",
-%       "title": "Bridge exact to corrected",
-%       "tex_lines": {
-%         "start": 1341,
-%         "end": 1373
-%       },
-%       "lean_refs": [
-%         "lean-bridge-exact-corrected"
-%       ],
-%       "summary": "Strip the sixth-order remainder and compare the exact core integrand to the corrected one on the Gaussian scale."
-%     },
-%     {
-%       "id": "step-primary-corrected-quartic",
-%       "title": "Bridge corrected to quartic",
-%       "tex_lines": {
-%         "start": 1375,
-%         "end": 1395
-%       },
-%       "lean_refs": [
-%         "lean-bridge-corrected-quartic"
-%       ],
-%       "summary": "Remove the quintic phase and compare the corrected core integral to the quartic model."
-%     },
-%     {
-%       "id": "step-primary-quartic-cubic",
-%       "title": "Bridge quartic to cubic",
-%       "tex_lines": {
-%         "start": 1397,
-%         "end": 1409
-%       },
-%       "lean_refs": [
-%         "lean-bridge-quartic-cubic"
-%       ],
-%       "summary": "Remove the quartic factor to reach the cubic core model."
-%     },
-%     {
-%       "id": "step-primary-cubic-tail",
-%       "title": "Cubic correction tail",
-%       "tex_lines": {
-%         "start": 1411,
-%         "end": 1412
-%       },
-%       "lean_refs": [
-%         "lean-cubic-second-order-gap",
-%         "lean-cubic-tail"
-%       ],
-%       "summary": "Insert the explicit cubic correction and control the remaining cubic tail."
-%     },
-%     {
-%       "id": "step-primary-gaussian-transport",
-%       "title": "Gaussian-scale transport",
-%       "tex_lines": {
-%         "start": 1413,
-%         "end": 1423
-%       },
-%       "lean_refs": [
-%         "lean-core-mass-gap",
-%         "lean-gaussian-scale-factorization"
-%       ],
-%       "summary": "Compare the truncated Gaussian mass with the full Gaussian scale and transport the estimate to the paper normalization."
-%     }
-%   ],
-%   "record_type": "paper_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{proposition}[Primary-box estimate]
-\label{prop:primary-box}
-\lean{prop_primary_box}
-\leanok
-\uses{lean-bridge-exact-corrected,lean-bridge-corrected-quartic,lean-bridge-quartic-cubic,lean-cubic-second-order-gap,lean-cubic-tail,lean-core-mass-gap}
-The primary-box theorem is formalized as a short endpoint over bridge estimates, cubic correction, and Gaussian-mass transport.
+\section{Cumulant identities}
+
+\begin{lemma}[Triangle formula]\label{lem:triangle}
+\lean{triangle_formula}\leanok
+For every $\lambda\in\R^d$,
+$T(\lambda)=\sum_{1\le i<j<k\le n}\lambda_{ij}\lambda_{ik}\lambda_{jk}$.
+\end{lemma}
+
+\begin{proof}\leanok
+Expand $\E[X_\lambda^3]$ and observe that the only surviving multigraphs
+(every vertex with even multiplicity) are triangles. Each triangle
+contributes $3!$ ordered triples, giving $\E[X_\lambda^3]=6\sum\lambda_{ij}\lambda_{ik}\lambda_{jk}$.
+Since $T=\frac16\E[X_\lambda^3]$, the claim follows.
+\end{proof}
+
+\begin{lemma}[Fourth cumulant]\label{lem:ordered-cycle}
+\lean{fourth_cumulant_identity}\leanok
+\uses{lem:triangle}
+$Q(\lambda)
+=-\frac{1}{12}\sum_e\lambda_e^4+\frac18\mathcal{C}_4(\lambda)$,
+where $\mathcal{C}_4(\lambda)=\sum_{\text{ordered 4-cycles}}\lambda_{i_1 i_2}\lambda_{i_2 i_3}\lambda_{i_3 i_4}\lambda_{i_4 i_1}$.
+\end{lemma}
+
+\begin{proof}\leanok
+Expand $\E[X_\lambda^4]=\sum_{e_1,\dots,e_4}\lambda_{e_1}\cdots\lambda_{e_4}
+\E[\chi_{e_1}\cdots\chi_{e_4}]$.
+The expectation vanishes unless every vertex index has even multiplicity.
+Three types survive:
+(i)~all four edges equal: $\sum_e\lambda_e^4$;
+(ii)~two distinct pairs: $6\sum_{e<f}\lambda_e^2\lambda_f^2$;
+(iii)~four distinct edges forming a 4-cycle: $3\mathcal{C}_4(\lambda)$.
+Thus $\E[X_\lambda^4]=\sum_e\lambda_e^4+6\sum_{e<f}\lambda_e^2\lambda_f^2
++3\mathcal{C}_4$.
+Since $3s(\lambda)^2=3\sum_e\lambda_e^4+6\sum_{e<f}\lambda_e^2\lambda_f^2$,
+subtracting gives $\kappa_4=-2\sum_e\lambda_e^4+3\mathcal{C}_4$, and
+dividing by~$24$ yields the formula for $Q$.
+\end{proof}
+
+\begin{lemma}[Peeling identity]\label{lem:peeling}
+\lean{quarticCorr_peel_last}\leanok
+\uses{lem:ordered-cycle}
+Let $A$ be a symmetric zero-diagonal $n\times n$ matrix, $B$ the
+$(n{-}1)\times(n{-}1)$ submatrix deleting row/column $n$,
+$x\in\R^{n-1}$ the last column, and $M(B)=B^2-\diag(B^2)$. Then
+\[
+  Q_n(A)=Q_{n-1}(B)+\tfrac12 x^\top M(B)x-\tfrac{1}{12}\sum_{a=1}^{n-1}x_a^4.
+\]
+\end{lemma}
+
+\begin{proof}\leanok
+The diagonal quartic part splits as
+$\sum_{i<j\le n}A_{ij}^4=\sum_{a<b\le n-1}B_{ab}^4+\sum_a x_a^4$.
+Cycles through vertex $n$ correspond to $x^\top M(B)x$;
+cycles avoiding $n$ are $\mathcal{C}_{4,n-1}(B)$.
+Combine with the $1/8$ and $-1/12$ coefficients.
+\end{proof}
+
+\section{Quartic and quintic bounds}
+
+\begin{proposition}[Quartic bounds]\label{prop:quartic-bounds}
+\lean{correctedCore_quarticCore_gap_abs_le_gaussianF_short}\leanok
+\uses{lem:peeling,lem:gaussian-quadratic,lem:inner-core,lem:hc}
+There exist $c_1,C_1>0$ such that if $d/t\le c_1$ and $nd^2/t^2\le c_1$,
+then
+\[
+  \int_{\corereg}|e^{4tQ(\lambda)}|^2 e^{-2t\|\lambda\|^2}\,d\lambda
+  \le C_1\core(d,t),
+\]
+and
+\[
+  \int_{\corereg}|e^{4tQ(\lambda)}-1|^2 e^{-2t\|\lambda\|^2}\,d\lambda
+  \le C_1\frac{d^2}{t^2}\core(d,t).
+\]
 \end{proposition}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-gaussian-f",
-%   "symbol": "gaussianF",
-%   "file": "RequestProject/HadamardCn3Defs.lean",
-%   "line": 77,
-%   "module": "module-defs",
-%   "kind": "definition",
-%   "paper_item": null,
-%   "used_by": [
-%     "lean-gaussian-scale-factorization",
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "Base Gaussian integral scale F(d,t).",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{definition}[gaussianF]
-\label{lean-gaussian-f}
-\lean{gaussianF}
-\moduleowner{module-defs}
-Base Gaussian integral scale F(d,t).
-\end{definition}
-\leanitemdetails{lean-gaussian-f}
+\begin{proof}\leanok
+\uses{lem:peeling,lem:gaussian-quadratic,lem:inner-core,lem:hc}
+\emph{First estimate.}
+Set $I_n^{(\beta)}=\int_{\corereg}e^{-2t\|\lambda\|^2}e^{\beta tQ}\,d\lambda$
+with $\beta=8$ (since $|e^{4tQ}|^2=e^{8tQ}$).
+By Lemma~\ref{lem:peeling}, $Q_n(A)=Q_{n-1}(B)+\frac12 x^\top M(B)x
+-\frac{1}{12}\sum x_a^4$.
+Dropping the negative quartic and fixing $B$, the $x$-fiber is
+$\int_{\R^{n-1}}\exp(-2t\|x\|^2+\frac{\beta t}{2}x^\top M(B)x)\,dx$.
+On $\corereg$, $\|M(B)\|_{\mathrm{op}}\le 2s(B)\le 2d/t$,
+so $I-\frac\beta4 M(B)$ is positive definite for small $d/t$.
+Lemma~\ref{lem:gaussian-quadratic} evaluates the Gaussian integral;
+the determinant satisfies
+$\det(I-\frac\beta4 M(B))^{-1/2}\le\exp(C_\beta d^2/t^2)$
+since $\operatorname{tr}(M(B)^2)\le 4s(B)^2$ and $\sum_j u_j=0$.
+Peeling off all $n$ vertices gives
+$I_n^{(\beta)}\le \exp(C_\beta nd^2/t^2)\,F(d,t)$,
+bounded by $C_1\core(d,t)$ when $nd^2/t^2\le c_1$
+(using Lemma~\ref{lem:inner-core}).
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-gaussian-scale",
-%   "symbol": "gaussianScale",
-%   "file": "RequestProject/HadamardCn3Defs.lean",
-%   "line": 1174,
-%   "module": "module-defs",
-%   "kind": "definition",
-%   "paper_item": null,
-%   "used_by": [
-%     "lean-gaussian-scale-factorization",
-%     "lean-prop-primary-box",
-%     "lean-residual-estimate"
-%   ],
-%   "depends_on": [
-%     "lean-gaussian-f"
-%   ],
-%   "summary": "Paper Gaussian main scale \\hat A_n(t).",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{definition}[gaussianScale]
-\label{lean-gaussian-scale}
-\lean{gaussianScale}
-\uses{lean-gaussian-f}
-\moduleowner{module-defs}
-Paper Gaussian main scale \hat A_n(t).
-\end{definition}
-\leanitemdetails{lean-gaussian-scale}
+\emph{Second estimate.}
+Use $|e^u-1|^2\le u^2(1+e^{2u})$ with $u=4tQ$.
+The term $\int Q^2 e^{-2t\|\lambda\|^2}$ equals
+$F(d,t)\E_{\gamma_t}[Q^2]$, where $\E_{\gamma_t}[Q^2]=O(d^2/t^4)$
+by expanding $Q=-\frac{1}{12}D+\frac18 C$ and using
+$\E[DC]=0$ (parity) and $\E[C^2]=O(d^2/t^4)$ (partner counting).
+The cross term $\int Q^2 e^{8tQ}e^{-2t\|\lambda\|^2}$ is bounded
+by Cauchy--Schwarz, the first estimate with $\beta=16$, and
+hypercontractivity (Lemma~\ref{lem:hc}) applied to the degree-4
+polynomial $Q$. Multiplying by $16t^2$ gives the result.
+\end{proof}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-gaussian-scale-factorization",
-%   "symbol": "gaussianScale_eq_texPrefactor_mul_gaussianF",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 30,
-%   "module": "module-local-gap-bridge",
-%   "kind": "normalization",
-%   "paper_item": null,
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [
-%     "lean-gaussian-f",
-%     "lean-gaussian-scale"
-%   ],
-%   "summary": "Factorization of the Gaussian main scale into the tex prefactor times gaussianF.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[gaussianScale_eq_texPrefactor_mul_gaussianF]
-\label{lean-gaussian-scale-factorization}
-\lean{gaussianScale_eq_texPrefactor_mul_gaussianF}
-\uses{lean-gaussian-f,lean-gaussian-scale}
-\moduleowner{module-local-gap-bridge}
-Factorization of the Gaussian main scale into the tex prefactor times gaussianF.
+\begin{lemma}[Quintic bound]\label{lem:quintic}
+\lean{quinticP5_pointwise_bound}\leanok
+\uses{lem:hc,lem:inner-core}
+There is $C_3'>0$ such that
+\[
+  \int_{\corereg}P(\lambda)^2 e^{-2t\|\lambda\|^2}\,d\lambda
+  \le C_3'\frac{n^5}{t^5}\core(d,t).
+\]
 \end{lemma}
-\leanitemdetails{lean-gaussian-scale-factorization}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-bridge-exact-corrected",
-%   "symbol": "exactCore_correctedCore_gap_abs_le_gaussianF_short",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 23230,
-%   "module": "module-local-gap-bridge",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "First bridge theorem in the active primary-box route.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[exactCore_correctedCore_gap_abs_le_gaussianF_short]
-\label{lean-bridge-exact-corrected}
-\lean{exactCore_correctedCore_gap_abs_le_gaussianF_short}
-\moduleowner{module-local-gap-bridge}
-First bridge theorem in the active primary-box route.
-\end{lemma}
-\leanitemdetails{lean-bridge-exact-corrected}
+\begin{proof}\leanok
+\uses{lem:hc,lem:inner-core}
+By definition $\kappa_5=\E[X_\lambda^5]-10\E[X_\lambda^3]\E[X_\lambda^2]$,
+so the disconnected 5-edge multigraphs (triangle $\times$ double edge) cancel.
+Thus $P$ is supported on \emph{connected} even 5-edge multigraphs.
+Such a graph has sum of degrees $10$, minimum degree $2$, hence at
+most $5$ vertices: choosing $\le 5$ vertices from $[n]$ gives $O(n^5)$
+monomials.
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-bridge-corrected-quartic",
-%   "symbol": "correctedCore_quarticCore_gap_abs_le_gaussianF_short",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 23393,
-%   "module": "module-local-gap-bridge",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "Second bridge theorem in the active primary-box route.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[correctedCore_quarticCore_gap_abs_le_gaussianF_short]
-\label{lean-bridge-corrected-quartic}
-\lean{correctedCore_quarticCore_gap_abs_le_gaussianF_short}
-\moduleowner{module-local-gap-bridge}
-Second bridge theorem in the active primary-box route.
-\end{lemma}
-\leanitemdetails{lean-bridge-corrected-quartic}
+Under $\gamma_t$ (variance $(4t)^{-1}$), each monomial has degree 5.
+A pair $(M,M')$ survives $\E_{\gamma_t}[MM']$ only if every edge
+has even total degree, i.e., $\mathcal O(M')=\mathcal O(M)$
+(same odd-support graph). The odd support is either a 5-cycle
+(unique monomial, unique partner) or a triangle on $\{i,j,k\}$
+(partner types: $(3,1,1)$ on the triangle---$3$ choices---or $(1,1,1,2)$
+with a pendant edge to a new vertex $\ell$---$O(n)$ choices).
+This gives $O(n^5)$ surviving pairs.
+Each degree-10 moment is $O(t^{-5})$; multiplying by $F(d,t)$
+and using Lemma~\ref{lem:inner-core} proves the claim.
+\end{proof}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-bridge-quartic-cubic",
-%   "symbol": "quarticCore_cubicCore_gap_abs_le_gaussianF_short",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 23488,
-%   "module": "module-local-gap-bridge",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "Third bridge theorem in the active primary-box route.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[quarticCore_cubicCore_gap_abs_le_gaussianF_short]
-\label{lean-bridge-quartic-cubic}
-\lean{quarticCore_cubicCore_gap_abs_le_gaussianF_short}
-\moduleowner{module-local-gap-bridge}
-Third bridge theorem in the active primary-box route.
-\end{lemma}
-\leanitemdetails{lean-bridge-quartic-cubic}
+\section{Log-expansion and small-ball decay}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-cubic-second-order-gap",
-%   "symbol": "cubic_core_second_order_gap_uniform",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 14424,
-%   "module": "module-local-gap-bridge",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [],
-%   "summary": "Cubic core asymptotic supplying the explicit leading correction.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[cubic_core_second_order_gap_uniform]
-\label{lean-cubic-second-order-gap}
-\lean{cubic_core_second_order_gap_uniform}
-\moduleowner{module-local-gap-bridge}
-Cubic core asymptotic supplying the explicit leading correction.
+\begin{lemma}[Log-expansion]\label{lem:sixth}
+\lean{psi_pow_sub_correctedCoreIntegrand_norm_le_uniform}\leanok
+\uses{lem:realpart,lem:hc}
+There are $c_2,C_2>0$ such that whenever $s(\lambda)\le c_2$,
+\[
+  \log\psi(\lambda)
+  =-\tfrac12 s(\lambda)-iT(\lambda)+Q(\lambda)+iP(\lambda)+E_6(\lambda)
+\]
+with $|E_6(\lambda)|\le C_2 s(\lambda)^3$.
 \end{lemma}
-\leanitemdetails{lean-cubic-second-order-gap}
 
-% BP_RECORD_BEGIN
-% {
-%   "id": "lean-core-mass-gap",
-%   "symbol": "coreMass_gap_le_exp_gaussianF",
-%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
-%   "line": 22323,
-%   "module": "module-local-gap-bridge",
-%   "kind": "paper_support",
-%   "paper_item": "paper-prop-primary-box",
-%   "used_by": [
-%     "lean-prop-primary-box"
-%   ],
-%   "depends_on": [
-%     "lean-gaussian-f"
-%   ],
-%   "summary": "Compares the truncated core Gaussian mass to the full Gaussian integral.",
-%   "record_type": "lean_item",
-%   "chapter": "primary_box"
-% }
-% BP_RECORD_END
-\begin{lemma}[coreMass_gap_le_exp_gaussianF]
-\label{lean-core-mass-gap}
-\lean{coreMass_gap_le_exp_gaussianF}
-\uses{lean-gaussian-f}
-\moduleowner{module-local-gap-bridge}
-Compares the truncated core Gaussian mass to the full Gaussian integral.
+\begin{proof}\leanok
+\uses{lem:realpart,lem:hc}
+Set $K(u)=\log\E[e^{iuX_\lambda}]$ and Taylor-expand to fifth order.
+Lemma~\ref{lem:realpart} ensures $\RePart\psi(u\lambda)\ge 3/4$,
+so the principal branch of $\log$ is well-defined on $[0,1]$.
+The sixth derivative $K^{(6)}$ involves products $m(u)^{-k}\prod m^{(j_\ell)}(u)$;
+each factor is bounded using $|m(u)|\ge 3/4$ and hypercontractivity
+(Lemma~\ref{lem:hc}) applied to the degree-2 polynomial $X_\lambda$.
+\end{proof}
+
+\begin{lemma}[Small-ball decay]\label{lem:small-ball}
+\lean{small_ball_gaussian_decay_uniform}\leanok
+\uses{lem:sixth}
+There exists $r_0\in(0,\pi/4)$ such that
+$|\psi(\lambda)|^{4t}\le e^{-3t\|\lambda\|^2/2}$
+for every $t\ge 1$ and $\lambda\in\Dd_{r_0}$.
 \end{lemma}
-\leanitemdetails{lean-core-mass-gap}
+
+\begin{proof}\leanok
+\uses{lem:sixth}
+By the log-expansion (Lemma~\ref{lem:sixth}),
+$\RePart\log\psi=-\frac12 s+Q+\RePart E_6$.
+Show $Q=O(s^2)$ using $|\mathcal{C}_4|\le \operatorname{tr}(A^2)^2=4s^2$
+and $|E_6|\le C_2 s^3$. For small $r_0$, the corrections are absorbed
+by the leading $-\frac12 s$ term.
+\end{proof}
+
+\section{Cubic phase bound}
+
+\begin{lemma}[Cubic phase bound]\label{lem:cubic}
+\lean{cubic_core_second_order_gap_uniform}\leanok
+\uses{lem:inner-core,lem:gaussian-radial,lem:triangle}
+For all $d,t\ge 1$,
+\[
+  \RePart\int_{\corereg}e^{-2t\|\lambda\|^2}e^{-4itT(\lambda)}\,d\lambda
+  \ge \bigl[1-O(n^3/t)\bigr]\core(d,t).
+\]
+\end{lemma}
+
+\begin{proof}\leanok
+\uses{lem:inner-core,lem:gaussian-radial,lem:triangle}
+Since $T$ is odd and $\corereg$ is symmetric, the imaginary part vanishes.
+The real part satisfies $1-\cos(4tT)\le 8t^2 T^2$. By the triangle formula
+(Lemma~\ref{lem:triangle}), $T^2$ is a degree-6 polynomial. Gaussian
+radial moments (Lemma~\ref{lem:gaussian-radial}) bound the integral of
+$T^2$ against the Gaussian weight, giving an $O(n^3/t)$ correction.
+\end{proof}
+
+\section{Primary estimate}
+
+\begin{proposition}[Primary estimate]\label{prop:primary-box}
+\lean{prop_primary_box}\leanok
+\uses{lem:sixth,lem:small-ball,lem:cubic,prop:quartic-bounds,lem:quintic,lem:inner-core}
+Set $K_n:=2^{2d-n+1}(2\pi)^{-d}$.
+For all sufficiently large $n$ and $t\ge C_0 n^3$,
+\[
+  K_n\RePart\int_{\corereg}\psi(\lambda)^{4t}\,d\lambda
+  =\left(1-\frac{\binom{n}{3}}{8t}
+  +O\!\left(\frac{n^2}{t}+\frac{n^{5/2}}{t^{3/2}}+\frac{n^6}{t^2}
+  +e^{-cd}\right)\right)\Ahat.
+\]
+\end{proposition}
+
+\begin{proof}\leanok
+\uses{lem:sixth,lem:cubic,prop:quartic-bounds,lem:quintic,lem:inner-core}
+By the log-expansion (Lemma~\ref{lem:sixth}), on $\corereg$ we write
+$\psi(\lambda)^{4t}=e^{-2t\|\lambda\|^2}\,e^{-4itT}\,e^{4tQ}\,e^{4itP}\,e^{4tE_6}$
+with $|E_6|\le C_2 s^3$.
+Define intermediate integrals:
+\[
+  M_{\mathrm{core}}:=\int_{\corereg}e^{-2t\|\lambda\|^2}e^{-4itT}e^{4tQ}e^{4itP}\,d\lambda,
+  \qquad
+  L_{\mathrm{core}}:=\int_{\corereg}e^{-2t\|\lambda\|^2}e^{-4itT}e^{4tQ}\,d\lambda.
+\]
+
+\emph{Step 1: remove $E_6$.}
+$|\psi^{4t}-M_{\mathrm{core}}\cdot(\text{Gaussian})|\le |e^{4tE_6}-1|\le C t s^3$,
+and $\int s^3 e^{-2t\|\lambda\|^2}\le C(d/t)^3 F(d,t)$
+by Gaussian radial moments.
+
+\emph{Step 2: remove $P$.}
+$|M_{\mathrm{core}}-L_{\mathrm{core}}|\le |e^{4itP}-1|\le 4t|P|$.
+By Cauchy--Schwarz and Lemma~\ref{lem:quintic},
+$\int |P|\,e^{-2t\|\lambda\|^2}\le C n^{5/2}/t^{5/2}\cdot\core(d,t)^{1/2}$.
+This contributes $O(n^{5/2}/t^{3/2})\Ahat$.
+
+\emph{Step 3: remove $Q$.}
+$|L_{\mathrm{core}}-\int e^{-2t\|\lambda\|^2}e^{-4itT}|\le
+|e^{4tQ}-1|$ integrated against the Gaussian weight.
+Proposition~\ref{prop:quartic-bounds} gives
+$\int |e^{4tQ}-1|^2 e^{-2t\|\lambda\|^2}\le C d^2/t^2\cdot\core(d,t)$,
+contributing $O(d/t)=O(n^2/t)$ by Cauchy--Schwarz.
+
+\emph{Step 4: cubic phase.}
+By Lemma~\ref{lem:cubic},
+$\RePart\int e^{-2t\|\lambda\|^2}e^{-4itT}\ge [1-Cn^3/t]\core(d,t)$.
+The correction $\binom{n}{3}/(8t)$ comes from the exact computation
+$\E_{\gamma_t}[T^2]=\binom{n}{3}/(64t^3)$ (via the triangle formula)
+and $1-\cos(4tT)\approx 8t^2T^2$.
+
+Combining all four steps and using $\core(d,t)=(1+O(e^{-cd}))F(d,t)$
+(Lemma~\ref{lem:inner-core}) yields the claimed expansion.
+\end{proof}

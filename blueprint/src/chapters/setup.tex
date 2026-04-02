@@ -1,0 +1,171 @@
+\chapter{Setup and preparatory results}\label{chap:setup}
+
+\section{Notation}
+
+Let $n\ge 2$ and $d=\binom{n}{2}$.
+An $n\times 4t$ partial Hadamard matrix has $\pm1$ entries with
+pairwise orthogonal rows.
+Let $N_{n,4t}$ be the number of such matrices and
+$A_{n,4t}=\binom{2n}{n}^{2t}$ the Gaussian approximation.
+Set $\psi(\lambda)=\E[\exp(i\sum_{i<j}\lambda_{\{i,j\}}\xi_i\xi_j)]$
+for independent Rademacher signs $\xi_i$,
+$s(\lambda)=\|\lambda\|^2=\sum_e\lambda_e^2$, and
+\[
+  K_n:=2^{2d-n+1}(2\pi)^{-d},
+  \qquad
+  \core(d,t):=\int_{\corereg}e^{-2t\|\lambda\|^2}\,d\lambda,
+  \qquad
+  F(d,t):=\left(\frac{\pi}{2t}\right)^{d/2}.
+\]
+
+\section{Results from de~Launey--Levin}
+
+\begin{lemma}[Cosine-product bound]\label{fact:psi-sq}
+\lean{universal_magnitude_bound_full}\leanok
+For every $\gamma\in[-\pi,\pi]^d$ and every $k\in\{1,\dots,n\}$,
+$|\psi(\gamma)|^2\le \frac12+\frac12\prod_{i\ne k}\cos(2\gamma_{\{i,k\}})$.
+\end{lemma}
+
+\begin{lemma}[Lattice structure]\label{fact:lambda-facts}
+\leanok
+The formalization proves the following (as private lemmas in
+\texttt{HadamardCn3TorusCount.lean}):
+\begin{enumerate}
+\item \emph{Multiplicativity:}
+$\psi(\lambda+\gamma)=\psi(\lambda)\psi(\gamma)$ for $\lambda\in\Lambda$,
+$\gamma\in\Bbox_{\pi/4}$
+\textup{(\texttt{psi\_translate\_lambdaReal})}.
+\item \emph{Disjoint boxes:}
+the translates $\Bbox_\delta(\lambda)$, $\lambda\in\Lambda$, are
+pairwise disjoint for $\delta<\pi/4$
+\textup{(\texttt{translated\_edgeBoxes\_disjoint})}.
+\item \emph{Cardinality:}
+$|\Lambda|=2^{2d-n+1}$ and $\psi(\lambda)^{4t}=1$ for $\lambda\in\Lambda$
+\textup{(\texttt{card\_lambdaShifts\_eq\_pow\_of\_two\_le},
+\texttt{exp\_phase\_lambdaReal\_false\_pow\_four\_mul})}.
+\item \emph{Even-degree characterization:}
+$\lambda\in\Lambda$ iff every vertex of $G_{\lambda^{(2)}}$ has
+even degree
+\textup{(\texttt{parityEvenBool\_iff\_incidence\_zero})}.
+\end{enumerate}
+These are private because they are only used internally
+by the torus counting machinery.
+\end{lemma}
+
+\begin{proposition}[Primary-secondary decomposition]\label{prop:primary-secondary}
+\lean{normalizedCount_primary_secondary_decomposition}\leanok
+\uses{fact:lambda-facts}
+For every $t\ge 1$ and every $0<\delta<\pi/4$,
+\[
+  \Prb(S_{4t}=0)
+  =
+  2^{2d-n+1}(2\pi)^{-d}\int_{\Bbox_\delta}\psi(\lambda)^{4t}\,d\lambda
+  +(2\pi)^{-d}\int_{R_\delta}\psi(\gamma)^{4t}\,d\gamma.
+\]
+\end{proposition}
+
+\begin{lemma}[Residual decomposition]\label{lem:residual-decomp}
+\lean{normalizedCount_primary_secondary_decomposition}\leanok
+\uses{fact:lambda-facts}
+For $0<\delta<\pi/4$,
+\[
+  R_\delta = R_\delta^{\mathrm{even}} \cup R_\delta^{\mathrm{odd}},
+  \qquad
+  R_\delta^{\mathrm{even}}
+  = \bigcup_{\lambda\in\Lambda}\bigl(\lambda+[\Bbox_{\pi/4}\setminus\Bbox_\delta]\bigr),
+  \qquad
+  R_\delta^{\mathrm{odd}}
+  = R_\delta\setminus R_\delta^{\mathrm{even}},
+\]
+and the sets in the union are disjoint.
+\end{lemma}
+
+\begin{proof}\leanok
+\uses{fact:lambda-facts}
+The translates $\Bbox_{\pi/4}(\lambda)$, $\lambda\in\Lambda_0$, tile $\TT^d$.
+Even cells centered at $\lambda\in\Lambda$ contribute to $R_\delta^{\mathrm{even}}$;
+odd cells centered at $\lambda\in\Lambda_0\setminus\Lambda$ contribute to
+$R_\delta^{\mathrm{odd}}$.
+\end{proof}
+
+\begin{lemma}[Odd-cell bound]\label{lem:odd-bound}
+\lean{universal_magnitude_bound_full}\leanok
+\uses{fact:psi-sq,fact:lambda-facts,lem:residual-decomp}
+If $\gamma\in R_\delta^{\mathrm{odd}}$, then $|\psi(\gamma)|^2\le \tfrac12$.
+\end{lemma}
+
+\begin{proof}\leanok
+\uses{fact:psi-sq,fact:lambda-facts}
+Since $\gamma$ lies in a quarter-box centered at $\lambda\in\Lambda_0\setminus\Lambda$,
+some vertex $k$ has odd degree in $G_{\lambda^{(2)}}$,
+so $\prod_{i\ne k}\cos(2\gamma_{\{i,k\}})\le 0$,
+and the cosine-product bound (Lemma~\ref{fact:psi-sq}) gives
+$|\psi(\gamma)|^2\le 1/2$.
+\end{proof}
+
+\begin{lemma}[Positivity of $\RePart\psi$]\label{lem:realpart}
+\lean{re_psi_taylor4_decomposition}\leanok
+If $s(\lambda)\le 1/2$, then $\RePart\psi(\lambda)\in[3/4,1]$.
+\end{lemma}
+
+\begin{proof}\leanok
+$\RePart\psi(\lambda)=\E[\cos X_\lambda]\ge 1-\frac12 s(\lambda)\ge 3/4$.
+\end{proof}
+
+\section{Fixed-$n$ asymptotics}
+
+\begin{lemma}[Fixed-$n$ asymptotics]\label{fact:fixed-n}
+\lean{fixed_n_count_asymptotic}\leanok
+For every fixed integer $n\ge 2$,
+$N_{n,4t}=[1+o_{t\to\infty}(1)]\,A_{n,4t}$ as $t\to\infty$.
+\end{lemma}
+
+\begin{proof}\leanok
+Shrinking-box argument with $\delta_t=t^{-2/5}$: the primary integral
+over $\Bbox_{\delta_t}$ converges to $F(d,t)$ as $t\to\infty$,
+and the residual is negligible for any fixed $n$.
+\end{proof}
+
+\section{Standard analytic tools}
+
+\begin{lemma}[Hypercontractive inequality]\label{lem:hc}
+\lean{fixedDegreeHC_degree2_W_fourth}\leanok
+Let $H$ be a polynomial of degree at most $q$ in either independent
+Rademacher signs or independent centered Gaussians.
+Then for every $p\ge 2$,
+$\|H\|_{L^p}\le (p-1)^{q/2}\|H\|_{L^2}$.
+\end{lemma}
+
+\begin{lemma}[Gaussian radial moments]\label{lem:gaussian-radial}
+\lean{gaussian_radial_moments}\leanok
+For every integer $m\ge 0$ there is $C_m>0$ such that
+$\int_{\R^d}\|\lambda\|^{2m}e^{-2t\|\lambda\|^2}\,d\lambda
+\le C_m(d/t)^m F(d,t)$ for all $d,t\ge 1$.
+\end{lemma}
+
+\begin{lemma}[Gaussian quadratic integral]\label{lem:gaussian-quadratic}
+\lean{gaussian_integral_formula}\leanok
+Let $A$ be a complex symmetric $m\times m$ matrix whose real part is
+positive definite. Then
+$\int_{\R^m}e^{-x^\top A x}\,dx=\pi^{m/2}\det(A)^{-1/2}$.
+In particular, if $g\sim N(0,I_m)$ and $M$ is real symmetric,
+$|\E[e^{ig^\top Mg/2}]|=\det(I+M^2)^{-1/4}$.
+\end{lemma}
+
+\begin{proof}\leanok
+Diagonalize $S=\RePart(A)^{-1/2}\,\mathrm{Im}(A)\,\RePart(A)^{-1/2}$,
+factor the integral into one-dimensional Fresnel integrals,
+and reassemble via $\det(A)=\det(\RePart A)\det(I+iS)$.
+\end{proof}
+
+\begin{lemma}[Core Gaussian mass]\label{lem:inner-core}
+\lean{inner_core_gaussian_mass}\leanok
+There exists an absolute constant $c_*>0$ such that
+$\core(d,t)\ge (1-e^{-c_*d})F(d,t)$.
+\end{lemma}
+
+\begin{proof}\leanok
+On $\|\lambda\|^2>d/t$, one has $e^{-2t\|\lambda\|^2}\le e^{-d}e^{-t\|\lambda\|^2}$,
+so the tail is at most $e^{-d}(\pi/t)^{d/2}\le e^{-c_*d}F(d,t)$
+with $c_*=1-\frac12\log 2$.
+\end{proof}

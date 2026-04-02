@@ -42,6 +42,12 @@ jobs:
         run: lake env lean scripts/print_axioms_check.lean
 
       - name: Build Lean docs
+        env:
+          DOCBUILD_MODE: curated
+          DOCBUILD_SKIP_BUILD: 1
+          DOCGEN_SRC: github
+          DOCGEN_REPOSITORY: https://github.com/${{ github.repository }}
+          DOCGEN_REV: ${{ github.sha }}
         run: python3 docbuild/scripts/rebuild_docs.py
 
       - name: Build blueprint

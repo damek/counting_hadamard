@@ -23,8 +23,20 @@ MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
 python3 docbuild/scripts/rebuild_docs.py
 ```
 
-The rebuild helper sets `DOCGEN_SRC=file`, so the generated declaration pages
-use local source-file links instead of requiring a configured GitHub remote.
+This default mode is curated: it generates docs only for the `RequestProject`
+modules that are published on the Pages site. It still uses `doc-gen4`, but it
+avoids the recursive dependency-doc build that would otherwise regenerate large
+parts of mathlib.
+
+For the old exhaustive recursive build, run:
+
+```sh
+python3 docbuild/scripts/rebuild_docs.py --mode full
+```
+
+The rebuild helper defaults to `DOCGEN_SRC=file`, so local declaration pages use
+local source-file links instead of requiring a configured GitHub remote. The
+Pages workflow overrides this to GitHub blob links.
 
 The generated docs site will be at:
 

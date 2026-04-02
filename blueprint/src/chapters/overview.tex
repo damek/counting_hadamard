@@ -1,65 +1,34 @@
-% BP_RECORD_BEGIN
-% {
-%   "id": "overview",
-%   "title": "Overview",
-%   "order": 1,
-%   "summary": "Reader entrypoint for the active formalization route for arXiv:2603.30013.",
-%   "reader_notes": "Start here if you want the shortest path from the arXiv paper to the Lean theorem chain. The blueprint records only the active route and its necessary Lean-only bridge items; the local synchronized TeX source remains documents/short.tex for tooling.",
-%   "record_type": "chapter",
-%   "chapter_file": "blueprint/src/chapters/overview.tex"
-% }
-% BP_RECORD_END
-\section{Overview}
-\label{chap:overview}
+\chapter{Overview}\label{chap:overview}
 
-This blueprint is the canonical human-facing formalization map for the active
-route formalizing arXiv:2603.30013. It is not a replacement for the paper; it
-is the synchronized map from paper statements to Lean declarations, Lean-only
-bridge results, module ownership, and the active dependency route. The local
-TeX source \texttt{documents/short.tex} remains in the repository for
-synchronization and validation.
+This blueprint maps the Lean formalization of
+\href{https://arxiv.org/abs/2603.30013}{arXiv:2603.30013},
+which gives a first-order asymptotic expansion for partial Hadamard
+matrices in the cubic regime $t\ge C_0 n^3$.
+Every labeled result in the paper is formalized without
+\texttt{sorry} or internal \texttt{axiom}.
 
-The guiding principle is architectural honesty:
+\subsection*{Navigation}
 
 \begin{itemize}
-\item paper-labeled statements remain explicit blueprint items,
-\item Lean-only bridge theorems appear when the formal route actually uses them,
-\item module ownership is recorded so readers can jump into the live source only
-  when they want more detail.
+\item \textbf{Main results:}
+  Theorem~\ref{thm:main-intro} and Corollary~\ref{cor:uniform}
+  (Chapter~\ref{chap:main-count}).
+\item \textbf{Setup:}
+  Lattice structure, decompositions, pointwise bounds, fixed-$n$
+  asymptotics, and analytic tools
+  (Chapter~\ref{chap:setup}).
+\item \textbf{Core analysis:}
+  Cumulants, quartic bounds, log-expansion, small-ball decay, cubic
+  phase bound, and the primary estimate
+  (Chapter~\ref{chap:core}).
+\item \textbf{Weak comparison:}
+  Lindeberg replacement and Gaussian comparison
+  (Chapter~\ref{chap:weak-comparison}).
+\item \textbf{Far shell and residual:}
+  Far-shell contraction, far-shell integrals, and the residual estimate
+  (Chapter~\ref{chap:residual}).
+\item \textbf{Module guide:}
+  File-by-file map of the Lean source
+  (Chapter~\ref{chap:modules}).
+\item \hyperref[dep_graph]{Dependency graph}.
 \end{itemize}
-
-\subsection*{Quick navigation}
-
-\begin{itemize}
-\item \hyperref[thm:main-intro]{Main asymptotic count theorem} and
-  \hyperref[cor:uniform]{uniform counting corollary}.
-\item \hyperref[lem:weak-comparison]{Weak comparison} for the invariance
-  principle input.
-\item \hyperref[prop:primary-box]{Primary-box estimate} for the main on-core
-  asymptotic.
-\item \hyperref[prop:residual-estimate]{Residual estimate} for the off-core
-  contribution.
-\item \hyperref[chap:modules]{Module guide} for the file-by-file ownership map.
-\item \href{dep_graph_document.html}{Dependency graph} for the full theorem
-  dependency view.
-\end{itemize}
-
-\subsection*{Recommended reading paths}
-
-\paragraph{Fastest paper check.}
-Read \hyperref[thm:main-intro]{Theorem \ref*{thm:main-intro}} and
-\hyperref[cor:uniform]{Corollary \ref*{cor:uniform}}, then inspect the two
-support chapters \hyperref[prop:primary-box]{primary box} and
-\hyperref[prop:residual-estimate]{residual estimate}.
-
-\paragraph{Full proof route.}
-Follow the dependency chain
-\hyperref[lem:weak-comparison]{weak comparison}
-$\to$
-\hyperref[prop:primary-box]{primary box}
-$\to$
-\hyperref[prop:residual-estimate]{residual estimate}
-$\to$
-\hyperref[thm:main-intro]{main count theorem}
-$\to$
-\hyperref[cor:uniform]{uniform corollary}.
