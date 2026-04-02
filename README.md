@@ -32,6 +32,19 @@ The axiom audit for the key endpoint theorems should report only:
 - `Classical.choice`
 - `Quot.sound`
 
+## Additional Audits
+
+The repository also includes a separate comparator audit surface under
+`Comparator/`:
+
+- `Comparator/Challenge.lean`: trusted challenge statements for the endpoint theorems
+- `Comparator/Solution.lean`: wrappers that point those statements at the actual formal proofs
+- `Comparator/comparator.json`: comparator configuration
+
+These files are not part of the main `RequestProject` library or normal
+`lake build` target. They exist only for the separate manual GitHub Actions
+workflow `Comparator Audit`.
+
 ## Lean Docs
 
 The default docs build is curated: it generates Lean docs only for the

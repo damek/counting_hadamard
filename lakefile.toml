@@ -16,3 +16,8 @@ name = "PartialHadamard"
 srcDir = "../.."
 roots = ["PartialHadamard"]
 globs = ["PartialHadamard"]
+
+[[lean_lib]]
+name = "ComparatorAudit"
+roots = ["Comparator"]
+globs = ["Comparator.+"]
