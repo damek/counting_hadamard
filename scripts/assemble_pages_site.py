@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE_DIR = ROOT / ".site"
+LANDING_PAGE = ROOT / "index.html"
 PUBLISH_DIR = ROOT / "publish"
 BLUEPRINT_WEB_DIR = ROOT / "blueprint" / "web"
 DOC_DIR = ROOT / "docbuild" / ".lake" / "build" / "doc"
@@ -61,7 +62,8 @@ def main() -> int:
     shutil.rmtree(SITE_DIR, ignore_errors=True)
     SITE_DIR.mkdir(parents=True, exist_ok=True)
 
-    shutil.copy2(PUBLISH_DIR / "index.html", SITE_DIR / "index.html")
+    landing_page = LANDING_PAGE if LANDING_PAGE.exists() else PUBLISH_DIR / "index.html"
+    shutil.copy2(landing_page, SITE_DIR / "index.html")
     copytree(BLUEPRINT_WEB_DIR, SITE_DIR / "blueprint")
     copy_curated_docs(DOC_DIR, SITE_DIR / "docs")
 
