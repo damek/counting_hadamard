@@ -64,7 +64,15 @@ def main() -> int:
 
     landing_page = LANDING_PAGE if LANDING_PAGE.exists() else PUBLISH_DIR / "index.html"
     shutil.copy2(landing_page, SITE_DIR / "index.html")
-    copytree(BLUEPRINT_WEB_DIR, SITE_DIR / "blueprint")
+    blueprint_root = SITE_DIR / "blueprint"
+    copytree(BLUEPRINT_WEB_DIR, blueprint_root / "web")
+    (blueprint_root / "index.html").write_text(
+        "<!DOCTYPE html>\n"
+        "<html lang=\"en\"><head><meta charset=\"utf-8\">"
+        "<meta http-equiv=\"refresh\" content=\"0; url=./web/\">"
+        "<title>Blueprint Redirect</title></head>"
+        "<body><p>Redirecting to <a href=\"./web/\">./web/</a>.</p></body></html>\n"
+    )
     copy_curated_docs(DOC_DIR, SITE_DIR / "docs")
 
     source_root = SITE_DIR / "source"

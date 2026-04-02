@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Far-shell contraction</title>
+<link rel="next" href="sect0011.html" title="Far-shell integrals" />
+<link rel="prev" href="chap-residual.html" title="Far shell and residual" />
+<link rel="up" href="chap-residual.html" title="Far shell and residual" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Partial Hadamard matrices in the cubic regime — Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="chap-overview.html"><span class="toc_ref">1</span> <span class="toc_entry">Overview</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="chap-overview.html#a0000000014"><span class="toc_ref"></span> <span class="toc_entry">Navigation</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-setup.html"><span class="toc_ref">2</span> <span class="toc_entry">Setup and preparatory results</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Notation</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Results from de&#160;Launey–Levin</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.3</span> <span class="toc_entry">Fixed-\(n\) asymptotics</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.4</span> <span class="toc_entry">Standard analytic tools</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-weak-comparison.html"><span class="toc_ref">3</span> <span class="toc_entry">Weak comparison</span></a>
+ </li>
+<li class="">
+  <a href="chap-core.html"><span class="toc_ref">4</span> <span class="toc_entry">Core analysis</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0005.html"><span class="toc_ref">4.1</span> <span class="toc_entry">Cumulant identities</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">4.2</span> <span class="toc_entry">Quartic and quintic bounds</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">4.3</span> <span class="toc_entry">Log-expansion and small-ball decay</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">4.4</span> <span class="toc_entry">Cubic phase bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">4.5</span> <span class="toc_entry">Primary estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active">
+  <a href="chap-residual.html"><span class="toc_ref">5</span> <span class="toc_entry">Far shell and residual</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class=" active current">
+  <a href="sect0010.html"><span class="toc_ref">5.1</span> <span class="toc_entry">Far-shell contraction</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">5.2</span> <span class="toc_entry">Far-shell integrals</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">5.3</span> <span class="toc_entry">Residual estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-main-count.html"><span class="toc_ref">6</span> <span class="toc_entry">Main theorem</span></a>
+ </li>
+<li class="">
+  <a href="chap-modules.html"><span class="toc_ref">7</span> <span class="toc_entry">Module guide</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000011">5.1 Far-shell contraction</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:far-shell">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">23</span>
+    <span class="proposition_thmtitle">Far-shell contraction</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0010.html#prop:far-shell">#</a>
+    
+    <a class="icon proof" href="sect0010.html#a0000000046"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="chap-weak-comparison.html#cor:weak-comparison">Corollary 13</a></li>
+          
+          <li><a href="sect0002.html#fact:psi-sq">Lemma 1</a></li>
+          
+          <li><a href="sect0004.html#lem:gaussian-quadratic">Lemma 10</a></li>
+          
+          <li><a href="chap-weak-comparison.html#cor:weak-comparison">Corollary 13</a></li>
+          
+          <li><a href="sect0002.html#fact:psi-sq">Lemma 1</a></li>
+          
+          <li><a href="sect0004.html#lem:gaussian-quadratic">Lemma 10</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/edgeEvenFarShell_contribution_bound_Jsplit" class="lean_decl">edgeEvenFarShell_contribution_bound_Jsplit</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>  Set \(\eta _r:=\frac{1}{3}[1-(1+2r^2)^{-1/4}]\) and \(I_{\max }(\lambda ):=\max _k I_k(\lambda )\). There exist \(q_{\mathrm{sm}},q_{\mathrm{big}}\in (0,1)\) and \(a_r{\gt}0\) such that for all \(n\ge 2\) and \(t\ge 1\) the far shell decomposes as </p>
+<div class="displaymath" id="a0000000047">
+  \[  \begin{aligned}  \mathcal F_{\mathrm{sm}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda )\le \eta _r\} ,\\ \mathcal F_{\mathrm{big}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda ){\gt}\eta _r,\; I_{\max }\ge 1\} ,\\ \mathcal F_{\mathrm{mid}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda ){\gt}\eta _r,\; I_{\max }{\lt}1\} , \end{aligned}  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000048">
+  \[  |\psi (\lambda )|^{4t}\le \begin{cases}  q_{\mathrm{sm}}^{4t} &  \lambda \in \mathcal F_{\mathrm{sm}},\\ q_{\mathrm{big}}^{4t} &  \lambda \in \mathcal F_{\mathrm{big}},\\ \exp (-a_r t n^{-2/3}) &  \lambda \in \mathcal F_{\mathrm{mid}}. \end{cases}  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000046">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <em>Small-\(J\):</em> Lemma&#160;<a href="sect0004.html#lem:gaussian-quadratic">10</a> gives \(|\psi _G(\lambda )|\le (1+2s(\lambda ))^{-1/4}\le q_G\). Corollary&#160;<a href="chap-weak-comparison.html#cor:weak-comparison">13</a> gives \(|\psi -\psi _G|\le \frac32 J\le \frac32\eta _r=(1-q_G)/2\), so \(|\psi |\le q_{\mathrm{sm}}=(1+q_G)/2{\lt}1\). </p>
+<p><em>Large-\(I_{\max }\):</em> Lemma&#160;<a href="sect0002.html#fact:psi-sq">1</a> gives \(|\psi |^2\le \frac12+\frac12 e^{-8I_{\max }/\pi ^2}\le q_{\mathrm{big}}^2\). </p>
+<p><em>Middle:</em> The same cosine-product bound gives \(|\psi |^2\le e^{-2I_{\max }/\pi ^2}\), and \(J{\gt} \eta _r\) with \(J\le nI_{\max }^{3/2}\) implies \(I_{\max }\ge (\eta _r/n)^{2/3}\), so \(|\psi |^{4t}\le \exp (-a_r tn^{-2/3})\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="chap-residual.html" title="Far shell and residual"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="chap-residual.html" title="Far shell and residual"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0011.html" title="Far-shell integrals"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

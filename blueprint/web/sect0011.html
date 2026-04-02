@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Far-shell integrals</title>
+<link rel="next" href="sect0012.html" title="Residual estimate" />
+<link rel="prev" href="sect0010.html" title="Far-shell contraction" />
+<link rel="up" href="chap-residual.html" title="Far shell and residual" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Partial Hadamard matrices in the cubic regime — Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="chap-overview.html"><span class="toc_ref">1</span> <span class="toc_entry">Overview</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="chap-overview.html#a0000000014"><span class="toc_ref"></span> <span class="toc_entry">Navigation</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-setup.html"><span class="toc_ref">2</span> <span class="toc_entry">Setup and preparatory results</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Notation</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Results from de&#160;Launey–Levin</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.3</span> <span class="toc_entry">Fixed-\(n\) asymptotics</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.4</span> <span class="toc_entry">Standard analytic tools</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-weak-comparison.html"><span class="toc_ref">3</span> <span class="toc_entry">Weak comparison</span></a>
+ </li>
+<li class="">
+  <a href="chap-core.html"><span class="toc_ref">4</span> <span class="toc_entry">Core analysis</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0005.html"><span class="toc_ref">4.1</span> <span class="toc_entry">Cumulant identities</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">4.2</span> <span class="toc_entry">Quartic and quintic bounds</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">4.3</span> <span class="toc_entry">Log-expansion and small-ball decay</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">4.4</span> <span class="toc_entry">Cubic phase bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">4.5</span> <span class="toc_entry">Primary estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active">
+  <a href="chap-residual.html"><span class="toc_ref">5</span> <span class="toc_entry">Far shell and residual</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0010.html"><span class="toc_ref">5.1</span> <span class="toc_entry">Far-shell contraction</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0011.html"><span class="toc_ref">5.2</span> <span class="toc_entry">Far-shell integrals</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">5.3</span> <span class="toc_entry">Residual estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-main-count.html"><span class="toc_ref">6</span> <span class="toc_entry">Main theorem</span></a>
+ </li>
+<li class="">
+  <a href="chap-modules.html"><span class="toc_ref">7</span> <span class="toc_entry">Module guide</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000012">5.2 Far-shell integrals</h1>
+<div class="corollary_thmwrapper theorem-style-plain" id="cor:far-negligible">
+  <div class="corollary_thmheading">
+    <span class="corollary_thmcaption">
+    Corollary
+    </span>
+    <span class="corollary_thmlabel">24</span>
+    <span class="corollary_thmtitle">Far-shell integrals</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0011.html#cor:far-negligible">#</a>
+    
+    <a class="icon proof" href="sect0011.html#a0000000049"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0010.html#prop:far-shell">Proposition 23</a></li>
+          
+          <li><a href="sect0002.html#fact:lambda-facts">Lemma 2</a></li>
+          
+          <li><a href="sect0010.html#prop:far-shell">Proposition 23</a></li>
+          
+          <li><a href="sect0002.html#fact:lambda-facts">Lemma 2</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/residual_estimate_quantitative" class="lean_decl">residual_estimate_quantitative</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="corollary_thmcontent">
+  <p>  Let \(E_r(n,t):=q_{\mathrm{sm}}^{4t}+q_{\mathrm{big}}^{4t}+e^{-a_r t n^{-2/3}}\). Then for every \(\delta \in (0,\pi /4)\), </p>
+<div class="displaymath" id="a0000000050">
+  \[  \begin{aligned}  K_n\int _{\mathcal{B}_\delta \setminus \mathcal{D}_r}|\psi (\lambda )|^{4t}\, d\lambda & \le 2^{-n+1}E_r(n,t),\\ (2\pi )^{-d}\sum _{\lambda \in \Lambda } \int _{\lambda +(\mathcal{B}_{\pi /4}\setminus \mathcal{D}_r)}|\psi (\gamma )|^{4t}\, d\gamma & \le 2^{-n+1}E_r(n,t). \end{aligned}  \]
+</div>
+<p> Both are \(o(\hat A_{n,4t})\) as \(n\to \infty \) with \(t/(n^{8/3}\log t)\to \infty \). </p>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000049">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Integrate the pointwise bounds from Proposition&#160;<a href="sect0010.html#prop:far-shell">23</a> over \(\mathcal{B}_{\pi /4}\setminus \mathcal{D}_r\) (volume \(\le (\pi /2)^d\)). For the translated shell, the multiplicativity \(\psi (\lambda +\mu )=\psi (\lambda )\psi (\mu )\) and \(|\psi (\lambda )|=1\) for \(\lambda \in \Lambda \) reduce to the same integral. The ratio \(2^{-n+1}E_r/\hat A_{n,4t}\to 0\) since \(t/(n^{8/3}\log t)\to \infty \) ensures \(tn^{-2/3}\gg d\log t\). </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0010.html" title="Far-shell contraction"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="chap-residual.html" title="Far shell and residual"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0012.html" title="Residual estimate"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

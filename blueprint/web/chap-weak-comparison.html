@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weak comparison</title>
+<link rel="next" href="chap-core.html" title="Core analysis" />
+<link rel="prev" href="sect0004.html" title="Standard analytic tools" />
+<link rel="up" href="index.html" title="Partial Hadamard matrices in the cubic regime — Blueprint" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Partial Hadamard matrices in the cubic regime — Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="chap-overview.html"><span class="toc_ref">1</span> <span class="toc_entry">Overview</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="chap-overview.html#a0000000014"><span class="toc_ref"></span> <span class="toc_entry">Navigation</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-setup.html"><span class="toc_ref">2</span> <span class="toc_entry">Setup and preparatory results</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Notation</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Results from de&#160;Launey–Levin</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.3</span> <span class="toc_entry">Fixed-\(n\) asymptotics</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.4</span> <span class="toc_entry">Standard analytic tools</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class=" active current">
+  <a href="chap-weak-comparison.html"><span class="toc_ref">3</span> <span class="toc_entry">Weak comparison</span></a>
+ </li>
+<li class="">
+  <a href="chap-core.html"><span class="toc_ref">4</span> <span class="toc_entry">Core analysis</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0005.html"><span class="toc_ref">4.1</span> <span class="toc_entry">Cumulant identities</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">4.2</span> <span class="toc_entry">Quartic and quintic bounds</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">4.3</span> <span class="toc_entry">Log-expansion and small-ball decay</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">4.4</span> <span class="toc_entry">Cubic phase bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">4.5</span> <span class="toc_entry">Primary estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-residual.html"><span class="toc_ref">5</span> <span class="toc_entry">Far shell and residual</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0010.html"><span class="toc_ref">5.1</span> <span class="toc_entry">Far-shell contraction</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">5.2</span> <span class="toc_entry">Far-shell integrals</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">5.3</span> <span class="toc_entry">Residual estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-main-count.html"><span class="toc_ref">6</span> <span class="toc_entry">Main theorem</span></a>
+ </li>
+<li class="">
+  <a href="chap-modules.html"><span class="toc_ref">7</span> <span class="toc_entry">Module guide</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="chap:weak-comparison">3 Weak comparison</h1>
+
+<p>The invariance-principle input: a Lindeberg replacement argument that compares the Rademacher characteristic function \(\psi \) with its Gaussian counterpart \(\psi _G\), with an error controlled by row influences. </p>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:weak-comparison">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">12</span>
+    <span class="lemma_thmtitle">Lindeberg comparison</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="chap-weak-comparison.html#lem:weak-comparison">#</a>
+    
+    <a class="icon proof" href="chap-weak-comparison.html#a0000000024"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/quadraticForm_lindeberg_comparison_C3" class="lean_decl">quadraticForm_lindeberg_comparison_C3</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p> Let \(f:[n]^2\to \mathbb {R}\) be symmetric with \(f(i,i)=0\), and define </p>
+<div class="displaymath" id="a0000000025">
+  \[  Q_f(z):=\sum _{1\le i,j\le n}f(i,j)z_i z_j, \qquad \mathrm{Inf}_m(f):=\sum _{j=1}^n f(m,j)^2.  \]
+</div>
+<p> If \(X_1,\dots ,X_n\) are independent Rademacher signs, \(G_1,\dots ,G_n\) are i.i.d. \(N(0,1)\), and \(\varphi :\mathbb {R}\to \mathbb {R}\) is \(C^3\), then </p>
+<div class="displaymath" id="a0000000026">
+  \[  \left|\mathbb {E}[\varphi (Q_f(X))]-\mathbb {E}[\varphi (Q_f(G))]\right| \le 6\| \varphi '''\| _\infty \sum _{m=1}^n \mathrm{Inf}_m(f)^{3/2}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000024">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p>Write \(Z^{(m)}:=(G_1,\dots ,G_m,X_{m+1},\dots ,X_n)\) and telescope \(\mathbb {E}[\varphi (Q_f(X))]-\mathbb {E}[\varphi (Q_f(G))] =\sum _{m=1}^n(F_{m-1}-F_m)\). Decompose \(Q_f(z)=U_m(z)+z_mV_m(z)\) where \(V_m\) depends only on coordinates other than \(m\). Taylor-expand to third order; the zeroth and second moments of \(X_m\) and \(G_m\) match, so the first two Taylor terms cancel. The remainder is bounded using \(\mathbb {E}[|V_m|^3]\le 8\sqrt3\, \mathrm{Inf}_m(f)^{3/2}\) (Cauchy–Schwarz on the second and fourth moments of \(V_m\)). Summing over \(m\) gives the claim. </p>
+
+  </div>
+</div>
+<div class="corollary_thmwrapper theorem-style-plain" id="cor:weak-comparison">
+  <div class="corollary_thmheading">
+    <span class="corollary_thmcaption">
+    Corollary
+    </span>
+    <span class="corollary_thmlabel">13</span>
+    <span class="corollary_thmtitle">Gaussian comparison</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="chap-weak-comparison.html#cor:weak-comparison">#</a>
+    
+    <a class="icon proof" href="chap-weak-comparison.html#a0000000027"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="chap-weak-comparison.html#lem:weak-comparison">Lemma 12</a></li>
+          
+          <li><a href="chap-weak-comparison.html#lem:weak-comparison">Lemma 12</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/psi_sub_gaussianPsi_le_threeHalfInfluenceSum" class="lean_decl">psi_sub_gaussianPsi_le_threeHalfInfluenceSum</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="corollary_thmcontent">
+  <p>  Let \(\psi _G\) be the characteristic function obtained by replacing the Rademacher entries \(\xi _i\) with i.i.d. standard Gaussians \(g_i\). For each row \(k\in [n]\), define the row influence \(I_k(\lambda ):=\sum _{i\ne k}\lambda _{\{ i,k\} }^2\), and set \(J(\lambda ):=\sum _{k=1}^n I_k(\lambda )^{3/2}\). Then </p>
+<div class="displaymath" id="a0000000028">
+  \[  |\psi (\lambda )-\psi _G(\lambda )|\le \tfrac 32 J(\lambda ) \qquad \text{for every }\lambda \in \mathbb {R}^d.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000027">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> Set \(f(i,j)=\lambda _{\{ i,j\} }/2\) so that \(\mathrm{Inf}_m(f)=\tfrac 14 I_m(\lambda )\). Apply Lemma&#160;<a href="chap-weak-comparison.html#lem:weak-comparison">12</a> with \(\varphi =\cos \) and \(\varphi =\sin \), using \(\| \cos '''\| _\infty ,\| \sin '''\| _\infty \le 1\), then combine real and imaginary parts. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0004.html" title="Standard analytic tools"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="index.html" title="Partial Hadamard matrices in the cubic regime — Blueprint"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="chap-core.html" title="Core analysis"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

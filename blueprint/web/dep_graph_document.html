@@ -1,0 +1,1002 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dependency graph</title>
+  <meta name="generator" content="plasTeX" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles/theme-white.css" />
+  <link rel="stylesheet" href="styles/dep_graph.css" />
+  
+  <script type="text/x-mathjax-config">
+  
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  
+  </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">  </script>
+
+
+<link rel="stylesheet" href="styles/extra_styles.css" />
+
+</head>
+
+<body>
+<header>
+  <a class="toc" href="index.html">Home</a>
+  <h1 id="doc_title">Dependencies</h1>
+</header>
+<div class="wrapper">
+<div class="content">
+  <div id="Legend">
+    <span id="legend_title" class="title">Legend
+    <div class="btn">
+       <div class="bar"></div>
+       <div class="bar"></div>
+       <div class="bar"></div>
+    </div></span> 
+    <dl class="legend">
+      
+      <dt>Boxes</dt><dd>definitions</dd>
+      
+      <dt>Ellipses</dt><dd>theorems and lemmas</dd>
+      
+      <dt>Blue border</dt><dd>the <em>statement</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Orange border</dt><dd>the <em>statement</em> of this result is not ready to be formalized; the blueprint needs more work</dd>
+      
+      <dt>Blue background</dt><dd>the <em>proof</em> of this result is ready to be formalized; all prerequisites are done</dd>
+      
+      <dt>Green border</dt><dd>the <em>statement</em> of this result is formalized</dd>
+      
+      <dt>Green background</dt><dd>the <em>proof</em> of this result is formalized</dd>
+      
+      <dt>Dark green background</dt><dd>the <em>proof</em> of this result and all its ancestors are formalized</dd>
+      
+      <dt>Dark green border</dt><dd>this is in Mathlib</dd>
+      
+    </dl>
+  </div>
+    <div id="graph"></div>
+<div id="statements">
+
+    
+    <div class="dep-modal-container" id="cor:far-negligible_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="cor:far-negligible" style="display: none">
+    <div class="thm_thmheading">
+      <span class="corollary_thmcaption">
+      Corollary
+      </span>
+      <span class="corollary_thmlabel">24</span><span class="corollary_thmtitle">Far-shell integrals</span></div>
+    <div class="thm_thmcontent"><p>  Let \(E_r(n,t):=q_{\mathrm{sm}}^{4t}+q_{\mathrm{big}}^{4t}+e^{-a_r t n^{-2/3}}\). Then for every \(\delta \in (0,\pi /4)\), </p>
+<div class="displaymath" id="a0000000050">
+  \[  \begin{aligned}  K_n\int _{\mathcal{B}_\delta \setminus \mathcal{D}_r}|\psi (\lambda )|^{4t}\, d\lambda & \le 2^{-n+1}E_r(n,t),\\ (2\pi )^{-d}\sum _{\lambda \in \Lambda } \int _{\lambda +(\mathcal{B}_{\pi /4}\setminus \mathcal{D}_r)}|\psi (\gamma )|^{4t}\, d\gamma & \le 2^{-n+1}E_r(n,t). \end{aligned}  \]
+</div>
+<p> Both are \(o(\hat A_{n,4t})\) as \(n\to \infty \) with \(t/(n^{8/3}\log t)\to \infty \). </p>
+</div>
+
+    <a class="latex_link" href="sect0011.html#cor:far-negligible">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/residual_estimate_quantitative">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="cor:uniform_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="cor:uniform" style="display: none">
+    <div class="thm_thmheading">
+      <span class="corollary_thmcaption">
+      Corollary
+      </span>
+      <span class="corollary_thmlabel">27</span><span class="corollary_thmtitle">Uniform counting</span></div>
+    <div class="thm_thmcontent"><p>  For every \(\varepsilon {\gt}0\) there exists \(K{\gt}0\) such that </p>
+<div class="displaymath" id="a0000000056">
+  \[  \left|\frac{N_{n,4t}}{A_{n,4t}}-1\right|{\lt}\varepsilon \qquad \text{for all } n\ge 2 \text{ and } t\ge Kn^3.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="chap-main-count.html#cor:uniform">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/cor_uniform">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="cor:weak-comparison_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="cor:weak-comparison" style="display: none">
+    <div class="thm_thmheading">
+      <span class="corollary_thmcaption">
+      Corollary
+      </span>
+      <span class="corollary_thmlabel">13</span><span class="corollary_thmtitle">Gaussian comparison</span></div>
+    <div class="thm_thmcontent"><p>  Let \(\psi _G\) be the characteristic function obtained by replacing the Rademacher entries \(\xi _i\) with i.i.d. standard Gaussians \(g_i\). For each row \(k\in [n]\), define the row influence \(I_k(\lambda ):=\sum _{i\ne k}\lambda _{\{ i,k\} }^2\), and set \(J(\lambda ):=\sum _{k=1}^n I_k(\lambda )^{3/2}\). Then </p>
+<div class="displaymath" id="a0000000028">
+  \[  |\psi (\lambda )-\psi _G(\lambda )|\le \tfrac 32 J(\lambda ) \qquad \text{for every }\lambda \in \mathbb {R}^d.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="chap-weak-comparison.html#cor:weak-comparison">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/psi_sub_gaussianPsi_le_threeHalfInfluenceSum">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="fact:fixed-n_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="fact:fixed-n" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">7</span><span class="lemma_thmtitle">Fixed-\(n\) asymptotics</span></div>
+    <div class="thm_thmcontent"><p> For every fixed integer \(n\ge 2\), \(N_{n,4t}=[1+o_{t\to \infty }(1)]\, A_{n,4t}\) as \(t\to \infty \). </p>
+</div>
+
+    <a class="latex_link" href="sect0003.html#fact:fixed-n">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/fixed_n_count_asymptotic">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="fact:lambda-facts_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="fact:lambda-facts" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">2</span><span class="lemma_thmtitle">Lattice structure</span></div>
+    <div class="thm_thmcontent"><p> The formalization proves the following (as private lemmas in <span class="ttfamily">HadamardCn3TorusCount.lean</span>): </p>
+<ol class="enumerate">
+  <li><p><em>Multiplicativity:</em> \(\psi (\lambda +\gamma )=\psi (\lambda )\psi (\gamma )\) for \(\lambda \in \Lambda \), \(\gamma \in \mathcal{B}_{\pi /4}\) <span class="upshape">(<span class="ttfamily">psi_translate_lambdaReal</span>)</span>. </p>
+</li>
+  <li><p><em>Disjoint boxes:</em> the translates \(\mathcal{B}_\delta (\lambda )\), \(\lambda \in \Lambda \), are pairwise disjoint for \(\delta {\lt}\pi /4\) <span class="upshape">(<span class="ttfamily">translated_edgeBoxes_disjoint</span>)</span>. </p>
+</li>
+  <li><p><em>Cardinality:</em> \(|\Lambda |=2^{2d-n+1}\) and \(\psi (\lambda )^{4t}=1\) for \(\lambda \in \Lambda \) <span class="upshape">(<span class="ttfamily">card_lambdaShifts_eq_pow_of_two_le</span>, <span class="ttfamily">exp_phase_lambdaReal_false_pow_four_mul</span>)</span>. </p>
+</li>
+  <li><p><em>Even-degree characterization:</em> \(\lambda \in \Lambda \) iff every vertex of \(G_{\lambda ^{(2)}}\) has even degree <span class="upshape">(<span class="ttfamily">parityEvenBool_iff_incidence_zero</span>)</span>. </p>
+</li>
+</ol>
+<p> These are private because they are only used internally by the torus counting machinery. </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#fact:lambda-facts">LaTeX</a>
+    
+    
+  
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="fact:psi-sq_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="fact:psi-sq" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">1</span><span class="lemma_thmtitle">Cosine-product bound</span></div>
+    <div class="thm_thmcontent"><p> For every \(\gamma \in [-\pi ,\pi ]^d\) and every \(k\in \{ 1,\dots ,n\} \), \(|\psi (\gamma )|^2\le \frac12+\frac12\prod _{i\ne k}\cos (2\gamma _{\{ i,k\} })\). </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#fact:psi-sq">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/universal_magnitude_bound_full">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:cubic_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:cubic" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">21</span><span class="lemma_thmtitle">Cubic phase bound</span></div>
+    <div class="thm_thmcontent"><p>  For all \(d,t\ge 1\), </p>
+<div class="displaymath" id="a0000000042">
+  \[  \operatorname {Re}\int _{\mathcal{D}_\mathrm {core}}e^{-2t\| \lambda \| ^2}e^{-4itT(\lambda )}\, d\lambda \ge \bigl[1-O(n^3/t)\bigr]G_{\mathrm{core}}(d,t).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0008.html#lem:cubic">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/cubic_core_second_order_gap_uniform">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:gaussian-quadratic_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:gaussian-quadratic" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">10</span><span class="lemma_thmtitle">Gaussian quadratic integral</span></div>
+    <div class="thm_thmcontent"><p> Let \(A\) be a complex symmetric \(m\times m\) matrix whose real part is positive definite. Then \(\int _{\mathbb {R}^m}e^{-x^\top A x}\, dx=\pi ^{m/2}\det (A)^{-1/2}\). In particular, if \(g\sim N(0,I_m)\) and \(M\) is real symmetric, \(|\mathbb {E}[e^{ig^\top Mg/2}]|=\det (I+M^2)^{-1/4}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0004.html#lem:gaussian-quadratic">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/gaussian_integral_formula">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:gaussian-radial_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:gaussian-radial" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">9</span><span class="lemma_thmtitle">Gaussian radial moments</span></div>
+    <div class="thm_thmcontent"><p> For every integer \(m\ge 0\) there is \(C_m{\gt}0\) such that \(\int _{\mathbb {R}^d}\| \lambda \| ^{2m}e^{-2t\| \lambda \| ^2}\, d\lambda \le C_m(d/t)^m F(d,t)\) for all \(d,t\ge 1\). </p>
+</div>
+
+    <a class="latex_link" href="sect0004.html#lem:gaussian-radial">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/gaussian_radial_moments">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:hc_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:hc" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">8</span><span class="lemma_thmtitle">Hypercontractive inequality</span></div>
+    <div class="thm_thmcontent"><p> Let \(H\) be a polynomial of degree at most \(q\) in either independent Rademacher signs or independent centered Gaussians. Then for every \(p\ge 2\), \(\| H\| _{L^p}\le (p-1)^{q/2}\| H\| _{L^2}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0004.html#lem:hc">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/fixedDegreeHC_degree2_W_fourth">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:inner-core_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:inner-core" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">11</span><span class="lemma_thmtitle">Core Gaussian mass</span></div>
+    <div class="thm_thmcontent"><p> There exists an absolute constant \(c_*{\gt}0\) such that \(G_{\mathrm{core}}(d,t)\ge (1-e^{-c_*d})F(d,t)\). </p>
+</div>
+
+    <a class="latex_link" href="sect0004.html#lem:inner-core">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/inner_core_gaussian_mass">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:odd-bound_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:odd-bound" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">5</span><span class="lemma_thmtitle">Odd-cell bound</span></div>
+    <div class="thm_thmcontent"><p>  If \(\gamma \in R_\delta ^{\mathrm{odd}}\), then \(|\psi (\gamma )|^2\le \tfrac 12\). </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#lem:odd-bound">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/universal_magnitude_bound_full">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:ordered-cycle_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:ordered-cycle" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">15</span><span class="lemma_thmtitle">Fourth cumulant</span></div>
+    <div class="thm_thmcontent"><p>  \(Q(\lambda ) =-\frac{1}{12}\sum _e\lambda _e^4+\frac18\mathcal{C}_4(\lambda )\), where \(\mathcal{C}_4(\lambda )=\sum _{\text{ordered 4-cycles}}\lambda _{i_1 i_2}\lambda _{i_2 i_3}\lambda _{i_3 i_4}\lambda _{i_4 i_1}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0005.html#lem:ordered-cycle">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/fourth_cumulant_identity">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:peeling_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:peeling" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">16</span><span class="lemma_thmtitle">Peeling identity</span></div>
+    <div class="thm_thmcontent"><p>  Let \(A\) be a symmetric zero-diagonal \(n\times n\) matrix, \(B\) the \((n{-}1)\times (n{-}1)\) submatrix deleting row/column \(n\), \(x\in \mathbb {R}^{n-1}\) the last column, and \(M(B)=B^2-\operatorname {diag}(B^2)\). Then </p>
+<div class="displaymath" id="a0000000032">
+  \[  Q_n(A)=Q_{n-1}(B)+\tfrac 12 x^\top M(B)x-\tfrac {1}{12}\sum _{a=1}^{n-1}x_a^4.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0005.html#lem:peeling">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/quarticCorr_peel_last">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:quintic_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:quintic" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">18</span><span class="lemma_thmtitle">Quintic bound</span></div>
+    <div class="thm_thmcontent"><p>  There is \(C_3'{\gt}0\) such that </p>
+<div class="displaymath" id="a0000000037">
+  \[  \int _{\mathcal{D}_\mathrm {core}}P(\lambda )^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_3'\frac{n^5}{t^5}G_{\mathrm{core}}(d,t).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#lem:quintic">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/quinticP5_pointwise_bound">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:realpart_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:realpart" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">6</span><span class="lemma_thmtitle">Positivity of \(\operatorname {Re}\psi \)</span></div>
+    <div class="thm_thmcontent"><p> If \(s(\lambda )\le 1/2\), then \(\operatorname {Re}\psi (\lambda )\in [3/4,1]\). </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#lem:realpart">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/re_psi_taylor4_decomposition">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:residual-decomp_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:residual-decomp" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">4</span><span class="lemma_thmtitle">Residual decomposition</span></div>
+    <div class="thm_thmcontent"><p>  For \(0{\lt}\delta {\lt}\pi /4\), </p>
+<div class="displaymath" id="a0000000018">
+  \[  R_\delta = R_\delta ^{\mathrm{even}} \cup R_\delta ^{\mathrm{odd}}, \qquad R_\delta ^{\mathrm{even}} = \bigcup _{\lambda \in \Lambda }\bigl(\lambda +[\mathcal{B}_{\pi /4}\setminus \mathcal{B}_\delta ]\bigr), \qquad R_\delta ^{\mathrm{odd}} = R_\delta \setminus R_\delta ^{\mathrm{even}},  \]
+</div>
+<p> and the sets in the union are disjoint. </p>
+</div>
+
+    <a class="latex_link" href="sect0002.html#lem:residual-decomp">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/normalizedCount_primary_secondary_decomposition">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:sixth_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:sixth" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">19</span><span class="lemma_thmtitle">Log-expansion</span></div>
+    <div class="thm_thmcontent"><p>  There are \(c_2,C_2{\gt}0\) such that whenever \(s(\lambda )\le c_2\), </p>
+<div class="displaymath" id="a0000000039">
+  \[  \log \psi (\lambda ) =-\tfrac 12 s(\lambda )-iT(\lambda )+Q(\lambda )+iP(\lambda )+E_6(\lambda )  \]
+</div>
+<p> with \(|E_6(\lambda )|\le C_2 s(\lambda )^3\). </p>
+</div>
+
+    <a class="latex_link" href="sect0007.html#lem:sixth">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/psi_pow_sub_correctedCoreIntegrand_norm_le_uniform">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:small-ball_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:small-ball" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">20</span><span class="lemma_thmtitle">Small-ball decay</span></div>
+    <div class="thm_thmcontent"><p>  There exists \(r_0\in (0,\pi /4)\) such that \(|\psi (\lambda )|^{4t}\le e^{-3t\| \lambda \| ^2/2}\) for every \(t\ge 1\) and \(\lambda \in \mathcal{D}_{r_0}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0007.html#lem:small-ball">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/small_ball_gaussian_decay_uniform">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:triangle_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:triangle" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">14</span><span class="lemma_thmtitle">Triangle formula</span></div>
+    <div class="thm_thmcontent"><p> For every \(\lambda \in \mathbb {R}^d\), \(T(\lambda )=\sum _{1\le i{\lt}j{\lt}k\le n}\lambda _{ij}\lambda _{ik}\lambda _{jk}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0005.html#lem:triangle">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/triangle_formula">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="lem:weak-comparison_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="lem:weak-comparison" style="display: none">
+    <div class="thm_thmheading">
+      <span class="lemma_thmcaption">
+      Lemma
+      </span>
+      <span class="lemma_thmlabel">12</span><span class="lemma_thmtitle">Lindeberg comparison</span></div>
+    <div class="thm_thmcontent"><p> Let \(f:[n]^2\to \mathbb {R}\) be symmetric with \(f(i,i)=0\), and define </p>
+<div class="displaymath" id="a0000000025">
+  \[  Q_f(z):=\sum _{1\le i,j\le n}f(i,j)z_i z_j, \qquad \mathrm{Inf}_m(f):=\sum _{j=1}^n f(m,j)^2.  \]
+</div>
+<p> If \(X_1,\dots ,X_n\) are independent Rademacher signs, \(G_1,\dots ,G_n\) are i.i.d. \(N(0,1)\), and \(\varphi :\mathbb {R}\to \mathbb {R}\) is \(C^3\), then </p>
+<div class="displaymath" id="a0000000026">
+  \[  \left|\mathbb {E}[\varphi (Q_f(X))]-\mathbb {E}[\varphi (Q_f(G))]\right| \le 6\| \varphi '''\| _\infty \sum _{m=1}^n \mathrm{Inf}_m(f)^{3/2}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="chap-weak-comparison.html#lem:weak-comparison">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/quadraticForm_lindeberg_comparison_C3">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:far-shell_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:far-shell" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">23</span><span class="proposition_thmtitle">Far-shell contraction</span></div>
+    <div class="thm_thmcontent"><p>  Set \(\eta _r:=\frac{1}{3}[1-(1+2r^2)^{-1/4}]\) and \(I_{\max }(\lambda ):=\max _k I_k(\lambda )\). There exist \(q_{\mathrm{sm}},q_{\mathrm{big}}\in (0,1)\) and \(a_r{\gt}0\) such that for all \(n\ge 2\) and \(t\ge 1\) the far shell decomposes as </p>
+<div class="displaymath" id="a0000000047">
+  \[  \begin{aligned}  \mathcal F_{\mathrm{sm}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda )\le \eta _r\} ,\\ \mathcal F_{\mathrm{big}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda ){\gt}\eta _r,\; I_{\max }\ge 1\} ,\\ \mathcal F_{\mathrm{mid}} & :=\{ \lambda \in \mathcal{B}_{\pi /4}\setminus \mathcal{D}_r:J(\lambda ){\gt}\eta _r,\; I_{\max }{\lt}1\} , \end{aligned}  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000048">
+  \[  |\psi (\lambda )|^{4t}\le \begin{cases}  q_{\mathrm{sm}}^{4t} &  \lambda \in \mathcal F_{\mathrm{sm}},\\ q_{\mathrm{big}}^{4t} &  \lambda \in \mathcal F_{\mathrm{big}},\\ \exp (-a_r t n^{-2/3}) &  \lambda \in \mathcal F_{\mathrm{mid}}. \end{cases}  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0010.html#prop:far-shell">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/edgeEvenFarShell_contribution_bound_Jsplit">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:primary-box_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:primary-box" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">22</span><span class="proposition_thmtitle">Primary estimate</span></div>
+    <div class="thm_thmcontent"><p>  Set \(K_n:=2^{2d-n+1}(2\pi )^{-d}\). For all sufficiently large \(n\) and \(t\ge C_0 n^3\), </p>
+<div class="displaymath" id="a0000000044">
+  \[  K_n\operatorname {Re}\int _{\mathcal{D}_\mathrm {core}}\psi (\lambda )^{4t}\, d\lambda =\left(1-\frac{\binom {n}{3}}{8t} +O\! \left(\frac{n^2}{t}+\frac{n^{5/2}}{t^{3/2}}+\frac{n^6}{t^2} +e^{-cd}\right)\right)\hat A_{n,4t}.  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0009.html#prop:primary-box">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/prop_primary_box">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:primary-secondary_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:primary-secondary" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">3</span><span class="proposition_thmtitle">Primary-secondary decomposition</span></div>
+    <div class="thm_thmcontent"><p>  For every \(t\ge 1\) and every \(0{\lt}\delta {\lt}\pi /4\), </p>
+<div class="displaymath" id="a0000000016">
+  \[  \mathbb {P}(S_{4t}=0) = 2^{2d-n+1}(2\pi )^{-d}\int _{\mathcal{B}_\delta }\psi (\lambda )^{4t}\, d\lambda +(2\pi )^{-d}\int _{R_\delta }\psi (\gamma )^{4t}\, d\gamma .  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0002.html#prop:primary-secondary">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/normalizedCount_primary_secondary_decomposition">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:quartic-bounds_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:quartic-bounds" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">17</span><span class="proposition_thmtitle">Quartic bounds</span></div>
+    <div class="thm_thmcontent"><p>  There exist \(c_1,C_1{\gt}0\) such that if \(d/t\le c_1\) and \(nd^2/t^2\le c_1\), then </p>
+<div class="displaymath" id="a0000000034">
+  \[  \int _{\mathcal{D}_\mathrm {core}}|e^{4tQ(\lambda )}|^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_1G_{\mathrm{core}}(d,t),  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000035">
+  \[  \int _{\mathcal{D}_\mathrm {core}}|e^{4tQ(\lambda )}-1|^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_1\frac{d^2}{t^2}G_{\mathrm{core}}(d,t).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="sect0006.html#prop:quartic-bounds">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/correctedCore_quarticCore_gap_abs_le_gaussianF_short">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="prop:residual-estimate_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="prop:residual-estimate" style="display: none">
+    <div class="thm_thmheading">
+      <span class="proposition_thmcaption">
+      Proposition
+      </span>
+      <span class="proposition_thmlabel">25</span><span class="proposition_thmtitle">Residual estimate</span></div>
+    <div class="thm_thmcontent"><p>  Set \(\delta ^2=2d/t\) and \(K_n:=2^{2d-n+1}(2\pi )^{-d}\). Then </p>
+<div class="displaymath" id="a0000000052">
+  \[  \begin{aligned}  K_n\int _{\mathcal{B}_\delta \setminus \mathcal{D}_\mathrm {core}}|\psi (\lambda )|^{4t}\, d\lambda & = o(\hat A_{n,4t}),\\ (2\pi )^{-d}\left|\int _{R_\delta }\psi (\gamma )^{4t}\, d\gamma \right| & = o(\hat A_{n,4t}), \end{aligned}  \]
+</div>
+<p> as \(n\to \infty \) with \(t/(n^{8/3}\log t)\to \infty \). For \(t\ge C_0 n^3\) and all sufficiently large \(n\), both bounds are at most \(Ce^{-cn^2}\hat A_{n,4t}\). </p>
+</div>
+
+    <a class="latex_link" href="sect0012.html#prop:residual-estimate">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/residual_estimate_quantitative">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+
+
+    
+    <div class="dep-modal-container" id="thm:main-intro_modal">
+      <div class="dep-modal-content">
+          <button class="dep-closebtn">
+<svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        
+  <div class="thm" id="thm:main-intro" style="display: none">
+    <div class="thm_thmheading">
+      <span class="theorem_thmcaption">
+      Theorem
+      </span>
+      <span class="theorem_thmlabel">26</span><span class="theorem_thmtitle">Main asymptotic count</span></div>
+    <div class="thm_thmcontent"><p>  There exist \(C_0,c{\gt}0\) such that for all sufficiently large \(n\) and \(t\ge C_0 n^3\), </p>
+<div class="displaymath" id="a0000000054">
+  \[  \frac{N_{n,4t}}{A_{n,4t}} =1-\frac{\binom {n}{3}}{8t} +O\! \left(\frac{n^2}{t}+\frac{n^{5/2}}{t^{3/2}} +\frac{n^6}{t^2}+e^{-cn^2}\right).  \]
+</div>
+</div>
+
+    <a class="latex_link" href="chap-main-count.html#thm:main-intro">LaTeX</a>
+    
+    
+  <a class="lean_link lean_decl" href="../../docs/find/#doc/thm_main_intro">Lean</a>
+    
+    
+  
+    
+  </div>
+    
+      </div>
+    </div>
+</div>
+</div> <!-- content -->
+</div> <!-- wrapper -->
+<script src="js/jquery.min.js" type="text/javascript"></script>
+
+<script src="js/d3.min.js"></script>
+<script src="js/hpcc.min.js"></script>
+<script src="js/d3-graphviz.js"></script>
+
+<script type="text/javascript">
+const graphContainer = d3.select("#graph");
+const width = graphContainer.node().clientWidth;
+const height = graphContainer.node().clientHeight;
+
+
+graphContainer.graphviz({useWorker: true})
+    .width(width)
+    .height(height)
+    .fit(true)
+    .renderDot(`strict digraph "" {	graph [bgcolor=transparent];	node [label="\N",		penwidth=1.8	];	edge [arrowhead=vee];	"lem:gaussian-radial"	[color=green,		label="gaussian-radial",		shape=ellipse];	"lem:cubic"	[color=green,		fillcolor="#9CEC8B",		label=cubic,		shape=ellipse,		style=filled];	"lem:gaussian-radial" -> "lem:cubic"	[style=dashed];	"prop:primary-box"	[color=green,		fillcolor="#9CEC8B",		label="primary-box",		shape=ellipse,		style=filled];	"lem:cubic" -> "prop:primary-box"	[style=dashed];	"thm:main-intro"	[color=green,		fillcolor="#9CEC8B",		label="main-intro",		shape=ellipse,		style=filled];	"prop:primary-box" -> "thm:main-intro"	[style=dashed];	"fact:psi-sq"	[color=green,		label="psi-sq",		shape=ellipse];	"lem:odd-bound"	[color=green,		fillcolor="#9CEC8B",		label="odd-bound",		shape=ellipse,		style=filled];	"fact:psi-sq" -> "lem:odd-bound"	[style=dashed];	"prop:far-shell"	[color=green,		fillcolor="#9CEC8B",		label="far-shell",		shape=ellipse,		style=filled];	"fact:psi-sq" -> "prop:far-shell"	[style=dashed];	"prop:residual-estimate"	[color=green,		fillcolor="#9CEC8B",		label="residual-estimate",		shape=ellipse,		style=filled];	"lem:odd-bound" -> "prop:residual-estimate"	[style=dashed];	"cor:far-negligible"	[color=green,		fillcolor="#9CEC8B",		label="far-negligible",		shape=ellipse,		style=filled];	"prop:far-shell" -> "cor:far-negligible"	[style=dashed];	"prop:residual-estimate" -> "thm:main-intro"	[style=dashed];	"cor:far-negligible" -> "prop:residual-estimate"	[style=dashed];	"lem:gaussian-quadratic"	[color=green,		fillcolor="#1CAC78",		label="gaussian-quadratic",		shape=ellipse,		style=filled];	"lem:gaussian-quadratic" -> "prop:far-shell"	[style=dashed];	"prop:quartic-bounds"	[color=green,		fillcolor="#9CEC8B",		label="quartic-bounds",		shape=ellipse,		style=filled];	"lem:gaussian-quadratic" -> "prop:quartic-bounds"	[style=dashed];	"prop:quartic-bounds" -> "prop:primary-box"	[style=dashed];	"lem:small-ball"	[color=green,		fillcolor="#9CEC8B",		label="small-ball",		shape=ellipse,		style=filled];	"lem:small-ball" -> "prop:primary-box"	[style=dashed];	"lem:small-ball" -> "prop:residual-estimate"	[style=dashed];	"cor:uniform"	[color=green,		fillcolor="#9CEC8B",		label=uniform,		shape=ellipse,		style=filled];	"thm:main-intro" -> "cor:uniform"	[style=dashed];	"prop:primary-secondary"	[color=green,		label="primary-secondary",		shape=ellipse];	"lem:inner-core"	[color=green,		fillcolor="#1CAC78",		label="inner-core",		shape=ellipse,		style=filled];	"lem:inner-core" -> "lem:cubic"	[style=dashed];	"lem:inner-core" -> "prop:residual-estimate"	[style=dashed];	"lem:inner-core" -> "prop:quartic-bounds"	[style=dashed];	"lem:quintic"	[color=green,		fillcolor="#9CEC8B",		label=quintic,		shape=ellipse,		style=filled];	"lem:inner-core" -> "lem:quintic"	[style=dashed];	"lem:quintic" -> "prop:primary-box"	[style=dashed];	"lem:triangle"	[color=green,		fillcolor="#1CAC78",		label=triangle,		shape=ellipse,		style=filled];	"lem:triangle" -> "lem:cubic"	[style=dashed];	"lem:ordered-cycle"	[color=green,		fillcolor="#1CAC78",		label="ordered-cycle",		shape=ellipse,		style=filled];	"lem:triangle" -> "lem:ordered-cycle"	[style=dashed];	"lem:peeling"	[color=green,		fillcolor="#1CAC78",		label=peeling,		shape=ellipse,		style=filled];	"lem:ordered-cycle" -> "lem:peeling"	[style=dashed];	"lem:peeling" -> "prop:quartic-bounds"	[style=dashed];	"lem:hc"	[color=green,		label=hc,		shape=ellipse];	"lem:hc" -> "prop:quartic-bounds"	[style=dashed];	"lem:hc" -> "lem:quintic"	[style=dashed];	"lem:sixth"	[color=green,		fillcolor="#9CEC8B",		label=sixth,		shape=ellipse,		style=filled];	"lem:hc" -> "lem:sixth"	[style=dashed];	"lem:sixth" -> "lem:small-ball"	[style=dashed];	"lem:weak-comparison"	[color=green,		fillcolor="#1CAC78",		label="weak-comparison",		shape=ellipse,		style=filled];	"cor:weak-comparison"	[color=green,		fillcolor="#1CAC78",		label="weak-comparison",		shape=ellipse,		style=filled];	"lem:weak-comparison" -> "cor:weak-comparison"	[style=dashed];	"cor:weak-comparison" -> "prop:far-shell"	[style=dashed];	"lem:residual-decomp"	[color=green,		fillcolor="#9CEC8B",		label="residual-decomp",		shape=ellipse,		style=filled];	"lem:residual-decomp" -> "lem:odd-bound"	[style=dashed];	"fact:fixed-n"	[color=green,		fillcolor="#1CAC78",		label="fixed-n",		shape=ellipse,		style=filled];	"fact:fixed-n" -> "thm:main-intro"	[style=dashed];	"fact:lambda-facts"	[color=green,		label="lambda-facts",		shape=ellipse];	"fact:lambda-facts" -> "cor:far-negligible"	[style=dashed];	"fact:lambda-facts" -> "prop:primary-secondary"	[style=dashed];	"fact:lambda-facts" -> "lem:residual-decomp"	[style=dashed];	"lem:realpart"	[color=green,		fillcolor="#1CAC78",		label=realpart,		shape=ellipse,		style=filled];	"lem:realpart" -> "lem:sixth"	[style=dashed];}`)
+    .on("end", interactive);
+
+latexLabelEscaper = function(label) {
+  return label.replace(/\./g, '\\.').replace(/:/g, '\\:')
+}
+
+clickNode = function() {
+  $("#statements div").hide()
+  var node_id = $('text', this).text();
+  $('.thm').hide();
+  $('#'+latexLabelEscaper(node_id)).show().children().show();
+}
+function interactive() {
+    $("span#legend_title").on("click", function () {
+           $(this).siblings('dl').toggle();
+        })
+
+    d3.selectAll('.node')
+        .attr('pointer-events', 'fill')
+        .on('click', function () {
+           var title = d3.select(this).selectAll('title').text().trim();
+           $('#statements > div').hide()
+           $('.thm').hide();
+           $('#'+latexLabelEscaper(title)+'_modal').show().children().show().children().show();
+           $('#statements').show()
+        });
+
+    d3.selectAll('.dep-closebtn').on('click', function() {
+        var modal =
+            d3.select(this).node().parentNode.parentNode.parentNode ;
+        d3.select(modal).style('display', 'none');
+    });
+}
+
+</script>
+
+</body>
+</html>

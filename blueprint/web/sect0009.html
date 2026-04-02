@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Primary estimate</title>
+<link rel="next" href="chap-residual.html" title="Far shell and residual" />
+<link rel="prev" href="sect0008.html" title="Cubic phase bound" />
+<link rel="up" href="chap-core.html" title="Core analysis" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Partial Hadamard matrices in the cubic regime — Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="chap-overview.html"><span class="toc_ref">1</span> <span class="toc_entry">Overview</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="chap-overview.html#a0000000014"><span class="toc_ref"></span> <span class="toc_entry">Navigation</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-setup.html"><span class="toc_ref">2</span> <span class="toc_entry">Setup and preparatory results</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Notation</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Results from de&#160;Launey–Levin</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.3</span> <span class="toc_entry">Fixed-\(n\) asymptotics</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.4</span> <span class="toc_entry">Standard analytic tools</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-weak-comparison.html"><span class="toc_ref">3</span> <span class="toc_entry">Weak comparison</span></a>
+ </li>
+<li class=" active">
+  <a href="chap-core.html"><span class="toc_ref">4</span> <span class="toc_entry">Core analysis</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0005.html"><span class="toc_ref">4.1</span> <span class="toc_entry">Cumulant identities</span></a>
+ </li>
+<li class="">
+  <a href="sect0006.html"><span class="toc_ref">4.2</span> <span class="toc_entry">Quartic and quintic bounds</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">4.3</span> <span class="toc_entry">Log-expansion and small-ball decay</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">4.4</span> <span class="toc_entry">Cubic phase bound</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0009.html"><span class="toc_ref">4.5</span> <span class="toc_entry">Primary estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-residual.html"><span class="toc_ref">5</span> <span class="toc_entry">Far shell and residual</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0010.html"><span class="toc_ref">5.1</span> <span class="toc_entry">Far-shell contraction</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">5.2</span> <span class="toc_entry">Far-shell integrals</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">5.3</span> <span class="toc_entry">Residual estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-main-count.html"><span class="toc_ref">6</span> <span class="toc_entry">Main theorem</span></a>
+ </li>
+<li class="">
+  <a href="chap-modules.html"><span class="toc_ref">7</span> <span class="toc_entry">Module guide</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000010">4.5 Primary estimate</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:primary-box">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">22</span>
+    <span class="proposition_thmtitle">Primary estimate</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0009.html#prop:primary-box">#</a>
+    
+    <a class="icon proof" href="sect0009.html#a0000000043"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0007.html#lem:sixth">Lemma 19</a></li>
+          
+          <li><a href="sect0007.html#lem:small-ball">Lemma 20</a></li>
+          
+          <li><a href="sect0008.html#lem:cubic">Lemma 21</a></li>
+          
+          <li><a href="sect0006.html#prop:quartic-bounds">Proposition 17</a></li>
+          
+          <li><a href="sect0006.html#lem:quintic">Lemma 18</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+          <li><a href="sect0007.html#lem:sixth">Lemma 19</a></li>
+          
+          <li><a href="sect0008.html#lem:cubic">Lemma 21</a></li>
+          
+          <li><a href="sect0006.html#prop:quartic-bounds">Proposition 17</a></li>
+          
+          <li><a href="sect0006.html#lem:quintic">Lemma 18</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/prop_primary_box" class="lean_decl">prop_primary_box</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>  Set \(K_n:=2^{2d-n+1}(2\pi )^{-d}\). For all sufficiently large \(n\) and \(t\ge C_0 n^3\), </p>
+<div class="displaymath" id="a0000000044">
+  \[  K_n\operatorname {Re}\int _{\mathcal{D}_\mathrm {core}}\psi (\lambda )^{4t}\, d\lambda =\left(1-\frac{\binom {n}{3}}{8t} +O\! \left(\frac{n^2}{t}+\frac{n^{5/2}}{t^{3/2}}+\frac{n^6}{t^2} +e^{-cd}\right)\right)\hat A_{n,4t}.  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000043">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By the log-expansion (Lemma&#160;<a href="sect0007.html#lem:sixth">19</a>), on \(\mathcal{D}_\mathrm {core}\) we write \(\psi (\lambda )^{4t}=e^{-2t\| \lambda \| ^2}\, e^{-4itT}\, e^{4tQ}\, e^{4itP}\, e^{4tE_6}\) with \(|E_6|\le C_2 s^3\). Define intermediate integrals: </p>
+<div class="displaymath" id="a0000000045">
+  \[  M_{\mathrm{core}}:=\int _{\mathcal{D}_\mathrm {core}}e^{-2t\| \lambda \| ^2}e^{-4itT}e^{4tQ}e^{4itP}\, d\lambda , \qquad L_{\mathrm{core}}:=\int _{\mathcal{D}_\mathrm {core}}e^{-2t\| \lambda \| ^2}e^{-4itT}e^{4tQ}\, d\lambda .  \]
+</div>
+<p><em>Step 1: remove \(E_6\).</em> \(|\psi ^{4t}-M_{\mathrm{core}}\cdot (\text{Gaussian})|\le |e^{4tE_6}-1|\le C t s^3\), and \(\int s^3 e^{-2t\| \lambda \| ^2}\le C(d/t)^3 F(d,t)\) by Gaussian radial moments. </p>
+<p><em>Step 2: remove \(P\).</em> \(|M_{\mathrm{core}}-L_{\mathrm{core}}|\le |e^{4itP}-1|\le 4t|P|\). By Cauchy–Schwarz and Lemma&#160;<a href="sect0006.html#lem:quintic">18</a>, \(\int |P|\, e^{-2t\| \lambda \| ^2}\le C n^{5/2}/t^{5/2}\cdot G_{\mathrm{core}}(d,t)^{1/2}\). This contributes \(O(n^{5/2}/t^{3/2})\hat A_{n,4t}\). </p>
+<p><em>Step 3: remove \(Q\).</em> \(|L_{\mathrm{core}}-\int e^{-2t\| \lambda \| ^2}e^{-4itT}|\le |e^{4tQ}-1|\) integrated against the Gaussian weight. Proposition&#160;<a href="sect0006.html#prop:quartic-bounds">17</a> gives \(\int |e^{4tQ}-1|^2 e^{-2t\| \lambda \| ^2}\le C d^2/t^2\cdot G_{\mathrm{core}}(d,t)\), contributing \(O(d/t)=O(n^2/t)\) by Cauchy–Schwarz. </p>
+<p><em>Step 4: cubic phase.</em> By Lemma&#160;<a href="sect0008.html#lem:cubic">21</a>, \(\operatorname {Re}\int e^{-2t\| \lambda \| ^2}e^{-4itT}\ge [1-Cn^3/t]G_{\mathrm{core}}(d,t)\). The correction \(\binom {n}{3}/(8t)\) comes from the exact computation \(\mathbb {E}_{\gamma _t}[T^2]=\binom {n}{3}/(64t^3)\) (via the triangle formula) and \(1-\cos (4tT)\approx 8t^2T^2\). </p>
+<p>Combining all four steps and using \(G_{\mathrm{core}}(d,t)=(1+O(e^{-cd}))F(d,t)\) (Lemma&#160;<a href="sect0004.html#lem:inner-core">11</a>) yields the claimed expansion. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0008.html" title="Cubic phase bound"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="chap-core.html" title="Core analysis"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="chap-residual.html" title="Far shell and residual"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

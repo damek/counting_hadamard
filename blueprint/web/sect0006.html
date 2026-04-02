@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+  MathJax = { 
+    tex: {
+		    inlineMath: [['$','$'], ['\\(','\\)']]
+	} }
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+<meta name="generator" content="plasTeX" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quartic and quintic bounds</title>
+<link rel="next" href="sect0007.html" title="Log-expansion and small-ball decay" />
+<link rel="prev" href="sect0005.html" title="Cumulant identities" />
+<link rel="up" href="chap-core.html" title="Core analysis" />
+<link rel="stylesheet" href="styles/theme-white.css" />
+<link rel="stylesheet" href="styles/amsthm.css" />
+<link rel="stylesheet" href="styles/showmore.css" />
+<link rel="stylesheet" href="styles/blueprint.css" />
+<link rel="stylesheet" href="styles/extra_styles.css" />
+</head>
+
+<body>
+<header>
+<svg  id="toc-toggle" class="icon icon-list-numbered "><use xlink:href="symbol-defs.svg#icon-list-numbered"></use></svg>
+<h1 id="doc_title"><a href="index.html">Partial Hadamard matrices in the cubic regime — Blueprint</a></h1>
+</header>
+
+<div class="wrapper">
+<nav class="toc">
+<ul class="sub-toc-0">
+<li class="">
+  <a href="chap-overview.html"><span class="toc_ref">1</span> <span class="toc_entry">Overview</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="chap-overview.html#a0000000014"><span class="toc_ref"></span> <span class="toc_entry">Navigation</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-setup.html"><span class="toc_ref">2</span> <span class="toc_entry">Setup and preparatory results</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0001.html"><span class="toc_ref">2.1</span> <span class="toc_entry">Notation</span></a>
+ </li>
+<li class="">
+  <a href="sect0002.html"><span class="toc_ref">2.2</span> <span class="toc_entry">Results from de&#160;Launey–Levin</span></a>
+ </li>
+<li class="">
+  <a href="sect0003.html"><span class="toc_ref">2.3</span> <span class="toc_entry">Fixed-\(n\) asymptotics</span></a>
+ </li>
+<li class="">
+  <a href="sect0004.html"><span class="toc_ref">2.4</span> <span class="toc_entry">Standard analytic tools</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-weak-comparison.html"><span class="toc_ref">3</span> <span class="toc_entry">Weak comparison</span></a>
+ </li>
+<li class=" active">
+  <a href="chap-core.html"><span class="toc_ref">4</span> <span class="toc_entry">Core analysis</span></a>
+  <span class="expand-toc">▼</span>
+  <ul class="sub-toc-1 active">
+     <li class="">
+  <a href="sect0005.html"><span class="toc_ref">4.1</span> <span class="toc_entry">Cumulant identities</span></a>
+ </li>
+<li class=" active current">
+  <a href="sect0006.html"><span class="toc_ref">4.2</span> <span class="toc_entry">Quartic and quintic bounds</span></a>
+ </li>
+<li class="">
+  <a href="sect0007.html"><span class="toc_ref">4.3</span> <span class="toc_entry">Log-expansion and small-ball decay</span></a>
+ </li>
+<li class="">
+  <a href="sect0008.html"><span class="toc_ref">4.4</span> <span class="toc_entry">Cubic phase bound</span></a>
+ </li>
+<li class="">
+  <a href="sect0009.html"><span class="toc_ref">4.5</span> <span class="toc_entry">Primary estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-residual.html"><span class="toc_ref">5</span> <span class="toc_entry">Far shell and residual</span></a>
+  <span class="expand-toc">▶</span>
+  <ul class="sub-toc-1">
+     <li class="">
+  <a href="sect0010.html"><span class="toc_ref">5.1</span> <span class="toc_entry">Far-shell contraction</span></a>
+ </li>
+<li class="">
+  <a href="sect0011.html"><span class="toc_ref">5.2</span> <span class="toc_entry">Far-shell integrals</span></a>
+ </li>
+<li class="">
+  <a href="sect0012.html"><span class="toc_ref">5.3</span> <span class="toc_entry">Residual estimate</span></a>
+ </li>
+
+  </ul>
+ </li>
+<li class="">
+  <a href="chap-main-count.html"><span class="toc_ref">6</span> <span class="toc_entry">Main theorem</span></a>
+ </li>
+<li class="">
+  <a href="chap-modules.html"><span class="toc_ref">7</span> <span class="toc_entry">Module guide</span></a>
+ </li>
+<li ><a href="dep_graph_document.html">Dependency graph</a></li>
+</ul>
+</nav>
+
+<div class="content">
+<div class="content-wrapper">
+
+
+<div class="main-text">
+<h1 id="a0000000007">4.2 Quartic and quintic bounds</h1>
+<div class="proposition_thmwrapper theorem-style-plain" id="prop:quartic-bounds">
+  <div class="proposition_thmheading">
+    <span class="proposition_thmcaption">
+    Proposition
+    </span>
+    <span class="proposition_thmlabel">17</span>
+    <span class="proposition_thmtitle">Quartic bounds</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#prop:quartic-bounds">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000033"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0005.html#lem:peeling">Lemma 16</a></li>
+          
+          <li><a href="sect0004.html#lem:gaussian-quadratic">Lemma 10</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+          <li><a href="sect0004.html#lem:hc">Lemma 8</a></li>
+          
+          <li><a href="sect0005.html#lem:peeling">Lemma 16</a></li>
+          
+          <li><a href="sect0004.html#lem:gaussian-quadratic">Lemma 10</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+          <li><a href="sect0004.html#lem:hc">Lemma 8</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/correctedCore_quarticCore_gap_abs_le_gaussianF_short" class="lean_decl">correctedCore_quarticCore_gap_abs_le_gaussianF_short</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="proposition_thmcontent">
+  <p>  There exist \(c_1,C_1{\gt}0\) such that if \(d/t\le c_1\) and \(nd^2/t^2\le c_1\), then </p>
+<div class="displaymath" id="a0000000034">
+  \[  \int _{\mathcal{D}_\mathrm {core}}|e^{4tQ(\lambda )}|^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_1G_{\mathrm{core}}(d,t),  \]
+</div>
+<p> and </p>
+<div class="displaymath" id="a0000000035">
+  \[  \int _{\mathcal{D}_\mathrm {core}}|e^{4tQ(\lambda )}-1|^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_1\frac{d^2}{t^2}G_{\mathrm{core}}(d,t).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000033">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> <em>First estimate.</em> Set \(I_n^{(\beta )}=\int _{\mathcal{D}_\mathrm {core}}e^{-2t\| \lambda \| ^2}e^{\beta tQ}\, d\lambda \) with \(\beta =8\) (since \(|e^{4tQ}|^2=e^{8tQ}\)). By Lemma&#160;<a href="sect0005.html#lem:peeling">16</a>, \(Q_n(A)=Q_{n-1}(B)+\frac12 x^\top M(B)x -\frac{1}{12}\sum x_a^4\). Dropping the negative quartic and fixing \(B\), the \(x\)-fiber is \(\int _{\mathbb {R}^{n-1}}\exp (-2t\| x\| ^2+\frac{\beta t}{2}x^\top M(B)x)\, dx\). On \(\mathcal{D}_\mathrm {core}\), \(\| M(B)\| _{\mathrm{op}}\le 2s(B)\le 2d/t\), so \(I-\frac\beta 4 M(B)\) is positive definite for small \(d/t\). Lemma&#160;<a href="sect0004.html#lem:gaussian-quadratic">10</a> evaluates the Gaussian integral; the determinant satisfies \(\det (I-\frac\beta 4 M(B))^{-1/2}\le \exp (C_\beta d^2/t^2)\) since \(\operatorname {tr}(M(B)^2)\le 4s(B)^2\) and \(\sum _j u_j=0\). Peeling off all \(n\) vertices gives \(I_n^{(\beta )}\le \exp (C_\beta nd^2/t^2)\, F(d,t)\), bounded by \(C_1G_{\mathrm{core}}(d,t)\) when \(nd^2/t^2\le c_1\) (using Lemma&#160;<a href="sect0004.html#lem:inner-core">11</a>). </p>
+<p><em>Second estimate.</em> Use \(|e^u-1|^2\le u^2(1+e^{2u})\) with \(u=4tQ\). The term \(\int Q^2 e^{-2t\| \lambda \| ^2}\) equals \(F(d,t)\mathbb {E}_{\gamma _t}[Q^2]\), where \(\mathbb {E}_{\gamma _t}[Q^2]=O(d^2/t^4)\) by expanding \(Q=-\frac{1}{12}D+\frac18 C\) and using \(\mathbb {E}[DC]=0\) (parity) and \(\mathbb {E}[C^2]=O(d^2/t^4)\) (partner counting). The cross term \(\int Q^2 e^{8tQ}e^{-2t\| \lambda \| ^2}\) is bounded by Cauchy–Schwarz, the first estimate with \(\beta =16\), and hypercontractivity (Lemma&#160;<a href="sect0004.html#lem:hc">8</a>) applied to the degree-4 polynomial \(Q\). Multiplying by \(16t^2\) gives the result. </p>
+
+  </div>
+</div>
+<div class="lemma_thmwrapper theorem-style-plain" id="lem:quintic">
+  <div class="lemma_thmheading">
+    <span class="lemma_thmcaption">
+    Lemma
+    </span>
+    <span class="lemma_thmlabel">18</span>
+    <span class="lemma_thmtitle">Quintic bound</span>
+    <div class="thm_header_extras">
+
+    
+    ✓
+        </div>
+    <div class="thm_header_hidden_extras">
+
+    <a class="icon proof" href="sect0006.html#lem:quintic">#</a>
+    
+    <a class="icon proof" href="sect0006.html#a0000000036"><svg  class="icon icon-cogs "><use xlink:href="symbol-defs.svg#icon-cogs"></use></svg>
+</a>
+    
+    
+    <button class="modal"><svg  class="icon icon-mindmap "><use xlink:href="symbol-defs.svg#icon-mindmap"></use></svg>
+</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Uses</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="sect0004.html#lem:hc">Lemma 8</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+          <li><a href="sect0004.html#lem:hc">Lemma 8</a></li>
+          
+          <li><a href="sect0004.html#lem:inner-core">Lemma 11</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+    
+    <button class="modal lean">L∃∀N</button>
+        <div class="modal-container">
+      <div class="modal-content">
+        <header>
+          <h1>Lean declarations</h1>
+          <button class="closebtn"><svg  class="icon icon-cross "><use xlink:href="symbol-defs.svg#icon-cross"></use></svg>
+</button>
+        </header>
+        
+        <ul class="uses">
+          
+          <li><a href="../../docs/find/#doc/quinticP5_pointwise_bound" class="lean_decl">quinticP5_pointwise_bound</a></li>
+          
+        </ul>
+    
+      </div>
+    </div>
+
+    
+        </div>
+  </div>
+  <div class="lemma_thmcontent">
+  <p>  There is \(C_3'{\gt}0\) such that </p>
+<div class="displaymath" id="a0000000037">
+  \[  \int _{\mathcal{D}_\mathrm {core}}P(\lambda )^2 e^{-2t\| \lambda \| ^2}\, d\lambda \le C_3'\frac{n^5}{t^5}G_{\mathrm{core}}(d,t).  \]
+</div>
+
+  </div>
+</div>
+<div class="proof_wrapper" id="a0000000036">
+  <div class="proof_heading">
+    <span class="proof_caption">
+    Proof
+    </span>
+    <span class="expand-proof">▶</span>
+  </div>
+  <div class="proof_content">
+  <p> By definition \(\kappa _5=\mathbb {E}[X_\lambda ^5]-10\mathbb {E}[X_\lambda ^3]\mathbb {E}[X_\lambda ^2]\), so the disconnected 5-edge multigraphs (triangle \(\times \) double edge) cancel. Thus \(P\) is supported on <em>connected</em> even 5-edge multigraphs. Such a graph has sum of degrees \(10\), minimum degree \(2\), hence at most \(5\) vertices: choosing \(\le 5\) vertices from \([n]\) gives \(O(n^5)\) monomials. </p>
+<p>Under \(\gamma _t\) (variance \((4t)^{-1}\)), each monomial has degree 5. A pair \((M,M')\) survives \(\mathbb {E}_{\gamma _t}[MM']\) only if every edge has even total degree, i.e., \(\mathcal O(M')=\mathcal O(M)\) (same odd-support graph). The odd support is either a 5-cycle (unique monomial, unique partner) or a triangle on \(\{ i,j,k\} \) (partner types: \((3,1,1)\) on the triangle—\(3\) choices—or \((1,1,1,2)\) with a pendant edge to a new vertex \(\ell \)—\(O(n)\) choices). This gives \(O(n^5)\) surviving pairs. Each degree-10 moment is \(O(t^{-5})\); multiplying by \(F(d,t)\) and using Lemma&#160;<a href="sect0004.html#lem:inner-core">11</a> proves the claim. </p>
+
+  </div>
+</div>
+
+</div> <!--main-text -->
+</div> <!-- content-wrapper -->
+</div> <!-- content -->
+</div> <!-- wrapper -->
+
+<nav class="prev_up_next">
+  <svg  id="showmore-minus" class="icon icon-eye-minus showmore"><use xlink:href="symbol-defs.svg#icon-eye-minus"></use></svg>
+
+  <svg  id="showmore-plus" class="icon icon-eye-plus showmore"><use xlink:href="symbol-defs.svg#icon-eye-plus"></use></svg>
+
+  <a href="sect0005.html" title="Cumulant identities"><svg  class="icon icon-arrow-left "><use xlink:href="symbol-defs.svg#icon-arrow-left"></use></svg>
+</a>
+  <a href="chap-core.html" title="Core analysis"><svg  class="icon icon-arrow-up "><use xlink:href="symbol-defs.svg#icon-arrow-up"></use></svg>
+</a>
+  <a href="sect0007.html" title="Log-expansion and small-ball decay"><svg  class="icon icon-arrow-right "><use xlink:href="symbol-defs.svg#icon-arrow-right"></use></svg>
+</a>
+</nav>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plastex.js"></script>
+<script type="text/javascript" src="js/svgxuse.js"></script>
+<script type="text/javascript" src="js/js.cookie.min.js"></script>
+<script type="text/javascript" src="js/showmore.js"></script>
+</body>
+</html>

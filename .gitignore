@@ -17,7 +17,6 @@ blueprint/.venv/
 tools/api_slim/project.sqlite
 tools/api_slim/project.sqlite-journal
 tools/api_slim/__pycache__/
-blueprint/web/
 
 # LaTeX aux
 *.aux

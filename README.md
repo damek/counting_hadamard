@@ -12,10 +12,11 @@ The repository has two reader-facing surfaces:
 
 - `RequestProject/`: active Lean modules
 - `RequestProject.lean`: package entrypoint
+- `index.html`: landing page source for the published site
 - `documents/short.tex`: local synchronized TeX source used by the blueprint toolchain
 - `blueprint/src/`: blueprint source
+- `blueprint/web/`: checked-in published blueprint HTML
 - `docbuild/`: `doc-gen4` configuration for project docs
-- `publish/index.html`: landing page source for the Pages site
 
 ## Build
 
@@ -34,6 +35,16 @@ The axiom audit for the key endpoint theorems should report only:
 
 ## Additional Audits
 
+GitHub Actions uses `leanchecker` as its kernel-replay audit:
+
+```sh
+lake env leanchecker RequestProject.HadamardCn3ShortMain
+lake env leanchecker RequestProject.HadamardCn3Asymptotics
+lake env leanchecker RequestProject.HadamardCn3WeakInvariance
+lake env leanchecker RequestProject.HadamardCn3LocalGapResidual
+lake env leanchecker RequestProject.HadamardCn3
+```
+
 The repository also includes a separate comparator audit surface under
 `Comparator/`:
 
@@ -41,9 +52,10 @@ The repository also includes a separate comparator audit surface under
 - `Comparator/Solution.lean`: wrappers that point those statements at the actual formal proofs
 - `Comparator/comparator.json`: comparator configuration
 
-These files are not part of the main `RequestProject` library or normal
-`lake build` target. They exist only for the separate manual GitHub Actions
-workflow `Comparator Audit`.
+These files are kept for a self-hosted Linux comparator run. The GitHub-hosted
+workflow was removed because comparator depends on `landrun`, and the
+GitHub-hosted runner failed before theorem comparison with a `permission denied`
+error from `landrun` while building `Comparator.Challenge`.
 
 ## Lean Docs
 
@@ -62,7 +74,8 @@ python3 docbuild/scripts/rebuild_docs.py --mode full
 
 ## Blueprint
 
-To rebuild the blueprint locally:
+The published blueprint is served from `blueprint/web/`. To rebuild that local
+HTML surface:
 
 ```sh
 python3 -m venv blueprint/.venv
@@ -86,7 +99,7 @@ python3 -m http.server 8005
 Then open:
 
 - `/` for the landing page
-- `/blueprint/` for the blueprint
+- `/blueprint/web/` for the blueprint
 - `/docs/` for the Lean docs
 
 ## Where To Start Reading
