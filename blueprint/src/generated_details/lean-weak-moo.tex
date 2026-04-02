@@ -1,0 +1,21 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+private theorem quadraticForm_lindeberg_comparison_mooKernel
+    (N : ℕ) (lam : Fin N → Fin N → ℝ)
+    (φ : ℝ → ℝ) (M : ℝ)
+    (hM_nonneg : 0 ≤ M)
+    (hφ : ContDiff ℝ 3 φ)
+    (hφ3 : ∀ x : ℝ, |iteratedDeriv 3 φ x| ≤ M) :
+    |avgSigns N (fun σ => φ (Q2Signs N (mooKernel N lam) σ))
+      - stdGaussianAvg N (fun x => φ (Q2Gauss N (mooKernel N lam) x))|
+      ≤ (3 / 4 : ℝ) * M * threeHalfInfluenceSum N lam
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Apply the generic quadratic-form comparison theorem to the specific kernel mooKernel and rewrite the resulting influence sum into the project's threeHalfInfluenceSum normalization.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on quadraticForm\_lindeberg\_comparison\_C3, mooKernel, threeHalfInfluenceSum. It is used directly by psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3WeakInvariance.lean:5086}
+\medskip

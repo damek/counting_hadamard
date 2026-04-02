@@ -1,0 +1,22 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+lemma cubicT_sq_core_gaussian_correction_tail_le :
+    ∃ c K : ℝ, 0 < c ∧ 0 < K ∧
+      ∀ n : ℕ, ∀ t : ℝ, 1 ≤ t →
+        |((8 : ℝ) * t ^ (2 : Nat)
+            * ∫ mu in edgeCoreRegion n t,
+                (cubicT n (matrixOfEdge n mu)) ^ (2 : Nat)
+                  * Real.exp (-2 * t * Cn3Torus.sqNormEdge n mu))
+            - ((Nat.choose n 3 : ℝ) / (8 * t)) * gaussianF (dim n) t|
+          ≤ K * ((n : ℝ) ^ (3 : Nat) / t)
+              * Real.exp (-(c * (dim n : ℝ))) * gaussianF (dim n) t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Isolate the cubic correction term that remains after the second-order expansion and estimate it in the tail region using Gaussian decay, yielding an exponentially small multiple of gaussianScale.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:506}
+\medskip

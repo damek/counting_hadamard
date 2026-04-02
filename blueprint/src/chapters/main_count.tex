@@ -1,0 +1,352 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "main_count",
+%   "title": "Main Count Theorem",
+%   "order": 5,
+%   "summary": "The endpoint theorem chain for the number of partial Hadamard matrices and the final uniform corollary.",
+%   "reader_notes": "Start here if you want to check the final paper statements first. This chapter keeps the endpoint count theorems explicit and then shows the Lean-only normalized-count bridge that feeds them.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/main_count.tex"
+% }
+% BP_RECORD_END
+\section{Main Count Theorem}
+\label{chap:main-count}
+
+This chapter contains the endpoint theorem chain for the number of partial
+Hadamard matrices. The key Lean-only bridge result here is
+\texttt{normalizedCount\_asymptotic}, which transports the primary-box estimate
+to the normalized count before the final count normalization.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "paper-main-intro",
+%   "label": "thm:main-intro",
+%   "title": "Main asymptotic count theorem",
+%   "kind": "theorem",
+%   "tex_path": "documents/short.tex",
+%   "statement_lines": {
+%     "start": 192,
+%     "end": 199
+%   },
+%   "proof_lines": {
+%     "start": 1762,
+%     "end": 1782
+%   },
+%   "lean_primary": "lean-thm-main-intro",
+%   "lean_support": [
+%     "lean-normalized-count-asymptotic",
+%     "lean-prop-primary-box",
+%     "lean-residual-estimate",
+%     "lean-normalized-count",
+%     "lean-count-scale"
+%   ],
+%   "module_owner": "module-short-main",
+%   "summary": "The paper\u2019s main theorem is formalized by a short terminal wrapper over the normalized-count asymptotic and count normalization.",
+%   "proof_steps": [
+%     {
+%       "id": "step-main-combine",
+%       "title": "Combine the primary estimate",
+%       "tex_lines": {
+%         "start": 1766,
+%         "end": 1778
+%       },
+%       "lean_refs": [
+%         "lean-prop-primary-box",
+%         "lean-normalized-count-asymptotic"
+%       ],
+%       "summary": "Insert the primary-box asymptotic into the three-way decomposition for the normalized count."
+%     },
+%     {
+%       "id": "step-main-residual",
+%       "title": "Absorb the residual error",
+%       "tex_lines": {
+%         "start": 1779,
+%         "end": 1781
+%       },
+%       "lean_refs": [
+%         "lean-residual-estimate"
+%       ],
+%       "summary": "Use the exponentially small residual estimate to absorb the off-core terms into the displayed error."
+%     },
+%     {
+%       "id": "step-main-normalize",
+%       "title": "Count normalization",
+%       "tex_lines": {
+%         "start": 1782,
+%         "end": 1782
+%       },
+%       "lean_refs": [
+%         "lean-normalized-count",
+%         "lean-count-scale"
+%       ],
+%       "summary": "Pass from the normalized-count scale to the normalized Hadamard count."
+%     }
+%   ],
+%   "record_type": "paper_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{theorem}[Main asymptotic count theorem]
+\label{thm:main-intro}
+\lean{thm_main_intro}
+\leanok
+\uses{lean-normalized-count-asymptotic,lean-prop-primary-box,lean-residual-estimate,lean-normalized-count,lean-count-scale}
+The paper’s main theorem is formalized by combining the normalized-count
+asymptotic with the explicit count normalization
+\((paperCount\ n\ (4 t) : \mathbb{R}) / paperAsymptoticCount\ n\ t\).
+\end{theorem}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "paper-cor-uniform",
+%   "label": "cor:uniform",
+%   "title": "Uniform counting corollary",
+%   "kind": "corollary",
+%   "tex_path": "documents/short.tex",
+%   "statement_lines": {
+%     "start": 1785,
+%     "end": 1791
+%   },
+%   "proof_lines": {
+%     "start": 1793,
+%     "end": 1795
+%   },
+%   "lean_primary": "lean-cor-uniform",
+%   "lean_support": [
+%     "lean-thm-main-intro",
+%     "lean-fixed-n-count"
+%   ],
+%   "module_owner": "module-short-main",
+%   "summary": "The final corollary combines the large-n theorem with the fixed-n fallback to obtain a uniform cubic-scale statement.",
+%   "proof_steps": [
+%     {
+%       "id": "step-uniform-large-n",
+%       "title": "Large-n branch",
+%       "tex_lines": {
+%         "start": 1793,
+%         "end": 1794
+%       },
+%       "lean_refs": [
+%         "lean-thm-main-intro"
+%       ],
+%       "summary": "Use the large-n asymptotic theorem to control all sufficiently large dimensions uniformly."
+%     },
+%     {
+%       "id": "step-uniform-fixed-n",
+%       "title": "Fixed-n branch",
+%       "tex_lines": {
+%         "start": 1794,
+%         "end": 1794
+%       },
+%       "lean_refs": [
+%         "lean-fixed-n-count"
+%       ],
+%       "summary": "Apply the fixed-n asymptotic for each remaining small dimension."
+%     },
+%     {
+%       "id": "step-uniform-threshold",
+%       "title": "Uniform threshold assembly",
+%       "tex_lines": {
+%         "start": 1794,
+%         "end": 1795
+%       },
+%       "lean_refs": [
+%         "lean-cor-uniform"
+%       ],
+%       "summary": "Choose one common cubic threshold that covers the large-n and fixed-n branches simultaneously."
+%     }
+%   ],
+%   "record_type": "paper_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{corollary}[Uniform counting corollary]
+\label{cor:uniform}
+\lean{cor_uniform}
+\leanok
+\uses{lean-thm-main-intro,lean-fixed-n-count}
+The final corollary upgrades the main theorem to a uniform cubic-scale
+statement by combining the large-\(n\) asymptotic with the fixed-\(n\) fallback.
+\end{corollary}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-count-scale",
+%   "symbol": "countScale",
+%   "file": "RequestProject/HadamardCn3Defs.lean",
+%   "line": 1178,
+%   "module": "module-defs",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-thm-main-intro"
+%   ],
+%   "depends_on": [
+%     "lean-gaussian-scale"
+%   ],
+%   "summary": "Count normalization 2^(4nt) * \\hat A_n(t).",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{definition}[countScale]
+\label{lean-count-scale}
+\lean{countScale}
+\uses{lean-gaussian-scale}
+\moduleowner{module-defs}
+Count normalization 2^(4nt) * \hat A_n(t).
+\end{definition}
+\leanitemdetails{lean-count-scale}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-normalized-count",
+%   "symbol": "normalizedCount",
+%   "file": "RequestProject/HadamardCn3Defs.lean",
+%   "line": 7313,
+%   "module": "module-defs",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-normalized-count-asymptotic",
+%     "lean-thm-main-intro"
+%   ],
+%   "depends_on": [],
+%   "summary": "Normalized Hadamard count hadamardCount / 2^(ns).",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{definition}[normalizedCount]
+\label{lean-normalized-count}
+\lean{normalizedCount}
+\moduleowner{module-defs}
+Normalized Hadamard count hadamardCount / 2^(ns).
+\end{definition}
+\leanitemdetails{lean-normalized-count}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-prop-primary-box",
+%   "symbol": "prop_primary_box",
+%   "file": "RequestProject/HadamardCn3Asymptotics.lean",
+%   "line": 17,
+%   "module": "module-asymptotics",
+%   "kind": "paper_endpoint",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-normalized-count-asymptotic",
+%     "lean-thm-main-intro"
+%   ],
+%   "depends_on": [
+%     "lean-primary-core",
+%     "lean-bridge-exact-corrected",
+%     "lean-bridge-corrected-quartic",
+%     "lean-bridge-quartic-cubic",
+%     "lean-cubic-second-order-gap",
+%     "lean-cubic-tail",
+%     "lean-core-mass-gap",
+%     "lean-gaussian-scale-factorization"
+%   ],
+%   "summary": "Paper-facing primary estimate on the Gaussian scale.",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{proposition}[prop_primary_box]
+\label{lean-prop-primary-box}
+\lean{prop_primary_box}
+\uses{lean-primary-core,lean-bridge-exact-corrected,lean-bridge-corrected-quartic,lean-bridge-quartic-cubic,lean-cubic-second-order-gap,lean-cubic-tail,lean-core-mass-gap,lean-gaussian-scale-factorization}
+\moduleowner{module-asymptotics}
+Paper-facing primary estimate on the Gaussian scale.
+\end{proposition}
+\leanitemdetails{lean-prop-primary-box}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-normalized-count-asymptotic",
+%   "symbol": "normalizedCount_asymptotic",
+%   "file": "RequestProject/HadamardCn3Asymptotics.lean",
+%   "line": 368,
+%   "module": "module-asymptotics",
+%   "kind": "lean_only",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-thm-main-intro"
+%   ],
+%   "depends_on": [
+%     "lean-prop-primary-box",
+%     "lean-residual-estimate"
+%   ],
+%   "summary": "Lean-only bridge upgrading the primary estimate to the full normalized-count asymptotic.",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{theorem}[normalizedCount\_asymptotic]
+\label{lean-normalized-count-asymptotic}
+\lean{normalizedCount_asymptotic}
+\uses{lean-prop-primary-box,lean-residual-estimate}
+\moduleowner{module-asymptotics}
+Lean-only bridge upgrading the primary estimate to the full normalized-count asymptotic.
+\end{theorem}
+\leanitemdetails{lean-normalized-count-asymptotic}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-thm-main-intro",
+%   "symbol": "thm_main_intro",
+%   "file": "RequestProject/HadamardCn3ShortMain.lean",
+%   "line": 555,
+%   "module": "module-short-main",
+%   "kind": "paper_endpoint",
+%   "paper_item": "paper-main-intro",
+%   "used_by": [
+%     "lean-cor-uniform"
+%   ],
+%   "depends_on": [
+%     "lean-normalized-count-asymptotic",
+%     "lean-normalized-count",
+%     "lean-count-scale"
+%   ],
+  %   "summary": "Paper-facing count theorem matching thm:main-intro.",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{theorem}[thm_main_intro]
+\label{lean-thm-main-intro}
+\lean{thm_main_intro}
+\uses{lean-normalized-count-asymptotic,lean-normalized-count,lean-count-scale}
+\moduleowner{module-short-main}
+Paper-facing count theorem matching thm:main-intro.
+\end{theorem}
+\leanitemdetails{lean-thm-main-intro}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-cor-uniform",
+%   "symbol": "cor_uniform",
+%   "file": "RequestProject/HadamardCn3ShortMain.lean",
+%   "line": 600,
+%   "module": "module-short-main",
+%   "kind": "paper_endpoint",
+%   "paper_item": "paper-cor-uniform",
+%   "used_by": [],
+%   "depends_on": [
+%     "lean-thm-main-intro",
+%     "lean-fixed-n-count"
+%   ],
+%   "summary": "Paper-facing uniform cubic-scale corollary.",
+%   "record_type": "lean_item",
+%   "chapter": "main_count"
+% }
+% BP_RECORD_END
+\begin{corollary}[cor_uniform]
+\label{lean-cor-uniform}
+\lean{cor_uniform}
+\uses{lean-thm-main-intro,lean-fixed-n-count}
+\moduleowner{module-short-main}
+Paper-facing uniform cubic-scale corollary.
+\end{corollary}
+\leanitemdetails{lean-cor-uniform}

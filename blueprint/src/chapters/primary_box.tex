@@ -1,0 +1,340 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "primary_box",
+%   "title": "Primary Box",
+%   "order": 3,
+%   "summary": "Primary-box asymptotic and the bridge cluster that transports the exact core integral to the Gaussian main term.",
+%   "reader_notes": "The paper-facing proposition is short, but the Lean route runs through a bridge cluster. This chapter keeps those bridge theorems explicit so the dependency graph is readable.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/primary_box.tex"
+% }
+% BP_RECORD_END
+\section{Primary Box}
+\label{chap:primary-box}
+
+This chapter isolates the bridge cluster behind \texttt{prop\_primary\_box}. The
+paper-facing proposition is compact, but the formal route passes through several
+Gaussian-scale bridge theorems that are worth seeing explicitly.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "paper-prop-primary-box",
+%   "label": "prop:primary-box",
+%   "title": "Primary-box estimate",
+%   "kind": "proposition",
+%   "tex_path": "documents/short.tex",
+%   "statement_lines": {
+%     "start": 1296,
+%     "end": 1304
+%   },
+%   "proof_lines": {
+%     "start": 1306,
+%     "end": 1424
+%   },
+%   "lean_primary": "lean-prop-primary-box",
+%   "lean_support": [
+%     "lean-bridge-exact-corrected",
+%     "lean-bridge-corrected-quartic",
+%     "lean-bridge-quartic-cubic",
+%     "lean-cubic-second-order-gap",
+%     "lean-cubic-tail",
+%     "lean-core-mass-gap"
+%   ],
+%   "module_owner": "module-short-main",
+%   "summary": "The primary-box theorem is formalized as a short endpoint over bridge estimates, cubic correction, and Gaussian-mass transport.",
+%   "proof_steps": [
+%     {
+%       "id": "step-primary-exact-corrected",
+%       "title": "Bridge exact to corrected",
+%       "tex_lines": {
+%         "start": 1341,
+%         "end": 1373
+%       },
+%       "lean_refs": [
+%         "lean-bridge-exact-corrected"
+%       ],
+%       "summary": "Strip the sixth-order remainder and compare the exact core integrand to the corrected one on the Gaussian scale."
+%     },
+%     {
+%       "id": "step-primary-corrected-quartic",
+%       "title": "Bridge corrected to quartic",
+%       "tex_lines": {
+%         "start": 1375,
+%         "end": 1395
+%       },
+%       "lean_refs": [
+%         "lean-bridge-corrected-quartic"
+%       ],
+%       "summary": "Remove the quintic phase and compare the corrected core integral to the quartic model."
+%     },
+%     {
+%       "id": "step-primary-quartic-cubic",
+%       "title": "Bridge quartic to cubic",
+%       "tex_lines": {
+%         "start": 1397,
+%         "end": 1409
+%       },
+%       "lean_refs": [
+%         "lean-bridge-quartic-cubic"
+%       ],
+%       "summary": "Remove the quartic factor to reach the cubic core model."
+%     },
+%     {
+%       "id": "step-primary-cubic-tail",
+%       "title": "Cubic correction tail",
+%       "tex_lines": {
+%         "start": 1411,
+%         "end": 1412
+%       },
+%       "lean_refs": [
+%         "lean-cubic-second-order-gap",
+%         "lean-cubic-tail"
+%       ],
+%       "summary": "Insert the explicit cubic correction and control the remaining cubic tail."
+%     },
+%     {
+%       "id": "step-primary-gaussian-transport",
+%       "title": "Gaussian-scale transport",
+%       "tex_lines": {
+%         "start": 1413,
+%         "end": 1423
+%       },
+%       "lean_refs": [
+%         "lean-core-mass-gap",
+%         "lean-gaussian-scale-factorization"
+%       ],
+%       "summary": "Compare the truncated Gaussian mass with the full Gaussian scale and transport the estimate to the paper normalization."
+%     }
+%   ],
+%   "record_type": "paper_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{proposition}[Primary-box estimate]
+\label{prop:primary-box}
+\lean{prop_primary_box}
+\leanok
+\uses{lean-bridge-exact-corrected,lean-bridge-corrected-quartic,lean-bridge-quartic-cubic,lean-cubic-second-order-gap,lean-cubic-tail,lean-core-mass-gap}
+The primary-box theorem is formalized as a short endpoint over bridge estimates, cubic correction, and Gaussian-mass transport.
+\end{proposition}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-gaussian-f",
+%   "symbol": "gaussianF",
+%   "file": "RequestProject/HadamardCn3Defs.lean",
+%   "line": 77,
+%   "module": "module-defs",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-gaussian-scale-factorization",
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [],
+%   "summary": "Base Gaussian integral scale F(d,t).",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{definition}[gaussianF]
+\label{lean-gaussian-f}
+\lean{gaussianF}
+\moduleowner{module-defs}
+Base Gaussian integral scale F(d,t).
+\end{definition}
+\leanitemdetails{lean-gaussian-f}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-gaussian-scale",
+%   "symbol": "gaussianScale",
+%   "file": "RequestProject/HadamardCn3Defs.lean",
+%   "line": 1174,
+%   "module": "module-defs",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-gaussian-scale-factorization",
+%     "lean-prop-primary-box",
+%     "lean-residual-estimate"
+%   ],
+%   "depends_on": [
+%     "lean-gaussian-f"
+%   ],
+%   "summary": "Paper Gaussian main scale \\hat A_n(t).",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{definition}[gaussianScale]
+\label{lean-gaussian-scale}
+\lean{gaussianScale}
+\uses{lean-gaussian-f}
+\moduleowner{module-defs}
+Paper Gaussian main scale \hat A_n(t).
+\end{definition}
+\leanitemdetails{lean-gaussian-scale}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-gaussian-scale-factorization",
+%   "symbol": "gaussianScale_eq_texPrefactor_mul_gaussianF",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 30,
+%   "module": "module-local-gap-bridge",
+%   "kind": "normalization",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [
+%     "lean-gaussian-f",
+%     "lean-gaussian-scale"
+%   ],
+%   "summary": "Factorization of the Gaussian main scale into the tex prefactor times gaussianF.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[gaussianScale_eq_texPrefactor_mul_gaussianF]
+\label{lean-gaussian-scale-factorization}
+\lean{gaussianScale_eq_texPrefactor_mul_gaussianF}
+\uses{lean-gaussian-f,lean-gaussian-scale}
+\moduleowner{module-local-gap-bridge}
+Factorization of the Gaussian main scale into the tex prefactor times gaussianF.
+\end{lemma}
+\leanitemdetails{lean-gaussian-scale-factorization}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-bridge-exact-corrected",
+%   "symbol": "exactCore_correctedCore_gap_abs_le_gaussianF_short",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 23230,
+%   "module": "module-local-gap-bridge",
+%   "kind": "paper_support",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [],
+%   "summary": "First bridge theorem in the active primary-box route.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[exactCore_correctedCore_gap_abs_le_gaussianF_short]
+\label{lean-bridge-exact-corrected}
+\lean{exactCore_correctedCore_gap_abs_le_gaussianF_short}
+\moduleowner{module-local-gap-bridge}
+First bridge theorem in the active primary-box route.
+\end{lemma}
+\leanitemdetails{lean-bridge-exact-corrected}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-bridge-corrected-quartic",
+%   "symbol": "correctedCore_quarticCore_gap_abs_le_gaussianF_short",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 23393,
+%   "module": "module-local-gap-bridge",
+%   "kind": "paper_support",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [],
+%   "summary": "Second bridge theorem in the active primary-box route.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[correctedCore_quarticCore_gap_abs_le_gaussianF_short]
+\label{lean-bridge-corrected-quartic}
+\lean{correctedCore_quarticCore_gap_abs_le_gaussianF_short}
+\moduleowner{module-local-gap-bridge}
+Second bridge theorem in the active primary-box route.
+\end{lemma}
+\leanitemdetails{lean-bridge-corrected-quartic}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-bridge-quartic-cubic",
+%   "symbol": "quarticCore_cubicCore_gap_abs_le_gaussianF_short",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 23488,
+%   "module": "module-local-gap-bridge",
+%   "kind": "paper_support",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [],
+%   "summary": "Third bridge theorem in the active primary-box route.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[quarticCore_cubicCore_gap_abs_le_gaussianF_short]
+\label{lean-bridge-quartic-cubic}
+\lean{quarticCore_cubicCore_gap_abs_le_gaussianF_short}
+\moduleowner{module-local-gap-bridge}
+Third bridge theorem in the active primary-box route.
+\end{lemma}
+\leanitemdetails{lean-bridge-quartic-cubic}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-cubic-second-order-gap",
+%   "symbol": "cubic_core_second_order_gap_uniform",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 14424,
+%   "module": "module-local-gap-bridge",
+%   "kind": "paper_support",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [],
+%   "summary": "Cubic core asymptotic supplying the explicit leading correction.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[cubic_core_second_order_gap_uniform]
+\label{lean-cubic-second-order-gap}
+\lean{cubic_core_second_order_gap_uniform}
+\moduleowner{module-local-gap-bridge}
+Cubic core asymptotic supplying the explicit leading correction.
+\end{lemma}
+\leanitemdetails{lean-cubic-second-order-gap}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-core-mass-gap",
+%   "symbol": "coreMass_gap_le_exp_gaussianF",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "line": 22323,
+%   "module": "module-local-gap-bridge",
+%   "kind": "paper_support",
+%   "paper_item": "paper-prop-primary-box",
+%   "used_by": [
+%     "lean-prop-primary-box"
+%   ],
+%   "depends_on": [
+%     "lean-gaussian-f"
+%   ],
+%   "summary": "Compares the truncated core Gaussian mass to the full Gaussian integral.",
+%   "record_type": "lean_item",
+%   "chapter": "primary_box"
+% }
+% BP_RECORD_END
+\begin{lemma}[coreMass_gap_le_exp_gaussianF]
+\label{lean-core-mass-gap}
+\lean{coreMass_gap_le_exp_gaussianF}
+\uses{lean-gaussian-f}
+\moduleowner{module-local-gap-bridge}
+Compares the truncated core Gaussian mass to the full Gaussian integral.
+\end{lemma}
+\leanitemdetails{lean-core-mass-gap}

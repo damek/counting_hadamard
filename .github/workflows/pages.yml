@@ -1,0 +1,74 @@
+name: Build And Deploy Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-venv
+
+      - name: Install Lean toolchain
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Restore Lake packages
+        run: lake update
+
+      - name: Build Lean project
+        run: lake build
+
+      - name: Axiom audit
+        run: lake env lean scripts/print_axioms_check.lean
+
+      - name: Build Lean docs
+        run: python3 docbuild/scripts/rebuild_docs.py
+
+      - name: Build blueprint
+        run: |
+          python3 -m venv blueprint/.venv
+          blueprint/.venv/bin/pip install --upgrade pip
+          blueprint/.venv/bin/pip install -r blueprint/requirements.txt
+          python3 blueprint/scripts/build_real_blueprint.py
+
+      - name: Assemble Pages site
+        run: python3 scripts/assemble_pages_site.py
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

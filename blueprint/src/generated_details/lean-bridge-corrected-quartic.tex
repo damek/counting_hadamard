@@ -1,0 +1,21 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem correctedCore_quarticCore_gap_abs_le_gaussianF_short :
+    ∃ c K : ℝ, 0 < c ∧ 0 < K ∧
+      ∀ n : ℕ, 2 ≤ n → ∀ t : ℕ, 1 ≤ t →
+        (dim n : ℝ) / (t : ℝ) ≤ c →
+        (n : ℝ) * (((dim n : ℝ) / (t : ℝ)) ^ (2 : Nat)) ≤ c →
+        |(∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (correctedCoreIntegrand n t mu))
+            - (∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (quarticCoreIntegrand n t mu))|
+          ≤ (K * ((n : ℝ) ^ (5 / 2 : ℝ) / (t : ℝ) ^ (3 / 2 : ℝ)))
+              * gaussianF (dim n) (t : ℝ)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Repeat the same template for correctedCore minus quarticCore: pointwise control first, then an integral estimate, then the conversion from the raw GaussianF normalization to the final scale.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:20583}
+\medskip

@@ -1,0 +1,48 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+private lemma residual_far_shell_scaled
+    (n t : ℕ) {c r₁ qSm qBig aFar cSm CSm cBig CBig cExp CExp : ℝ}
+    (hn : 3 ≤ n) (ht_one : 1 ≤ t) (ht_pos : 0 < (t : ℝ))
+    (hc_le_sm : c ≤ cSm) (hc_le_big : c ≤ cBig) (hc_le_exp : c ≤ cExp)
+    (ht_farSm : (t : ℝ) ≥ CSm * (n : ℝ) ^ (3 : Nat))
+    (ht_farBig : (t : ℝ) ≥ CBig * (n : ℝ) ^ (3 : Nat))
+    (ht_farExp : (t : ℝ) ≥ CExp * (n : ℝ) ^ (3 : Nat))
+    (hB_le_far :
+      ∫ mu in ((edgeBox n Cn3Torus.delta \ edgeEuclidBall n r₁) \ edgeCoreRegion n (t : ℝ)),
+          ‖Cn3Torus.psi n mu‖ ^ (4 * t)
+        ≤ ∫ mu in edgeEvenFarShell n r₁, ‖Cn3Torus.psi n mu‖ ^ (4 * t))
+    (hfarShell :
+      ∀ (n t : ℕ),
+        2 ≤ n →
+          1 ≤ t →
+            Cn3Torus.texPrefactor n
+              * ∫ mu in edgeEvenFarShell n r₁, ‖Cn3Torus.psi n mu‖ ^ (4 * t)
+                ≤ qSm ^ (4 * t) + qBig ^ (4 * t)
+                    + Real.exp (-(aFar * (t : ℝ) / ((n : ℝ) ^ (2 / 3 : ℝ)))))
+    (hfarSm :
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ CSm * ↑n ^ (3 : Nat) →
+        qSm ^ (4 * t) ≤ Real.exp (-(cSm * (n : ℝ) ^ (2 : Nat))) * gaussianScale n (t : ℝ))
+    (hfarBig :
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ CBig * ↑n ^ (3 : Nat) →
+        qBig ^ (4 * t) ≤ Real.exp (-(cBig * (n : ℝ) ^ (2 : Nat))) * gaussianScale n (t : ℝ))
+    (hfarExp :
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ CExp * ↑n ^ (3 : Nat) →
+        Real.exp (-(aFar * (t : ℝ) / ((n : ℝ) ^ (2 / 3 : ℝ))))
+          ≤ Real.exp (-(cExp * (n : ℝ) ^ (2 : Nat))) * gaussianScale n (t : ℝ)) :
+    Cn3Torus.texPrefactor n
+        * ∫ mu in ((edgeBox n Cn3Torus.delta \ edgeEuclidBall n r₁) \ edgeCoreRegion n (t : ℝ)),
+            ‖Cn3Torus.psi n mu‖ ^ (4 * t)
+      ≤ (3 : ℝ) * Real.exp (-(c * (n : ℝ) ^ (2 : Nat))) * gaussianScale n (t : ℝ)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Handle the translated far-shell contribution using the weak comparison theorem and Gaussian decay away from the core. This shows that the far-shell piece is exponentially small in n^2.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum. It is used directly by residual\_estimate\_quantitative.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:162}
+\medskip

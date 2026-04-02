@@ -1,0 +1,18 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem residual_estimate_quantitative :
+    ∃ c K C : ℝ, 0 < c ∧ 0 < K ∧ 0 < C ∧
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ C * ↑n ^ 3 →
+        |normalizedCount n (4 * t) - primaryCoreContribution n t|
+          ≤ K * Real.exp (-(c * (n : ℝ) ^ (2 : Nat))) * gaussianScale n ↑t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Write normalizedCount minus primaryCoreContribution as the sum of all residual pieces, apply the previously prepared shell and transport estimates to each piece, and absorb them into one exponentially small Gaussian-scale bound.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on residual\_threshold\_parameters, residual\_transport\_scaled, residual\_annulus\_scaled, residual\_far\_shell\_scaled, residual\_local\_to\_core\_scaled, psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum. It is used directly by thm\_main\_intro.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:378}
+\medskip

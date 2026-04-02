@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the normalization used to turn normalized counts into actual Hadamard counts. It is the factor by which the raw count is divided in the main theorem.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def countScale (n t : ℕ) : ℝ :=
+  (2 : ℝ) ^ (4 * n * t) * gaussianScale n ↑t
+\end{verbatim}
+\paragraph{Role in the route.}
+It depends directly on gaussianScale. It is used directly by thm\_main\_intro. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Defs.lean:1157}
+\medskip

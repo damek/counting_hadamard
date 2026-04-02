@@ -1,0 +1,12 @@
+\medskip
+\paragraph{Meaning.}
+This is the normalized counting quantity hadamardCount divided by the ambient power-of-two scale. The main asymptotic theorem is first proved for this normalized object and only then rewritten into the final count-scale statement.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def normalizedCount (n s : ℕ) : ℝ := (hadamardCount n s : ℝ) / (2 : ℝ) ^ (n * s)
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by normalizedCount\_asymptotic, thm\_main\_intro. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Defs.lean:90}
+\medskip

@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the bare Gaussian model term before the project-specific prefactor is attached. It is the simplest Gaussian quantity that the bridge and residual estimates are first proved against.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def gaussianF (d : ℕ) (t : ℝ) : ℝ :=
+  (π / (2 * t)) ^ ((d : ℝ) / 2)
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by gaussianScale\_eq\_texPrefactor\_mul\_gaussianF, prop\_primary\_box. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Defs.lean:70}
+\medskip

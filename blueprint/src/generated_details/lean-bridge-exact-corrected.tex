@@ -1,0 +1,21 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem exactCore_correctedCore_gap_abs_le_gaussianF_short :
+    ∃ c K : ℝ, 0 < c ∧ 0 < K ∧
+      ∀ n : ℕ, 3 ≤ n → ∀ t : ℕ, 1 ≤ t →
+        (dim n : ℝ) / (t : ℝ) ≤ c →
+        (n : ℝ) ^ (6 : Nat) / (t : ℝ) ^ (2 : Nat) ≤ c →
+        |(∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (Cn3Torus.psi n mu ^ (4 * t)))
+            - (∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (correctedCoreIntegrand n t mu))|
+          ≤ (K * ((n : ℝ) ^ (6 : Nat) / (t : ℝ) ^ (2 : Nat)))
+              * gaussianF (dim n) (t : ℝ)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Prove a pointwise bound for the exact-minus-corrected integrand on the core region, integrate that bound, and then transport the resulting raw GaussianF estimate into the project's preferred scale.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:20420}
+\medskip

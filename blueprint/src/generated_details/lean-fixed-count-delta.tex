@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the fixed-n normalized error term on the count side. It packages the n-dependent correction factors that remain after the main Gaussian term is separated out.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def fixedCountDelta (t : ℕ) : ℝ :=
+  ((max t 1 : ℕ) : ℝ) ^ (-(2 / 5 : ℝ))
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by fixed\_n\_count\_asymptotic. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapFixedN.lean:24}
+\medskip

@@ -1,0 +1,14 @@
+\medskip
+\paragraph{Meaning.}
+This is the actual core integral whose asymptotic expansion drives the whole argument. The main theorem is obtained by understanding this term and then showing everything outside it is negligible.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def primaryCoreContribution (n t : ℕ) : ℝ :=
+  Cn3Torus.texPrefactor n
+    * ∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (Cn3Torus.psi n mu ^ (4 * t))
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box, residual\_estimate\_quantitative.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:26}
+\medskip

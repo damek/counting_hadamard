@@ -1,0 +1,17 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+lemma coreMass_gap_le_exp_gaussianF :
+    ∃ c : ℝ, 0 < c ∧
+      ∀ n : ℕ, ∀ t : ℝ, 1 ≤ t →
+        |coreMass (dim n) t - gaussianF (dim n) t|
+          ≤ Real.exp (-(c * (dim n : ℝ))) * gaussianF (dim n) t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Compare the actual core region with the ideal Gaussian mass and show that the missing or extra mass lies in an exponentially small shell. The shell integral is then bounded by Gaussian decay.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on gaussianF. It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:19763}
+\medskip

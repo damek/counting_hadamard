@@ -1,0 +1,16 @@
+% Common blueprint macros shared by web and print.
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+% Local metadata helpers used by the repo-specific blueprint source.
+\newcommand{\moduleowner}[1]{}
+\newcommand{\statementlines}[2]{}
+\newcommand{\prooflines}[2]{}
+\newcommand{\proofstep}[4]{}
+\newcommand{\leanitemdetails}[1]{\input{generated_details/#1.tex}}

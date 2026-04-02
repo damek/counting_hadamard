@@ -1,0 +1,20 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem quarticCore_cubicCore_gap_abs_le_gaussianF_short :
+    ∃ c K : ℝ, 0 < c ∧ 0 < K ∧
+      ∀ n : ℕ, ∀ t : ℕ, 1 ≤ t →
+        (dim n : ℝ) / (t : ℝ) ≤ c →
+        (n : ℝ) * (((dim n : ℝ) / (t : ℝ)) ^ (2 : Nat)) ≤ c →
+        |(∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (quarticCoreIntegrand n t mu))
+            - (∫ mu in edgeCoreRegion n (t : ℝ), Complex.re (cubicCoreIntegrand n t mu))|
+          ≤ (K * ((n : ℝ) ^ (2 : Nat) / (t : ℝ))) * gaussianF (dim n) (t : ℝ)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Again follow the standard bridge pattern. Bound the quartic-versus-cubic phase error pointwise, integrate over the core, and package the result as a Gaussian-scale error term.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:20678}
+\medskip

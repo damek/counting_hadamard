@@ -1,0 +1,30 @@
+# Lake build artifacts
+.lake/
+docbuild/.lake/
+.site/
+
+# OS junk
+.DS_Store
+
+# Backup / scratch files
+*.bak
+*.work.lean
+
+# Python
+__pycache__/
+*.pyc
+blueprint/.venv/
+tools/api_slim/project.sqlite
+tools/api_slim/project.sqlite-journal
+tools/api_slim/__pycache__/
+blueprint/web/
+
+# LaTeX aux
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.blg
+*.bbl

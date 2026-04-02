@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the project statistic J(lambda) = sum\_k I\_k(lambda)^(3/2). It is the quantity that appears in the psi-versus-gaussian comparison bound.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def threeHalfInfluenceSum (n : ℕ) (lam : Fin n → Fin n → ℝ) : ℝ :=
+  ∑ k : Fin n, rowInfluence n lam k * Real.sqrt (rowInfluence n lam k)
+\end{verbatim}
+\paragraph{Role in the route.}
+It depends directly on rowInfluence. It is used directly by paper\_threeHalfInfluenceSum\_eq\_eight\_kernelInfluence\_sum, quadraticForm\_lindeberg\_comparison\_mooKernel, psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3MOO.lean:52}
+\medskip

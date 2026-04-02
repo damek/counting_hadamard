@@ -1,0 +1,22 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem normalizedCount_asymptotic :
+    ∃ c K C : ℝ, 0 < c ∧ 0 < K ∧ 0 < C ∧
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ C * ↑n ^ (3 : Nat) →
+        |paperNormalizedCount n t - paperMainTerm n t|
+          ≤ (K * (n : ℝ) ^ (2 : Nat) / (t : ℝ)
+              + K * ((n : ℝ) ^ (5 / 2 : ℝ) / (t : ℝ) ^ (3 / 2 : ℝ))
+              + K * (n : ℝ) ^ (6 : Nat) / (t : ℝ) ^ (2 : Nat)
+              + K * Real.exp (-(c * (n : ℝ) ^ (2 : Nat))))
+            * paperMainScale n t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Write normalizedCount as primaryCoreContribution plus the residual error. Insert prop\_primary\_box for the primary term, use residual\_estimate\_quantitative for the error term, and absorb the exponentially small residual into the displayed asymptotic bound.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on prop\_primary\_box, residual\_estimate\_quantitative. It is used directly by thm\_main\_intro. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Asymptotics.lean:414}
+\medskip

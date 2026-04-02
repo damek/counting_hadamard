@@ -1,0 +1,18 @@
+% This file makes a print/pdf version of the blueprint.
+\documentclass[a4paper]{report}
+
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage{hyperref}
+\usepackage{blueprint}
+
+\input{macros/common}
+\input{macros/print}
+
+\title{Hadamard Blueprint}
+\author{Project local source}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\input{content}
+\end{document}

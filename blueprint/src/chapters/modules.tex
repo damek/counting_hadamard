@@ -1,0 +1,429 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "modules",
+%   "title": "Modules",
+%   "order": 7,
+%   "summary": "Module ownership and import boundaries for the active route.",
+%   "reader_notes": "Use this chapter when you want to understand which file owns each declaration and how the post-refactor file split now organizes the active route.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/modules.tex"
+% }
+% BP_RECORD_END
+\section{Modules}
+\label{chap:modules}
+
+This chapter records the post-refactor file ownership for the active route. Its
+purpose is to make the codebase navigable without requiring a reader to infer the
+file structure from imports alone.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-defs",
+%   "name": "HadamardCn3Defs",
+%   "file": "RequestProject/HadamardCn3Defs.lean",
+%   "role": "foundation",
+%   "imports": [],
+%   "public_entrypoints": [
+%     "hadamardCount",
+%     "normalizedCount",
+%     "gaussianF",
+%     "gaussianScale",
+%     "countScale"
+%   ],
+%   "summary": "Foundational combinatorial definitions and the explicit Gaussian/count normalizations used throughout the route.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3Defs}
+\textbf{Role.} foundation.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3Defs.lean}.\
+\textbf{Summary.} Foundational combinatorial definitions and the explicit Gaussian/count normalizations used throughout the route.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-torus-count",
+%   "name": "HadamardCn3TorusCount",
+%   "file": "RequestProject/HadamardCn3TorusCount.lean",
+%   "role": "foundation",
+%   "imports": [
+%     "HadamardCn3Defs"
+%   ],
+%   "public_entrypoints": [
+%     "hadamardCount_eq_pow_mul_normalizedCount",
+%     "normalizedCount_eq_normalizedTargetIntegral"
+%   ],
+%   "summary": "Fourier inversion and torus/count bridges for the Hadamard counting problem.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3TorusCount}
+\textbf{Role.} foundation.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3TorusCount.lean}.\
+\textbf{Summary.} Fourier inversion and torus/count bridges for the Hadamard counting problem.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-moments",
+%   "name": "HadamardCn3Moments",
+%   "file": "RequestProject/HadamardCn3Moments.lean",
+%   "role": "support",
+%   "imports": [
+%     "HadamardCn3TorusCount"
+%   ],
+%   "public_entrypoints": [
+%     "continuous_momentX",
+%     "fixedDegreeHC_degree2_W_fourth"
+%   ],
+%   "summary": "Reusable Gaussian moment identities and inequalities used in the bridge and residual estimates.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3Moments}
+\textbf{Role.} support.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3Moments.lean}.\
+\textbf{Summary.} Reusable Gaussian moment identities and inequalities used in the bridge and residual estimates.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-discrete-moments",
+%   "name": "HadamardCn3DiscreteMoments",
+%   "file": "RequestProject/HadamardCn3DiscreteMoments.lean",
+%   "role": "support",
+%   "imports": [
+%     "HadamardCn3Moments"
+%   ],
+%   "public_entrypoints": [
+%     "momentX_three_eq_six_cubicT",
+%     "avgSigns_abs_innerX_six_eq_momentX_six",
+%     "quinticP5_pointwise_bound"
+%   ],
+%   "summary": "Reusable discrete sign-average identities and low-order discrete moment bounds used below the weak-comparison and residual layers.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3DiscreteMoments}
+\textbf{Role.} support.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3DiscreteMoments.lean}.\
+\textbf{Summary.} Reusable discrete sign-average identities and low-order discrete moment bounds used below the weak-comparison and residual layers.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-moo",
+%   "name": "HadamardCn3MOO",
+%   "file": "RequestProject/HadamardCn3MOO.lean",
+%   "role": "foundation",
+%   "imports": [
+%     "HadamardCn3DiscreteMoments"
+%   ],
+%   "public_entrypoints": [
+%     "rowInfluence",
+%     "threeHalfInfluenceSum",
+%     "kernelInfluence",
+%     "mooKernel"
+%   ],
+%   "summary": "Mossel-O'Donnell-Oleszkiewicz influence quantities and kernel normalizations for the weak-comparison layer.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3MOO}
+\textbf{Role.} foundation.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3MOO.lean}.\
+\textbf{Summary.} Mossel-O'Donnell-Oleszkiewicz influence quantities and kernel normalizations for the weak-comparison layer.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-residual-base",
+%   "name": "HadamardCn3ResidualBase",
+%   "file": "RequestProject/HadamardCn3ResidualBase.lean",
+%   "role": "support",
+%   "imports": [
+%     "HadamardCn3DiscreteMoments"
+%   ],
+%   "public_entrypoints": [
+%     "edgeCoreRegion",
+%     "primaryCoreContribution"
+%   ],
+%   "summary": "Residual-support layer for the exact-core, cubic-correction, and off-core estimates.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3ResidualBase}
+\textbf{Role.} support.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3ResidualBase.lean}.\
+\textbf{Summary.} Residual-support layer for the exact-core, cubic-correction, and off-core estimates.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-weak-invariance",
+%   "name": "HadamardCn3WeakInvariance",
+%   "file": "RequestProject/HadamardCn3WeakInvariance.lean",
+%   "role": "weak-comparison",
+%   "imports": [
+%     "HadamardCn3Defs",
+%     "HadamardCn3TorusCount",
+%     "HadamardCn3MOO",
+%     "HadamardCn3ResidualBase"
+%   ],
+%   "public_entrypoints": [
+%     "quadraticForm_lindeberg_comparison_C3",
+%     "psi_sub_gaussianPsi_le_threeHalfInfluenceSum"
+%   ],
+%   "summary": "Owns the generic C^3 Lindeberg comparison theorem and the project-kernel psi-vs-gaussian corollary.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3WeakInvariance}
+\textbf{Role.} weak-comparison.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3WeakInvariance.lean}.\
+\textbf{Summary.} Owns the generic C^3 Lindeberg comparison theorem and the project-kernel psi-vs-gaussian corollary.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-quartic-fiber",
+%   "name": "HadamardCn3QuarticFiber",
+%   "file": "RequestProject/HadamardCn3QuarticFiber.lean",
+%   "role": "support",
+%   "imports": [
+%     "HadamardCn3Defs",
+%     "HadamardCn3TorusCount",
+%     "HadamardCn3DiscreteMoments",
+%     "HadamardCn3ResidualBase"
+%   ],
+%   "public_entrypoints": [],
+%   "summary": "Quartic-fiber Gaussian support lemmas used by the quartic bridge and local-gap estimates.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3QuarticFiber}
+\textbf{Role.} support.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3QuarticFiber.lean}.\
+\textbf{Summary.} Quartic-fiber Gaussian support lemmas used by the quartic bridge and local-gap estimates.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-quartic-bounds",
+%   "name": "HadamardCn3QuarticBounds",
+%   "file": "RequestProject/HadamardCn3QuarticBounds.lean",
+%   "role": "support",
+%   "imports": [
+%     "HadamardCn3QuarticFiber"
+%   ],
+%   "public_entrypoints": [
+%     "quartic_core_integral_bound_explicit",
+%     "quartic_core_integral_dim_bound"
+%   ],
+%   "summary": "Quartic-core integral bounds used by the active local-gap bridge.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3QuarticBounds}
+\textbf{Role.} support.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3QuarticBounds.lean}.\
+\textbf{Summary.} Quartic-core integral bounds used by the active local-gap bridge.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-local-gap-bridge",
+%   "name": "HadamardCn3LocalGapBridge",
+%   "file": "RequestProject/HadamardCn3LocalGapBridge.lean",
+%   "role": "bridge",
+%   "imports": [
+%     "HadamardCn3Defs",
+%     "HadamardCn3TorusCount",
+%     "HadamardCn3DiscreteMoments",
+%     "HadamardCn3MOO",
+%     "HadamardCn3ResidualBase",
+%     "HadamardCn3WeakInvariance",
+%     "HadamardCn3QuarticBounds"
+%   ],
+%   "public_entrypoints": [
+%     "gaussianScale_eq_texPrefactor_mul_gaussianF",
+%     "exactCore_correctedCore_gap_abs_le_gaussianF_short",
+%     "correctedCore_quarticCore_gap_abs_le_gaussianF_short",
+%     "quarticCore_cubicCore_gap_abs_le_gaussianF_short"
+%   ],
+%   "summary": "Bridge estimates and Gaussian factorization identities used by both the primary-box and residual routes.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3LocalGapBridge}
+\textbf{Role.} bridge.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3LocalGapBridge.lean}.\
+\textbf{Summary.} Bridge estimates and Gaussian factorization identities used by both the primary-box and residual routes.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-local-gap-residual",
+%   "name": "HadamardCn3LocalGapResidual",
+%   "file": "RequestProject/HadamardCn3LocalGapResidual.lean",
+%   "role": "residual",
+%   "imports": [
+%     "HadamardCn3LocalGapBridge"
+%   ],
+%   "public_entrypoints": [
+%     "primaryCoreContribution",
+%     "residual_estimate_quantitative",
+%     "cubicT_sq_core_gaussian_correction_tail_le"
+%   ],
+%   "summary": "Residual packaging and the quantitative off-core estimate used to finish the counting theorem.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3LocalGapResidual}
+\textbf{Role.} residual.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3LocalGapResidual.lean}.\
+\textbf{Summary.} Residual packaging and the quantitative off-core estimate used to finish the counting theorem.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-local-gap-fixedn",
+%   "name": "HadamardCn3LocalGapFixedN",
+%   "file": "RequestProject/HadamardCn3LocalGapFixedN.lean",
+%   "role": "fixed-n",
+%   "imports": [
+%     "HadamardCn3LocalGapResidual"
+%   ],
+%   "public_entrypoints": [
+%     "fixedCountDelta",
+%     "fixed_n_normalizedCount_asymptotic",
+%     "fixed_n_count_asymptotic"
+%   ],
+%   "summary": "Fixed-n fallback route used only in the final uniform corollary.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3LocalGapFixedN}
+\textbf{Role.} fixed-n.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3LocalGapFixedN.lean}.\
+\textbf{Summary.} Fixed-n fallback route used only in the final uniform corollary.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-local-gap-core",
+%   "name": "HadamardCn3LocalGapCore",
+%   "file": "RequestProject/HadamardCn3LocalGapCore.lean",
+%   "role": "aggregator",
+%   "imports": [
+%     "HadamardCn3LocalGapBridge",
+%     "HadamardCn3LocalGapResidual",
+%     "HadamardCn3LocalGapFixedN"
+%   ],
+%   "public_entrypoints": [],
+%   "summary": "Pure aggregator preserving the historic import surface for the local-gap support.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3LocalGapCore}
+\textbf{Role.} aggregator.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3LocalGapCore.lean}.\
+\textbf{Summary.} Pure aggregator preserving the historic import surface for the local-gap support.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-asymptotics",
+%   "name": "HadamardCn3Asymptotics",
+%   "file": "RequestProject/HadamardCn3Asymptotics.lean",
+%   "role": "asymptotic-route",
+%   "imports": [
+%     "HadamardCn3LocalGapCore"
+%   ],
+%   "public_entrypoints": [
+%     "paperNormalizedCount",
+%     "paperTargetIntegral",
+%     "paperNormalizedIntegral",
+%     "paperMainScale",
+%     "paperMainTerm",
+%     "paperNormalizedCount_eq_integral",
+%     "prop_primary_box",
+%     "normalizedCount_asymptotic"
+%   ],
+%   "summary": "The normalized-count and normalized-integral route that feeds the final paper-facing count theorems.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3Asymptotics}
+\textbf{Role.} asymptotic-route.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3Asymptotics.lean}.\
+\textbf{Summary.} The normalized-count and normalized-integral route that feeds the final paper-facing count theorems.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-short-main",
+%   "name": "HadamardCn3ShortMain",
+%   "file": "RequestProject/HadamardCn3ShortMain.lean",
+%   "role": "paper-route",
+%   "imports": [
+%     "HadamardCn3Asymptotics"
+%   ],
+%   "public_entrypoints": [
+%     "paperCount",
+%     "paperAsymptoticCount",
+%     "thm_main_intro",
+%     "cor_uniform"
+%   ],
+%   "summary": "Minimal paper-facing count file exposing only the literal count, the asymptotic scale, and the two endpoint theorems.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3ShortMain}
+\textbf{Role.} paper-route.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3ShortMain.lean}.\
+\textbf{Summary.} Minimal paper-facing count file exposing only the literal count, the asymptotic scale, and the two endpoint theorems.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-paper-spec",
+%   "name": "HadamardCn3PaperSpec",
+%   "file": "RequestProject/HadamardCn3PaperSpec.lean",
+%   "role": "spec",
+%   "imports": [
+%     "HadamardCn3ShortMain",
+%     "HadamardCn3WeakInvariance"
+%   ],
+%   "public_entrypoints": [
+%     "paper_threeHalfInfluenceSum_eq_eight_kernelInfluence_sum"
+%   ],
+%   "summary": "Paper-specific normalization bridge retained because it is not transparent from the endpoint theorem file.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3PaperSpec}
+\textbf{Role.} spec.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3PaperSpec.lean}.\
+\textbf{Summary.} Paper-specific normalization bridge retained because it is not transparent from the endpoint theorem file.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "module-local-gap",
+%   "name": "HadamardCn3LocalGap",
+%   "file": "RequestProject/HadamardCn3LocalGap.lean",
+%   "role": "public-wrapper",
+%   "imports": [
+%     "HadamardCn3ShortMain"
+%   ],
+%   "public_entrypoints": [],
+%   "summary": "Thin public wrapper importing the active theorem path only.",
+%   "record_type": "module",
+%   "chapter": "modules"
+% }
+% BP_RECORD_END
+\subsection*{HadamardCn3LocalGap}
+\textbf{Role.} public-wrapper.\
+\textbf{File.} \texttt{RequestProject/HadamardCn3LocalGap.lean}.\
+\textbf{Summary.} Thin public wrapper importing the active theorem path only.

@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the paper's generic influence quantity Inf\_k(f) for a symmetric kernel f. It is the normalization in which the general C^3 Lindeberg theorem is stated.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def kernelInfluence (n : ℕ) (f : Fin n → Fin n → ℝ) (k : Fin n) : ℝ :=
+  ∑ j : Fin n, f k j ^ (2 : Nat)
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by quadraticForm\_lindeberg\_comparison\_C3, paper\_threeHalfInfluenceSum\_eq\_eight\_kernelInfluence\_sum. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3MOO.lean:130}
+\medskip

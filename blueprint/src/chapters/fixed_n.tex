@@ -1,0 +1,98 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "fixed_n",
+%   "title": "Fixed-n Fallback",
+%   "order": 6,
+%   "summary": "Internal fixed-n route used only in the final uniform corollary.",
+%   "reader_notes": "These declarations are Lean-only support results. They are not labeled statements in the paper, but they are necessary to understand the fixed-n branch of cor_uniform.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/fixed_n.tex"
+% }
+% BP_RECORD_END
+\section{Fixed-n Fallback}
+
+This chapter records the Lean-only fixed-n route used in the final uniform
+corollary. These declarations are not paper-labeled results, but they are part of
+the active proof path of \texttt{cor\_uniform}.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-fixed-count-delta",
+%   "symbol": "fixedCountDelta",
+%   "file": "RequestProject/HadamardCn3LocalGapFixedN.lean",
+%   "line": 24,
+%   "module": "module-local-gap-fixedn",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-fixed-n-count"
+%   ],
+%   "depends_on": [],
+%   "summary": "Fixed-n shrinking radius used in the fallback asymptotic route.",
+%   "record_type": "lean_item",
+%   "chapter": "fixed_n"
+% }
+% BP_RECORD_END
+\begin{definition}[fixedCountDelta]
+\label{lean-fixed-count-delta}
+\lean{fixedCountDelta}
+\moduleowner{module-local-gap-fixedn}
+Fixed-n shrinking radius used in the fallback asymptotic route.
+\end{definition}
+\leanitemdetails{lean-fixed-count-delta}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-fixed-n-normalized-count",
+%   "symbol": "fixed_n_normalizedCount_asymptotic",
+%   "file": "RequestProject/HadamardCn3LocalGapFixedN.lean",
+%   "line": 2938,
+%   "module": "module-local-gap-fixedn",
+%   "kind": "lean_only",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-fixed-n-count"
+%   ],
+%   "depends_on": [],
+%   "summary": "Lean-only normalized-count asymptotic used in the fixed-n route.",
+%   "record_type": "lean_item",
+%   "chapter": "fixed_n"
+% }
+% BP_RECORD_END
+\begin{theorem}[fixed\_n\_normalizedCount\_asymptotic]
+\label{lean-fixed-n-normalized-count}
+\lean{fixed_n_normalizedCount_asymptotic}
+\moduleowner{module-local-gap-fixedn}
+Lean-only normalized-count asymptotic used in the fixed-n route.
+\end{theorem}
+\leanitemdetails{lean-fixed-n-normalized-count}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-fixed-n-count",
+%   "symbol": "fixed_n_count_asymptotic",
+%   "file": "RequestProject/HadamardCn3LocalGapFixedN.lean",
+%   "line": 3016,
+%   "module": "module-local-gap-fixedn",
+%   "kind": "lean_only",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-cor-uniform"
+%   ],
+%   "depends_on": [
+%     "lean-fixed-count-delta",
+%     "lean-fixed-n-normalized-count"
+%   ],
+%   "summary": "Lean-only fixed-n count asymptotic used in the small-dimension branch of the uniform corollary.",
+%   "record_type": "lean_item",
+%   "chapter": "fixed_n"
+% }
+% BP_RECORD_END
+\begin{theorem}[fixed_n_count_asymptotic]
+\label{lean-fixed-n-count}
+\lean{fixed_n_count_asymptotic}
+\uses{lean-fixed-count-delta,lean-fixed-n-normalized-count}
+\moduleowner{module-local-gap-fixedn}
+Lean-only fixed-n count asymptotic used in the small-dimension branch of the uniform corollary.
+\end{theorem}
+\leanitemdetails{lean-fixed-n-count}

@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the project's row-wise squared coefficient mass I\_k(lambda). It measures how much the kth coordinate contributes to the quadratic form and is the building block for the three-half influence sum.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def rowInfluence (n : ℕ) (lam : Fin n → Fin n → ℝ) (k : Fin n) : ℝ :=
+  ∑ i : Fin n, if i ≠ k then lam (min i k) (max i k) ^ 2 else 0
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by threeHalfInfluenceSum. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3MOO.lean:48}
+\medskip

@@ -1,0 +1,15 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+lemma gaussianScale_eq_texPrefactor_mul_gaussianF
+    (n : ℕ) (hn : 2 ≤ n) (t : ℝ) (ht : 0 < t) :
+    Cn3Torus.texPrefactor n * gaussianF (dim n) t = gaussianScale n t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Unfold gaussianScale, gaussianF, and the prefactor definitions, then regroup the factors. The theorem is simply the explicit bookkeeping identity used to move between the two Gaussian normalizations.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on gaussianF, gaussianScale. It is used directly by prop\_primary\_box. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:35}
+\medskip

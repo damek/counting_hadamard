@@ -1,0 +1,15 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem psi_sub_gaussianPsi_le_threeHalfInfluenceSum
+    (n : ℕ) (lam : Fin n → Fin n → ℝ) :
+    ‖psi n lam - gaussianPsi n lam‖ ≤ (3 / 2 : ℝ) * threeHalfInfluenceSum n lam
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Apply the mooKernel weak-comparison theorem separately to the cosine and sine parts of the characteristic function, combine the real and imaginary bounds, and then use the paper normalization identity for the influence sum.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on quadraticForm\_lindeberg\_comparison\_C3, quadraticForm\_lindeberg\_comparison\_mooKernel, paper\_threeHalfInfluenceSum\_eq\_eight\_kernelInfluence\_sum. It is used directly by residual\_far\_shell\_scaled, residual\_estimate\_quantitative.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3WeakInvariance.lean:5172}
+\medskip

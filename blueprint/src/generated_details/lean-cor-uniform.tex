@@ -1,0 +1,17 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem cor_uniform :
+    ∀ ε : ℝ, 0 < ε →
+      ∃ K : ℝ, 0 < K ∧ ∀ n : ℕ, 2 ≤ n →
+        ∀ t : ℕ, (t : ℝ) ≥ K * ↑n ^ 3 →
+          |((paperCount n (4 * t) : ℝ) / paperAsymptoticCount n t) - 1| < ε
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Split the argument into the large-n branch given by thm\_main\_intro and the finite family of small-n cases handled by fixed\_n\_count\_asymptotic. Then choose one threshold that dominates all of them.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on thm\_main\_intro, fixed\_n\_count\_asymptotic.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3ShortMain.lean:119}
+\medskip

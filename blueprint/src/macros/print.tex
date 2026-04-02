@@ -1,0 +1,20 @@
+% Print-only blueprint macros.
+
+\newcommand{\lean}[1]{}
+\newcommand{\discussion}[1]{}
+\newcommand{\leanok}{}
+\newcommand{\mathlibok}{}
+\newcommand{\notready}{}
+\newcommand{\moduleowner}[1]{}
+\newcommand{\statementlines}[2]{}
+\newcommand{\prooflines}[2]{}
+\newcommand{\proofstep}[4]{}
+
+\ExplSyntaxOn
+\NewDocumentCommand{\uses}{m}
+ {\clist_map_inline:nn{#1}{\vphantom{\ref{##1}}}%
+  \ignorespaces}
+\NewDocumentCommand{\proves}{m}
+ {\clist_map_inline:nn{#1}{\vphantom{\ref{##1}}}%
+  \ignorespaces}
+\ExplSyntaxOff

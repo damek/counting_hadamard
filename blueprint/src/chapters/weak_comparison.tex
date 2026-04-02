@@ -1,0 +1,413 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "weak_comparison",
+%   "title": "Weak Comparison",
+%   "order": 2,
+%   "summary": "Generic C^3 Lindeberg comparison and its project-kernel specialization for psi versus gaussianPsi.",
+%   "reader_notes": "This chapter isolates the invariance-principle input. It shows both the paper lemma and the project-specific specialization that turns the generic theorem into the psi-versus-gaussian comparison used later.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/weak_comparison.tex"
+% }
+% BP_RECORD_END
+\section{Weak Comparison}
+\label{chap:weak-comparison}
+
+This chapter records the generic weak-comparison theorem and the specialization
+route that produces the project-level comparison for
+$\psi_n - \psi_{G,n}$. The blueprint keeps the generic theorem and the project
+specialization separate because the Lean development really uses both.
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "paper-lem-weak-comparison",
+%   "label": "lem:weak-comparison",
+%   "title": "Lindeberg comparison",
+%   "kind": "lemma",
+%   "tex_path": "documents/short.tex",
+%   "statement_lines": {
+%     "start": 1436,
+%     "end": 1448
+%   },
+%   "proof_lines": {
+%     "start": 1449,
+%     "end": 1492
+%   },
+%   "lean_primary": "lean-weak-c3",
+%   "lean_support": [
+%     "lean-weak-moo"
+%   ],
+%   "module_owner": "module-weak-invariance",
+%   "summary": "The generic weak-comparison theorem formalizes the paper\u2019s C^3 Lindeberg replacement bound for quadratic forms.",
+%   "proof_steps": [
+%     {
+%       "id": "step-weak-decomposition",
+%       "title": "Decomposition Q_f = U + z_m V",
+%       "tex_lines": {
+%         "start": 1452,
+%         "end": 1459
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3"
+%       ],
+%       "summary": "Split the quadratic form into a part independent of the replaced coordinate and a linear form in that coordinate."
+%     },
+%     {
+%       "id": "step-weak-taylor",
+%       "title": "Third-order Taylor step",
+%       "tex_lines": {
+%         "start": 1460,
+%         "end": 1468
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3"
+%       ],
+%       "summary": "Apply third-order Taylor expansion and use matching first two moments of the sign and Gaussian variables."
+%     },
+%     {
+%       "id": "step-weak-adjacent",
+%       "title": "Adjacent replacement estimate",
+%       "tex_lines": {
+%         "start": 1469,
+%         "end": 1490
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3"
+%       ],
+%       "summary": "Control each replacement step by a cubic influence term via second and fourth moment estimates for the linear form."
+%     },
+%     {
+%       "id": "step-weak-telescope",
+%       "title": "Telescoping over m",
+%       "tex_lines": {
+%         "start": 1449,
+%         "end": 1451
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3"
+%       ],
+%       "summary": "Write the full difference as a telescoping sum of adjacent replacement steps."
+%     }
+%   ],
+%   "record_type": "paper_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{lemma}[Lindeberg comparison]
+\label{lem:weak-comparison}
+\lean{quadraticForm_lindeberg_comparison_C3}
+\leanok
+\uses{lean-weak-moo}
+The generic weak-comparison theorem formalizes the paper’s C^3 Lindeberg replacement bound for quadratic forms.
+\end{lemma}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "paper-cor-weak-comparison",
+%   "label": "cor:weak-comparison",
+%   "title": "Gaussian comparison for \u03c8",
+%   "kind": "corollary",
+%   "tex_path": "documents/short.tex",
+%   "statement_lines": {
+%     "start": 1496,
+%     "end": 1502
+%   },
+%   "proof_lines": {
+%     "start": 1504,
+%     "end": 1515
+%   },
+%   "lean_primary": "lean-psi-vs-gaussian",
+%   "lean_support": [
+%     "lean-weak-c3",
+%     "lean-weak-moo",
+%     "lean-paper-three-half"
+%   ],
+%   "module_owner": "module-weak-invariance",
+%   "summary": "The characteristic-function comparison is derived by specializing the generic C^3 theorem to cos and sin and then rewriting the influence normalization.",
+%   "proof_steps": [
+%     {
+%       "id": "step-psi-cos",
+%       "title": "Specialize to cos",
+%       "tex_lines": {
+%         "start": 1508,
+%         "end": 1510
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3",
+%         "lean-weak-moo"
+%       ],
+%       "summary": "Apply the generic comparison theorem to the cosine part of the characteristic function."
+%     },
+%     {
+%       "id": "step-psi-sin",
+%       "title": "Specialize to sin",
+%       "tex_lines": {
+%         "start": 1508,
+%         "end": 1510
+%       },
+%       "lean_refs": [
+%         "lean-weak-c3",
+%         "lean-weak-moo"
+%       ],
+%       "summary": "Apply the same theorem to the sine part and combine real and imaginary contributions."
+%     },
+%     {
+%       "id": "step-psi-normalization",
+%       "title": "Convert influence normalization",
+%       "tex_lines": {
+%         "start": 1511,
+%         "end": 1514
+%       },
+%       "lean_refs": [
+%         "lean-paper-three-half",
+%         "lean-psi-vs-gaussian"
+%       ],
+%       "summary": "Rewrite the kernel-influence sum in the project\u2019s row-influence normalization."
+%     }
+%   ],
+%   "record_type": "paper_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{corollary}[Gaussian comparison for ψ]
+\label{cor:weak-comparison}
+\lean{psi_sub_gaussianPsi_le_threeHalfInfluenceSum}
+\leanok
+\uses{lean-weak-c3,lean-weak-moo,lean-paper-three-half}
+The characteristic-function comparison is derived by specializing the generic C^3 theorem to cos and sin and then rewriting the influence normalization.
+\end{corollary}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-row-influence",
+%   "symbol": "rowInfluence",
+%   "file": "RequestProject/HadamardCn3MOO.lean",
+%   "line": 11413,
+%   "module": "module-moo",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-three-half-sum"
+%   ],
+%   "depends_on": [],
+%   "summary": "Row influence I_k(lambda) in the project normalization.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{definition}[rowInfluence]
+\label{lean-row-influence}
+\lean{rowInfluence}
+\moduleowner{module-moo}
+Row influence I_k(lambda) in the project normalization.
+\end{definition}
+\leanitemdetails{lean-row-influence}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-three-half-sum",
+%   "symbol": "threeHalfInfluenceSum",
+%   "file": "RequestProject/HadamardCn3MOO.lean",
+%   "line": 11417,
+%   "module": "module-moo",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-paper-three-half",
+%     "lean-weak-moo",
+%     "lean-psi-vs-gaussian"
+%   ],
+%   "depends_on": [
+%     "lean-row-influence"
+%   ],
+%   "summary": "Project statistic \u03a3 I_k(lambda)^(3/2).",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{definition}[threeHalfInfluenceSum]
+\label{lean-three-half-sum}
+\lean{threeHalfInfluenceSum}
+\uses{lean-row-influence}
+\moduleowner{module-moo}
+Project statistic Σ I_k(lambda)^(3/2).
+\end{definition}
+\leanitemdetails{lean-three-half-sum}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-kernel-influence",
+%   "symbol": "kernelInfluence",
+%   "file": "RequestProject/HadamardCn3MOO.lean",
+%   "line": 11514,
+%   "module": "module-moo",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-weak-c3",
+%     "lean-paper-three-half"
+%   ],
+%   "depends_on": [],
+%   "summary": "Kernel influence used in the generic quadratic-form comparison theorem.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{definition}[kernelInfluence]
+\label{lean-kernel-influence}
+\lean{kernelInfluence}
+\moduleowner{module-moo}
+Kernel influence used in the generic quadratic-form comparison theorem.
+\end{definition}
+\leanitemdetails{lean-kernel-influence}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-moo-kernel",
+%   "symbol": "mooKernel",
+%   "file": "RequestProject/HadamardCn3MOO.lean",
+%   "line": 11524,
+%   "module": "module-moo",
+%   "kind": "definition",
+%   "paper_item": null,
+%   "used_by": [
+%     "lean-weak-moo",
+%     "lean-psi-vs-gaussian",
+%     "lean-paper-three-half"
+%   ],
+%   "depends_on": [],
+%   "summary": "Project kernel attached to \u03bb in the weak-comparison route.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{definition}[mooKernel]
+\label{lean-moo-kernel}
+\lean{mooKernel}
+\moduleowner{module-moo}
+Project kernel attached to λ in the weak-comparison route.
+\end{definition}
+\leanitemdetails{lean-moo-kernel}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-paper-three-half",
+%   "symbol": "paper_threeHalfInfluenceSum_eq_eight_kernelInfluence_sum",
+%   "file": "RequestProject/HadamardCn3PaperSpec.lean",
+%   "line": 48,
+%   "module": "module-paper-spec",
+%   "kind": "normalization",
+%   "paper_item": "paper-cor-weak-comparison",
+%   "used_by": [
+%     "lean-psi-vs-gaussian"
+%   ],
+%   "depends_on": [
+%     "lean-three-half-sum",
+%     "lean-kernel-influence",
+%     "lean-moo-kernel"
+%   ],
+%   "summary": "Specification-layer theorem rewriting the project influence statistic into the paper kernel-influence normalization.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{lemma}[paper_threeHalfInfluenceSum_eq_eight_kernelInfluence_sum]
+\label{lean-paper-three-half}
+\lean{paper_threeHalfInfluenceSum_eq_eight_kernelInfluence_sum}
+\uses{lean-three-half-sum,lean-kernel-influence,lean-moo-kernel}
+\moduleowner{module-paper-spec}
+Specification-layer theorem rewriting the project influence statistic into the paper kernel-influence normalization.
+\end{lemma}
+\leanitemdetails{lean-paper-three-half}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-weak-c3",
+%   "symbol": "quadraticForm_lindeberg_comparison_C3",
+%   "file": "RequestProject/HadamardCn3WeakInvariance.lean",
+%   "line": 6454,
+%   "module": "module-weak-invariance",
+%   "kind": "paper_endpoint",
+%   "paper_item": "paper-lem-weak-comparison",
+%   "used_by": [
+%     "lean-weak-moo",
+%     "lean-psi-vs-gaussian"
+%   ],
+%   "depends_on": [
+%     "lean-kernel-influence"
+%   ],
+%   "summary": "Generic C^3 quadratic-form comparison theorem in the paper normalization.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{lemma}[quadraticForm_lindeberg_comparison_C3]
+\label{lean-weak-c3}
+\lean{quadraticForm_lindeberg_comparison_C3}
+\uses{lean-kernel-influence}
+\moduleowner{module-weak-invariance}
+Generic C^3 quadratic-form comparison theorem in the paper normalization.
+\end{lemma}
+\leanitemdetails{lean-weak-c3}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-weak-moo",
+%   "symbol": "quadraticForm_lindeberg_comparison_mooKernel",
+%   "file": "RequestProject/HadamardCn3WeakInvariance.lean",
+%   "line": 6634,
+%   "module": "module-weak-invariance",
+%   "kind": "paper_support",
+%   "paper_item": "paper-cor-weak-comparison",
+%   "used_by": [
+%     "lean-psi-vs-gaussian"
+%   ],
+%   "depends_on": [
+%     "lean-weak-c3",
+%     "lean-moo-kernel",
+%     "lean-three-half-sum"
+%   ],
+%   "summary": "Project-kernel specialization of the generic weak-comparison theorem.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{lemma}[quadraticForm_lindeberg_comparison_mooKernel]
+\label{lean-weak-moo}
+\lean{quadraticForm_lindeberg_comparison_mooKernel}
+\uses{lean-weak-c3,lean-moo-kernel,lean-three-half-sum}
+\moduleowner{module-weak-invariance}
+Project-kernel specialization of the generic weak-comparison theorem.
+\end{lemma}
+\leanitemdetails{lean-weak-moo}
+
+% BP_RECORD_BEGIN
+% {
+%   "id": "lean-psi-vs-gaussian",
+%   "symbol": "psi_sub_gaussianPsi_le_threeHalfInfluenceSum",
+%   "file": "RequestProject/HadamardCn3WeakInvariance.lean",
+%   "line": 6726,
+%   "module": "module-weak-invariance",
+%   "kind": "paper_endpoint",
+%   "paper_item": "paper-cor-weak-comparison",
+%   "used_by": [
+%     "lean-residual-far-shell",
+%     "lean-residual-estimate"
+%   ],
+%   "depends_on": [
+%     "lean-weak-c3",
+%     "lean-weak-moo",
+%     "lean-paper-three-half"
+%   ],
+%   "summary": "Paper-facing Gaussian comparison bound for the characteristic function \u03c8.",
+%   "record_type": "lean_item",
+%   "chapter": "weak_comparison"
+% }
+% BP_RECORD_END
+\begin{corollary}[psi_sub_gaussianPsi_le_threeHalfInfluenceSum]
+\label{lean-psi-vs-gaussian}
+\lean{psi_sub_gaussianPsi_le_threeHalfInfluenceSum}
+\uses{lean-weak-c3,lean-weak-moo,lean-paper-three-half}
+\moduleowner{module-weak-invariance}
+Paper-facing Gaussian comparison bound for the characteristic function ψ.
+\end{corollary}
+\leanitemdetails{lean-psi-vs-gaussian}

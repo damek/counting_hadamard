@@ -1,0 +1,15 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem fixed_n_normalizedCount_asymptotic (n : ℕ) (hn : 2 ≤ n) :
+    Tendsto (fun t : ℕ => normalizedCount n (4 * t) / gaussianScale n (t : ℝ))
+      Filter.atTop (𝓝 1)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Fix n once and for all. Combine the fixed-n primary-box estimate with the fixed-n residual control, then absorb all remaining constants into an n-dependent cubic threshold on the normalized-count scale.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by fixed\_n\_count\_asymptotic. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapFixedN.lean:2866}
+\medskip

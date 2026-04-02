@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the symmetric zero-diagonal kernel built from lambda that lets the project's characteristic function comparison fit into the generic quadratic-form framework.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def mooKernel (n : ℕ) (lam : Fin n → Fin n → ℝ) : Fin n → Fin n → ℝ :=
+  fun i j => if i = j then 0 else lam (min i j) (max i j) / 2
+\end{verbatim}
+\paragraph{Role in the route.}
+It is used directly by quadraticForm\_lindeberg\_comparison\_mooKernel, psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum, paper\_threeHalfInfluenceSum\_eq\_eight\_kernelInfluence\_sum. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3MOO.lean:134}
+\medskip

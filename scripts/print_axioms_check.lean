@@ -1,0 +1,12 @@
+import RequestProject.HadamardCn3ShortMain
+import RequestProject.HadamardCn3Asymptotics
+import RequestProject.HadamardCn3WeakInvariance
+import RequestProject.HadamardCn3LocalGapResidual
+
+#print axioms thm_main_intro
+#print axioms cor_uniform
+#print axioms prop_primary_box
+#print axioms normalizedCount_asymptotic
+#print axioms quadraticForm_lindeberg_comparison_C3
+#print axioms psi_sub_gaussianPsi_le_threeHalfInfluenceSum
+#print axioms residual_estimate_quantitative

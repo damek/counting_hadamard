@@ -1,0 +1,15 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem fixed_n_count_asymptotic (n : ℕ) (hn : 2 ≤ n) :
+    Tendsto (fun t : ℕ => (hadamardCount n (4 * t) : ℝ) / countScale n t)
+      Filter.atTop (𝓝 1)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Start from the fixed-n normalized-count asymptotic, rewrite it through the count normalization identity, and absorb the remaining fixed-n constants into the stated error term.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on fixedCountDelta, fixed\_n\_normalizedCount\_asymptotic. It is used directly by cor\_uniform. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapFixedN.lean:2946}
+\medskip

@@ -1,0 +1,22 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+private lemma residual_threshold_parameters
+    {cSm CSm cBig CBig cExp CExp cTr CTr : ℝ}
+    (hcSm_pos : 0 < cSm) (hCSm_pos : 0 < CSm)
+    (hcBig_pos : 0 < cBig) (hCBig_pos : 0 < CBig)
+    (hcExp_pos : 0 < cExp) (hCExp_pos : 0 < CExp)
+    (hcTr_pos : 0 < cTr) (hCTr_pos : 0 < CTr) :
+    ∃ c C : ℝ, 0 < c ∧ 0 < C ∧
+      c ≤ (1 / 32 : ℝ) ∧ c ≤ cSm ∧ c ≤ cBig ∧ c ≤ cExp ∧ c ≤ cTr ∧
+      CSm ≤ C ∧ CBig ≤ C ∧ CExp ≤ C ∧ CTr ≤ C ∧
+      (1 : ℝ) ≤ C ∧ 1 / (Cn3Torus.delta ^ (2 : Nat)) ≤ C
+\end{verbatim}
+\begin{proof}[Proof sketch]
+This theorem packages the numerical threshold choices so that all residual shell estimates are simultaneously valid. The proof is bookkeeping: choose constants large enough to satisfy each downstream lemma at once.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by residual\_estimate\_quantitative.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:30}
+\medskip

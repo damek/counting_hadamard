@@ -1,0 +1,22 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem thm_main_intro :
+    ∃ c K C : ℝ, 0 < c ∧ 0 < K ∧ 0 < C ∧
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ C * ↑n ^ (3 : Nat) →
+        |((paperCount n (4 * t) : ℝ) / paperAsymptoticCount n t)
+            - ((1 : ℝ) - ((Nat.choose n 3 : ℝ) / (8 * (t : ℝ))))|
+          ≤ K * (n : ℝ) ^ (2 : Nat) / (t : ℝ)
+              + K * ((n : ℝ) ^ (5 / 2 : ℝ) / (t : ℝ) ^ (3 / 2 : ℝ))
+              + K * (n : ℝ) ^ (6 : Nat) / (t : ℝ) ^ (2 : Nat)
+              + K * Real.exp (-(c * (n : ℝ) ^ (2 : Nat)))
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Rewrite the target ratio directly from the definitions of normalizedCount and countScale, substitute normalizedCount\_asymptotic, and simplify the normalization so that only the paper's main asymptotic expression remains.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on normalizedCount\_asymptotic, normalizedCount, countScale. It is used directly by cor\_uniform.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3ShortMain.lean:65}
+\medskip

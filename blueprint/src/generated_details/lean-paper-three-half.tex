@@ -1,0 +1,18 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem paper_threeHalfInfluenceSum_eq_eight_kernelInfluence_sum
+    (n : ℕ) (lam : Fin n → Fin n → ℝ) :
+    threeHalfInfluenceSum n lam
+      = 8 * ∑ k : Fin n,
+          kernelInfluence n (mooKernel n lam) k
+            * Real.sqrt (kernelInfluence n (mooKernel n lam) k)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Expand the definitions of mooKernel, kernelInfluence, and threeHalfInfluenceSum. Each row influence is four times the corresponding kernel influence, so summing the three-halves powers gives the factor of eight.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on threeHalfInfluenceSum, kernelInfluence, mooKernel. It is used directly by psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3PaperSpec.lean:34}
+\medskip

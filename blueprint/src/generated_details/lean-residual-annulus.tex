@@ -1,0 +1,24 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+private lemma residual_annulus_scaled
+    (n t : ℕ) {c C₆ r₁ : ℝ}
+    (hn : 3 ≤ n) (hdim : 1 ≤ dim n) (ht_one : 1 ≤ t) (ht_pos : 0 < (t : ℝ))
+    (hC₆_nonneg : 0 ≤ C₆) (hc_le_ann : c ≤ (1 / 32 : ℝ))
+    (hA_raw :
+      ∫ mu in ((edgeBox n Cn3Torus.delta ∩ edgeEuclidBall n r₁) \ edgeCoreRegion n (t : ℝ)),
+          ‖Cn3Torus.psi n mu‖ ^ (4 * t)
+        ≤ C₆ * Real.exp (-((dim n : ℝ) / 8)) * coreMass (dim n) (t : ℝ)) :
+    Cn3Torus.texPrefactor n
+        * ∫ mu in ((edgeBox n Cn3Torus.delta ∩ edgeEuclidBall n r₁) \ edgeCoreRegion n (t : ℝ)),
+            ‖Cn3Torus.psi n mu‖ ^ (4 * t)
+      ≤ C₆ * Real.exp (-(c * (n : ℝ) ^ (2 : Nat))) * gaussianScale n (t : ℝ)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Decompose the near-shell residual contribution and bound it by the Gaussian comparison together with the local annulus estimates. The result is then rewritten in the common scaled form.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by residual\_estimate\_quantitative.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapResidual.lean:111}
+\medskip

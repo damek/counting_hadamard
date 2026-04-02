@@ -1,0 +1,24 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem cubic_core_second_order_gap_uniform :
+    ∃ C : ℝ, 0 < C ∧
+      ∀ n : ℕ, ∀ t : ℝ, 1 ≤ t →
+        |(∫ mu in edgeCoreRegion n t,
+            Real.exp (-2 * t * Cn3Torus.sqNormEdge n mu)
+              * Real.cos (4 * t * cubicT n (matrixOfEdge n mu)))
+          - (coreMass (dim n) t
+              - (8 : ℝ) * t ^ (2 : Nat)
+                  * ∫ mu in edgeCoreRegion n t,
+                      (cubicT n (matrixOfEdge n mu)) ^ (2 : Nat)
+                        * Real.exp (-2 * t * Cn3Torus.sqNormEdge n mu))|
+          ≤ (C * (n : ℝ) ^ (6 : Nat) / t ^ (2 : Nat)) * gaussianF (dim n) t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Expand the cubic phase to second order on the core box, control the remainder by Gaussian moments, and keep the constants uniform in n so the bound can be inserted directly into the primary-box assembly.
+\end{proof}
+\paragraph{Role in the route.}
+It is used directly by prop\_primary\_box.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3LocalGapBridge.lean:12930}
+\medskip

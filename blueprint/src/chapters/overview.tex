@@ -1,0 +1,65 @@
+% BP_RECORD_BEGIN
+% {
+%   "id": "overview",
+%   "title": "Overview",
+%   "order": 1,
+%   "summary": "Reader entrypoint for the active formalization route for arXiv:2603.30013.",
+%   "reader_notes": "Start here if you want the shortest path from the arXiv paper to the Lean theorem chain. The blueprint records only the active route and its necessary Lean-only bridge items; the local synchronized TeX source remains documents/short.tex for tooling.",
+%   "record_type": "chapter",
+%   "chapter_file": "blueprint/src/chapters/overview.tex"
+% }
+% BP_RECORD_END
+\section{Overview}
+\label{chap:overview}
+
+This blueprint is the canonical human-facing formalization map for the active
+route formalizing arXiv:2603.30013. It is not a replacement for the paper; it
+is the synchronized map from paper statements to Lean declarations, Lean-only
+bridge results, module ownership, and the active dependency route. The local
+TeX source \texttt{documents/short.tex} remains in the repository for
+synchronization and validation.
+
+The guiding principle is architectural honesty:
+
+\begin{itemize}
+\item paper-labeled statements remain explicit blueprint items,
+\item Lean-only bridge theorems appear when the formal route actually uses them,
+\item module ownership is recorded so readers can jump into the live source only
+  when they want more detail.
+\end{itemize}
+
+\subsection*{Quick navigation}
+
+\begin{itemize}
+\item \hyperref[thm:main-intro]{Main asymptotic count theorem} and
+  \hyperref[cor:uniform]{uniform counting corollary}.
+\item \hyperref[lem:weak-comparison]{Weak comparison} for the invariance
+  principle input.
+\item \hyperref[prop:primary-box]{Primary-box estimate} for the main on-core
+  asymptotic.
+\item \hyperref[prop:residual-estimate]{Residual estimate} for the off-core
+  contribution.
+\item \hyperref[chap:modules]{Module guide} for the file-by-file ownership map.
+\item \href{dep_graph_document.html}{Dependency graph} for the full theorem
+  dependency view.
+\end{itemize}
+
+\subsection*{Recommended reading paths}
+
+\paragraph{Fastest paper check.}
+Read \hyperref[thm:main-intro]{Theorem \ref*{thm:main-intro}} and
+\hyperref[cor:uniform]{Corollary \ref*{cor:uniform}}, then inspect the two
+support chapters \hyperref[prop:primary-box]{primary box} and
+\hyperref[prop:residual-estimate]{residual estimate}.
+
+\paragraph{Full proof route.}
+Follow the dependency chain
+\hyperref[lem:weak-comparison]{weak comparison}
+$\to$
+\hyperref[prop:primary-box]{primary box}
+$\to$
+\hyperref[prop:residual-estimate]{residual estimate}
+$\to$
+\hyperref[thm:main-intro]{main count theorem}
+$\to$
+\hyperref[cor:uniform]{uniform corollary}.

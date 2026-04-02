@@ -1,0 +1,101 @@
+{
+  "lean-fixed-count-delta": {
+    "in_words": "This is the fixed-n normalized error term on the count side. It packages the n-dependent correction factors that remain after the main Gaussian term is separated out."
+  },
+  "lean-fixed-n-normalized-count": {
+    "proof_idea": "Fix n once and for all. Combine the fixed-n primary-box estimate with the fixed-n residual control, then absorb all remaining constants into an n-dependent cubic threshold on the normalized-count scale."
+  },
+  "lean-fixed-n-count": {
+    "proof_idea": "Start from the fixed-n normalized-count asymptotic, rewrite it through the count normalization identity, and absorb the remaining fixed-n constants into the stated error term."
+  },
+  "lean-count-scale": {
+    "in_words": "This is the normalization used to turn normalized counts into actual Hadamard counts. It is the factor by which the raw count is divided in the main theorem."
+  },
+  "lean-normalized-count": {
+    "in_words": "This is the normalized counting quantity hadamardCount divided by the ambient power-of-two scale. The main asymptotic theorem is first proved for this normalized object and only then rewritten into the final count-scale statement."
+  },
+  "lean-prop-primary-box": {
+    "proof_idea": "Assemble the short bridge chain from exact to corrected, corrected to quartic, quartic to cubic, and cubic to Gaussian scale. Then combine the second-order cubic approximation, the cubic correction tail, and the core-mass transport bound into one final estimate."
+  },
+  "lean-normalized-count-asymptotic": {
+    "proof_idea": "Write normalizedCount as primaryCoreContribution plus the residual error. Insert prop_primary_box for the primary term, use residual_estimate_quantitative for the error term, and absorb the exponentially small residual into the displayed asymptotic bound."
+  },
+  "lean-thm-main-intro": {
+    "proof_idea": "Rewrite the target ratio directly from the definitions of normalizedCount and countScale, substitute normalizedCount_asymptotic, and simplify the normalization so that only the paper's main asymptotic expression remains."
+  },
+  "lean-cor-uniform": {
+    "proof_idea": "Split the argument into the large-n branch given by thm_main_intro and the finite family of small-n cases handled by fixed_n_count_asymptotic. Then choose one threshold that dominates all of them."
+  },
+  "lean-gaussian-f": {
+    "in_words": "This is the bare Gaussian model term before the project-specific prefactor is attached. It is the simplest Gaussian quantity that the bridge and residual estimates are first proved against."
+  },
+  "lean-gaussian-scale": {
+    "in_words": "This is the paper-facing Gaussian scale used in the final asymptotic statements. It is the normalized Gaussian term that appears in the primary and residual estimates."
+  },
+  "lean-gaussian-scale-factorization": {
+    "proof_idea": "Unfold gaussianScale, gaussianF, and the prefactor definitions, then regroup the factors. The theorem is simply the explicit bookkeeping identity used to move between the two Gaussian normalizations."
+  },
+  "lean-bridge-exact-corrected": {
+    "proof_idea": "Prove a pointwise bound for the exact-minus-corrected integrand on the core region, integrate that bound, and then transport the resulting raw GaussianF estimate into the project's preferred scale."
+  },
+  "lean-bridge-corrected-quartic": {
+    "proof_idea": "Repeat the same template for correctedCore minus quarticCore: pointwise control first, then an integral estimate, then the conversion from the raw GaussianF normalization to the final scale."
+  },
+  "lean-bridge-quartic-cubic": {
+    "proof_idea": "Again follow the standard bridge pattern. Bound the quartic-versus-cubic phase error pointwise, integrate over the core, and package the result as a Gaussian-scale error term."
+  },
+  "lean-cubic-second-order-gap": {
+    "proof_idea": "Expand the cubic phase to second order on the core box, control the remainder by Gaussian moments, and keep the constants uniform in n so the bound can be inserted directly into the primary-box assembly."
+  },
+  "lean-core-mass-gap": {
+    "proof_idea": "Compare the actual core region with the ideal Gaussian mass and show that the missing or extra mass lies in an exponentially small shell. The shell integral is then bounded by Gaussian decay."
+  },
+  "lean-primary-core": {
+    "in_words": "This is the actual core integral whose asymptotic expansion drives the whole argument. The main theorem is obtained by understanding this term and then showing everything outside it is negligible."
+  },
+  "lean-cubic-tail": {
+    "proof_idea": "Isolate the cubic correction term that remains after the second-order expansion and estimate it in the tail region using Gaussian decay, yielding an exponentially small multiple of gaussianScale."
+  },
+  "lean-residual-thresholds": {
+    "proof_idea": "This theorem packages the numerical threshold choices so that all residual shell estimates are simultaneously valid. The proof is bookkeeping: choose constants large enough to satisfy each downstream lemma at once."
+  },
+  "lean-residual-transport": {
+    "proof_idea": "Once the threshold package is fixed, compare the local residual normalization with gaussianScale and transport bounds between them. The proof is a monotonicity and scaling argument rather than a new analytic estimate."
+  },
+  "lean-residual-annulus": {
+    "proof_idea": "Decompose the near-shell residual contribution and bound it by the Gaussian comparison together with the local annulus estimates. The result is then rewritten in the common scaled form."
+  },
+  "lean-residual-far-shell": {
+    "proof_idea": "Handle the translated far-shell contribution using the weak comparison theorem and Gaussian decay away from the core. This shows that the far-shell piece is exponentially small in n^2."
+  },
+  "lean-residual-local-core": {
+    "proof_idea": "Combine the annulus and far-shell bounds and then transport the result from the local normalization to the return-probability scale. This is the last local-to-global assembly step before the final residual theorem."
+  },
+  "lean-residual-estimate": {
+    "proof_idea": "Write normalizedCount minus primaryCoreContribution as the sum of all residual pieces, apply the previously prepared shell and transport estimates to each piece, and absorb them into one exponentially small Gaussian-scale bound."
+  },
+  "lean-row-influence": {
+    "in_words": "This is the project's row-wise squared coefficient mass I_k(lambda). It measures how much the kth coordinate contributes to the quadratic form and is the building block for the three-half influence sum."
+  },
+  "lean-three-half-sum": {
+    "in_words": "This is the project statistic J(lambda) = sum_k I_k(lambda)^(3/2). It is the quantity that appears in the psi-versus-gaussian comparison bound."
+  },
+  "lean-kernel-influence": {
+    "in_words": "This is the paper's generic influence quantity Inf_k(f) for a symmetric kernel f. It is the normalization in which the general C^3 Lindeberg theorem is stated."
+  },
+  "lean-moo-kernel": {
+    "in_words": "This is the symmetric zero-diagonal kernel built from lambda that lets the project's characteristic function comparison fit into the generic quadratic-form framework."
+  },
+  "lean-paper-three-half": {
+    "proof_idea": "Expand the definitions of mooKernel, kernelInfluence, and threeHalfInfluenceSum. Each row influence is four times the corresponding kernel influence, so summing the three-halves powers gives the factor of eight."
+  },
+  "lean-weak-c3": {
+    "proof_idea": "Introduce the mixed sign/Gaussian interpolation, estimate a single adjacent replacement step by third-order Taylor expansion, use matching first two moments to cancel the lower-order terms, bound the cubic remainder by the influence term, and telescope over all coordinates."
+  },
+  "lean-weak-moo": {
+    "proof_idea": "Apply the generic quadratic-form comparison theorem to the specific kernel mooKernel and rewrite the resulting influence sum into the project's threeHalfInfluenceSum normalization."
+  },
+  "lean-psi-vs-gaussian": {
+    "proof_idea": "Apply the mooKernel weak-comparison theorem separately to the cosine and sine parts of the characteristic function, combine the real and imaginary bounds, and then use the paper normalization identity for the influence sum."
+  }
+}

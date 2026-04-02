@@ -1,0 +1,25 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem quadraticForm_lindeberg_comparison_C3
+    (N : ℕ)
+    (f : Fin N → Fin N → ℝ)
+    (hsymm : ∀ i j, f i j = f j i)
+    (hdiag : ∀ i, f i i = 0)
+    (φ : ℝ → ℝ) (M : ℝ)
+    (hM_nonneg : 0 ≤ M)
+    (hφ : ContDiff ℝ 3 φ)
+    (hφ3 : ∀ x : ℝ, |iteratedDeriv 3 φ x| ≤ M) :
+    |avgSigns N (fun σ => φ (Q2Signs N f σ))
+      - stdGaussianAvg N (fun x => φ (Q2Gauss N f x))|
+      ≤ (6 : ℝ) * M * ∑ k : Fin N,
+          kernelInfluence N f k * Real.sqrt (kernelInfluence N f k)
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Introduce the mixed sign/Gaussian interpolation, estimate a single adjacent replacement step by third-order Taylor expansion, use matching first two moments to cancel the lower-order terms, bound the cubic remainder by the influence term, and telescope over all coordinates.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on kernelInfluence. It is used directly by quadraticForm\_lindeberg\_comparison\_mooKernel, psi\_sub\_gaussianPsi\_le\_threeHalfInfluenceSum.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3WeakInvariance.lean:4907}
+\medskip

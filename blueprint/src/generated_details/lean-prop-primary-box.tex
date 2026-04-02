@@ -1,0 +1,22 @@
+\medskip
+\paragraph{Formal Lean statement.}
+\begin{verbatim}
+theorem prop_primary_box :
+    ∃ c K C : ℝ, 0 < c ∧ 0 < K ∧ 0 < C ∧
+      ∀ n : ℕ, 3 ≤ n →
+      ∀ t : ℕ, (t : ℝ) ≥ C * ↑n ^ (3 : Nat) →
+        |primaryCoreContribution n t - paperMainTerm n t|
+          ≤ (K * (n : ℝ) ^ (2 : Nat) / (t : ℝ)
+              + K * ((n : ℝ) ^ (5 / 2 : ℝ) / (t : ℝ) ^ (3 / 2 : ℝ))
+              + K * (n : ℝ) ^ (6 : Nat) / (t : ℝ) ^ (2 : Nat)
+              + K * Real.exp (-(c * (n : ℝ) ^ (2 : Nat))))
+            * paperMainScale n t
+\end{verbatim}
+\begin{proof}[Proof sketch]
+Assemble the short bridge chain from exact to corrected, corrected to quartic, quartic to cubic, and cubic to Gaussian scale. Then combine the second-order cubic approximation, the cubic correction tail, and the core-mass transport bound into one final estimate.
+\end{proof}
+\paragraph{Role in the route.}
+It depends directly on primaryCoreContribution, exactCore\_correctedCore\_gap\_abs\_le\_gaussianF\_short, correctedCore\_quarticCore\_gap\_abs\_le\_gaussianF\_short, quarticCore\_cubicCore\_gap\_abs\_le\_gaussianF\_short, cubic\_core\_second\_order\_gap\_uniform, cubicT\_sq\_core\_gaussian\_correction\_tail\_le, coreMass\_gap\_le\_exp\_gaussianF, gaussianScale\_eq\_texPrefactor\_mul\_gaussianF. It is used directly by normalizedCount\_asymptotic, thm\_main\_intro.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Asymptotics.lean:57}
+\medskip

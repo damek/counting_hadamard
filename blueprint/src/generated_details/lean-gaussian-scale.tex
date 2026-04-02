@@ -1,0 +1,13 @@
+\medskip
+\paragraph{Meaning.}
+This is the paper-facing Gaussian scale used in the final asymptotic statements. It is the normalized Gaussian term that appears in the primary and residual estimates.
+\paragraph{Formal Lean definition.}
+\begin{verbatim}
+def gaussianScale (n : ℕ) (t : ℝ) : ℝ :=
+  2 ^ (2 * dim n - n + 1 : ℤ) * (8 * π * t) ^ (-(dim n : ℝ) / 2)
+\end{verbatim}
+\paragraph{Role in the route.}
+It depends directly on gaussianF. It is used directly by gaussianScale\_eq\_texPrefactor\_mul\_gaussianF, prop\_primary\_box, residual\_estimate\_quantitative. This is a Lean-only route item rather than a named paper statement.
+\paragraph{Source location.}
+\texttt{RequestProject/HadamardCn3Defs.lean:1153}
+\medskip
